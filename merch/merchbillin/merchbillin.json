@@ -1,0 +1,19 @@
+{
+	"title" : "Merch Bill In",
+	
+	
+	"variance" : {
+		"entry" : {"title":"Shipment Bill (Entry)","data":{}},
+		"proforma" : {"title":"Shipment Bill (Proforma)","data":{}},
+		"post" : {"title":"Shipment Bill (Posting)","data":{}}
+	},
+	"allowanonymous" : false,
+	"allowedgroups" : ["public"],
+	"apis" : {
+		"save" : { "allowanonymous": false, "allowedgroups" : ["public"] },
+		"delete" : { "allowanonymous": false, "allowedgroups" : ["public"] },
+		"open" : { "allowanonymous": false, "allowedgroups" : ["public"] },
+		"list" : { "allowanonymous": false, "allowedgroups" : ["public"] }
+	}	
+}
+

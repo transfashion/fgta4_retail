@@ -1,0 +1,10 @@
+{
+	"title": "Feature Test",
+	"allowanonymous" : false,
+	"allowedgroups" : ["public"],
+	"apis" : {
+	},
+	"data" : {
+		"container_is_mandatory" : true
+	}
+}

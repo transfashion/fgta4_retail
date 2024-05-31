@@ -1,0 +1,9 @@
+{
+	"title" : "Send e-Receipt",
+	"allowanonymous" : false,
+	"allowedgroups" : ["public"],
+	"apis" : {
+		"send" : { "allowanonymous": true, "allowedgroups" : ["public"] }
+	}	
+}
+

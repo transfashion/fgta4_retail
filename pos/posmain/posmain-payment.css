@@ -1,0 +1,58 @@
+#pnl_payment-columnright {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+#pnl_payment-columnright-top {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 150px;
+}
+
+#pnl_payment-columnright-middle {
+	flex-grow: 1;
+}
+
+#pnl_payment-columnright-bottom {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#pnl_payment-paymententry {
+	flex-grow: 1;
+}
+
+
+#pnl_payment-shortcut{
+	height: 50px;
+	display: flex;
+	align-items: center;
+}
+
+
+
+.paymentinput-value {
+	font-size: 24px !important;
+	font-weight: bold;
+}
+
+.paymentinput-text {
+	font-size: 20px !important;
+	font-weight: bold;
+}
+
+.blink {
+	animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+	50% {
+		opacity: 0;
+	}
+}

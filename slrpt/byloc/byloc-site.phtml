@@ -1,0 +1,58 @@
+<div id="pnl_listsite">
+
+	<div class="fgta-page-title"  style="margin-bottom: 0px">
+		<div id="pnl_listsite-obj_city" class="param_city">JKT</div>
+		<div id="pnl_listloc-obj_location" class="param_location">PI</div>
+	</div>
+
+	<div class="mfcontainer">
+		<div class="mfrow">
+			<div class="mffield">
+				<div class="mflabel">Start</div>
+				<div class="mfcomp">
+					<div id="pnl_listsite-obj_date_start" class="param_date datestart"></div>
+				</div>
+			</div>
+
+			<div class="mffield">
+				<div class="mflabel">End</div>
+				<div class="mfcomp">
+					<div id="pnl_listsite-obj_date_end" class="param_date dateend"></div>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+
+
+	<div style="margin-top: 10px">
+		<table id="pnl_listsite-tbl_list" paging="true" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th mapping="SITE_ID">site_id</th>
+					<th mapping="TX">tx</th>
+					<th mapping="QTY">qty</th>
+					<th mapping="GROSS">gross</th>
+					<th mapping="NETT">nett</th>
+				</tr>
+				<tr style="background-color: #cccccc; height: 30px">
+					<td class="fgtable-head" style="width: 100px; border-bottom: 1px solid #000000">SITE</td>
+					<td class="fgtable-head" style="width: 100px; border-bottom: 1px solid #000000; text-align: right">Tx</td>
+					<td class="fgtable-head" style="width: 100px; border-bottom: 1px solid #000000; text-align: right">Qty</td>
+					<td class="fgtable-head" style="width: 100px; border-bottom: 1px solid #000000; text-align: right">Gross</td>
+					<td class="fgtable-head" style="width: 100px; border-bottom: 1px solid #000000; text-align: right">Nett</td>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr style="background-color: #cccccc; height: 30px;">
+					<td class="fgtable-head-alt1" >TOTAL</td>
+					<td class="fgtable-head-alt1" style="width: 100px; border-bottom: 1px solid #000000; text-align: right"><div id="pnl_listsite-total_tx" style="text-align: right">0</div></td>
+					<td class="fgtable-head-alt1" style="width: 100px; border-bottom: 1px solid #000000; text-align: right"><div id="pnl_listsite-total_qty" style="text-align: right">0</div></td>
+					<td class="fgtable-head-alt1" style="width: 100px; border-bottom: 1px solid #000000; text-align: right"><div id="pnl_listsite-total_gross" style="text-align: right">0</div></td>
+					<td class="fgtable-head-alt1" style="width: 100px; border-bottom: 1px solid #000000; text-align: right"><div id="pnl_listsite-total_nett" style="text-align: right">0</div></td>
+				</tr>
+			</tfoot>			
+		</table>
+	</div>
+
+</div>

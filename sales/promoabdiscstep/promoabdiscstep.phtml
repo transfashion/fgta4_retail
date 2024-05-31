@@ -1,0 +1,12 @@
+<?php require_once dirname(__FILE__).'/promoabdiscstep-list.phtml' ?>
+<?php require_once dirname(__FILE__).'/promoabdiscstep-edit.phtml' ?>
+
+
+
+<?php
+$customrecordstatus = __DIR__.'/promoabdiscstep-customrecordstatus.phtml'; 
+if (is_file($customrecordstatus)) {
+	include $customrecordstatus;
+} else { ?>
+
+<?php } ?>

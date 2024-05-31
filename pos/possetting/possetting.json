@@ -1,0 +1,9 @@
+{
+	"title" : "Setting",
+	"allowanonymous" : true,
+	"allowedgroups" : ["public"],
+	"apis" : {
+		"applycode" : { "allowanonymous" : true },
+		"commitcode" : { "allowanonymous" : true }
+	}
+}

@@ -1,0 +1,22 @@
+<!-- ini blank phtml -->
+<div id="pnl_editimportdata">
+	<div class="fgta-page-title">Import Data</div>
+
+	<div style="margin-bottom: 20px">
+		Region ID
+		<input id="pnl_editimportdata-obj_txt_region_id" class="easyui-textbox" style="width: 100px" data-options="prompt:'kode region'">
+	</div>
+
+	<div style="margin-bottom: 20px">
+		<div style="padding-top:3px; padding-bottom: 10px;">
+			<h4>Sync Register</h4><br>
+			<input id="pnl_editimportdata-obj_txt_register_id" class="easyui-textbox" style="width: 300px" data-options="prompt:'input kode register'">
+		</div>
+		<?=$this->LongTask("pnl_editimportdata-syncregister", "Go")?>
+	</div>	
+
+
+	<div>
+		<a id="pnl_editimportdata-btn_clear" class="easyui-linkbutton">Clear</a>
+	</div>
+</div>	

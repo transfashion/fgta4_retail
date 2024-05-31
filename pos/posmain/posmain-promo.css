@@ -1,0 +1,15 @@
+#pnl_promo {
+	display: flex;
+	flex-direction: column;
+}
+
+
+.promobuttonblock {
+	display: flex;
+	margin-bottom: 30px;
+}
+
+.promobuttonblock-col {
+	margin-top: 20px
+}
+

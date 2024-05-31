@@ -1,0 +1,366 @@
+<div id="pnl_edit">
+	<div class="fgta-page-title" style="display: flex; align-items: center ">
+		<div>Edit Item Merchandise</div>
+		<a id="pnl_edit-btn_edit" href="javascript:void(0)" class="easyui-linkbutton" style="margin-left:10px;" data-options="plain:true,iconCls:'fgta-icon-edit'">edit</a>
+	</div>
+
+
+	<form id="pnl_edit-form">
+
+		<div class="form_row pnl_edit_row txt_merchitem_id" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">ID</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_id" class="easyui-textbox" mapping="merchitem_id"  maxlength="14" style="width: 400px" data-options="multiline: false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_art" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">ART</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_art" class="easyui-textbox" mapping="merchitem_art"  maxlength="30" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Artikel harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_mat" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">MAT</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_mat" class="easyui-textbox" mapping="merchitem_mat"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_col" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">COL</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_col" class="easyui-textbox" mapping="merchitem_col"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_size" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">SIZE</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_size" class="easyui-textbox" mapping="merchitem_size"  maxlength="20" style="width: 400px" data-options="multiline: false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_name" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Name</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_name" class="easyui-textbox" mapping="merchitem_name"  maxlength="255" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Nama harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_descr" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Descr</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_descr" class="easyui-textbox" mapping="merchitem_descr"  maxlength="20000" style="width: 400px" data-options="multiline: false , multiline: true, height: '200px' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+
+		<div class="form_row pnl_edit_row fl_merchitem_picture" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Picture</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-fl_merchitem_picture" class="easyui-filebox" mapping="merchitem_picture" style="width: 400px" data-options="multiline: false , accept: 'image/*' ">
+				<div style="display: flex;">
+					<a class="filedownloadlink" id="pnl_edit-fl_merchitem_picture_link" style="cursor:pointer; margin-right: 10px; display: none">Download File</a>	
+					<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+				</div>
+				<img id="pnl_edit-fl_merchitem_picture_img" style="width: 200px; width: 200px; border: 1px solid: #ccc; display:none">				
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row cbo_merchitemctg_id" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Category</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-cbo_merchitemctg_id" class="easyui-combo" style="width: 400px" mapping="merchitemctg_id" display="merchitemctg_name" data-options="editable:false, valueField:'id', textField:'text' , required: true, invalidMessage: 'Category harus diisi'"   validType="requiredcombo['pnl_edit-cbo_merchitemctg_id']" >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row cbo_merchsea_id" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Season</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-cbo_merchsea_id" class="easyui-combo" style="width: 400px" mapping="merchsea_id" display="merchsea_name" data-options="editable:false, valueField:'id', textField:'text' , required: true, invalidMessage: 'Season harus diisi'"   validType="requiredcombo['pnl_edit-cbo_merchsea_id']" >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row cbo_brand_id" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Brand</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-cbo_brand_id" class="easyui-combo" style="width: 400px" mapping="brand_id" display="brand_name" data-options="editable:false, valueField:'id', textField:'text' , required: true, invalidMessage: 'Brand harus diisi'"   validType="requiredcombo['pnl_edit-cbo_brand_id']" >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<?=$this->Section('Dimension & Weight', true, true)?>
+		<div class="fgta_section_collapsible " style="display: none">
+					
+		<div class="form_row pnl_edit_row txt_merchitem_width" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Width (cm)</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_width" class="easyui-numberbox" mapping="merchitem_width" style="width: 400px; text-align:right" data-options="precision: 1, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_length" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Length (cm)</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_length" class="easyui-numberbox" mapping="merchitem_length" style="width: 400px; text-align:right" data-options="precision: 1, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_height" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Height (cm)</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_height" class="easyui-numberbox" mapping="merchitem_height" style="width: 400px; text-align:right" data-options="precision: 1, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_weight" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Weight (Kg)</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_weight" class="easyui-numberbox" mapping="merchitem_weight" style="width: 400px; text-align:right" data-options="precision: 1, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		</div>
+					
+		<?=$this->Section('Pricing & Values', true, true)?>
+		<div class="fgta_section_collapsible " style="display: none">
+					
+		<div class="form_row pnl_edit_row txt_merchitem_priceori" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Original Price</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_priceori" class="easyui-numberbox" mapping="merchitem_priceori" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_price" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Current Price</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_price" class="easyui-numberbox" mapping="merchitem_price" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row chk_merchitem_issp" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_merchitem_issp" class="easyui-checkbox c1" mapping="merchitem_issp" data-options="label: 'Hide Percentage Disc ', labelPosition: 'after', checked: false , labelWidth: '300px'">
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row chk_merchitem_isdiscvalue" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_merchitem_isdiscvalue" class="easyui-checkbox c1" mapping="merchitem_isdiscvalue" data-options="label: 'Discount Using Value', labelPosition: 'after', checked: false , labelWidth: '300px'">
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_disc" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Disc (%)</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_disc" class="easyui-numberbox" mapping="merchitem_disc" style="width: 400px; text-align:right" data-options="precision: 2, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_discval" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Disc Value</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_discval" class="easyui-numberbox" mapping="merchitem_discval" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_pricenett" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Current Nett Price</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_pricenett" class="easyui-numberbox" mapping="merchitem_pricenett" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_lastcogs" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Last COGS</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_lastcogs" class="easyui-numberbox" mapping="merchitem_lastcogs" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row dt_merchitem_lastcogsdt" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Last COGS Date</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-dt_merchitem_lastcogsdt" class="easyui-datebox" style="width: 400px" mapping="merchitem_lastcogsdt" data-options="editable:false ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		</div>
+					
+		<?=$this->Section('Additional Information', true, true)?>
+		<div class="fgta_section_collapsible " style="display: none">
+					
+		<div class="form_row pnl_edit_row cbo_merchrpt_id" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Report</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-cbo_merchrpt_id" class="easyui-combo" style="width: 400px" mapping="merchrpt_id" display="merchrpt_name" data-options="editable:false, valueField:'id', textField:'text' , required: true, invalidMessage: 'Report harus diisi'"   validType="requiredcombo['pnl_edit-cbo_merchrpt_id']" >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row cbo_gender_id" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Gender</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-cbo_gender_id" class="easyui-combo" style="width: 400px" mapping="gender_id" display="gender_name" data-options="editable:false, valueField:'id', textField:'text' , required: true, invalidMessage: 'Gender harus diisi'"   validType="requiredcombo['pnl_edit-cbo_gender_id']" >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_colorcode" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Color Code</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_colorcode" class="easyui-textbox" mapping="merchitem_colorcode"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_colorname" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Color Name</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_colorname" class="easyui-textbox" mapping="merchitem_colorname"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_hscodeship" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">HS Code Shipment</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_hscodeship" class="easyui-textbox" mapping="merchitem_hscodeship"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitem_hscode" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">HS Code Id</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitem_hscode" class="easyui-textbox" mapping="merchitem_hscode"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row txt_merchitemvar_id" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Variance</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_merchitemvar_id" class="easyui-textbox" mapping="merchitemvar_id"  maxlength="14" style="width: 400px" data-options="multiline: false , disabled: true ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row cbo_merchsizetag_id" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Sizetag</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-cbo_merchsizetag_id" class="easyui-combo" style="width: 400px" mapping="merchsizetag_id" display="merchsizetag_name" data-options="editable:false, valueField:'id', textField:'text' , required: true, invalidMessage: 'Sizetag harus diisi'"   validType="requiredcombo['pnl_edit-cbo_merchsizetag_id']" >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row chk_merchitem_isallchannel" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_merchitem_isallchannel" class="easyui-checkbox c1" mapping="merchitem_isallchannel" data-options="label: 'Visible in all channel', labelPosition: 'after', checked: false , labelWidth: '300px'">
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row chk_merchitem_isnonactive" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_merchitem_isnonactive" class="easyui-checkbox c1" mapping="merchitem_isnonactive" data-options="label: 'Non Active', labelPosition: 'after', checked: false , labelWidth: '300px'">
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row chk_merchitem_isdisabled" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_merchitem_isdisabled" class="easyui-checkbox c1" mapping="merchitem_isdisabled" data-options="label: 'Disabled', labelPosition: 'after', checked: false , labelWidth: '300px'">
+			</div>
+		</div>
+
+		</div>
+					
+	</form>
+
+
+	<div class="form_row" style="margin-top: 30px">
+		<div class="form_label_col"></div>
+		<div class="form_input_col" style="border: 0px solid black">
+			<a id="pnl_edit-btn_save" class="easyui-linkbutton c1" style="width">Simpan</a>
+		</div>
+	</div>	
+
+
+
+		<div id="pnl_edit-detil" class="form_row" style="margin-top: 30px">
+			<div class="form_label_col"></div>
+			<div class="form_input_col detilbox" style="border: 0px solid black">
+				<div class="fgtable-head" style="height: 25px; padding: 5px 0px 0px 5px">Detil Informations</div>
+				<div class="fgtable-head-drow" style="height: 25px; padding: 5px 5px 0px 5px; " onclick="$ui.getPages().ITEMS['pnl_edit'].handler.detil_open('pnl_editbarcodegrid')">
+					<div id="pnl_edit-txt_barcode_title" class="detilgrid-text">Barcode</div>
+					<div id="pnl_edit-txt_barcode_value" class="detilgrid-value">&nbsp;</div>
+				</div>
+				<div class="fgtable-head-drow" style="height: 25px; padding: 5px 5px 0px 5px; " onclick="$ui.getPages().ITEMS['pnl_edit'].handler.detil_open('pnl_editpropgrid')">
+					<div id="pnl_edit-txt_prop_title" class="detilgrid-text">Properties</div>
+					<div id="pnl_edit-txt_prop_value" class="detilgrid-value">&nbsp;</div>
+				</div>
+				<div class="fgtable-head-drow" style="height: 25px; padding: 5px 5px 0px 5px; " onclick="$ui.getPages().ITEMS['pnl_edit'].handler.detil_open('pnl_editchannelgrid')">
+					<div id="pnl_edit-txt_channel_title" class="detilgrid-text">Channel</div>
+					<div id="pnl_edit-txt_channel_value" class="detilgrid-value">&nbsp;</div>
+				</div>
+				<div class="fgtable-head-drow" style="height: 25px; padding: 5px 5px 0px 5px; " onclick="$ui.getPages().ITEMS['pnl_edit'].handler.detil_open('pnl_editrelatedgrid')">
+					<div id="pnl_edit-txt_related_title" class="detilgrid-text">Related Item</div>
+					<div id="pnl_edit-txt_related_value" class="detilgrid-value">&nbsp;</div>
+				</div>
+				<div class="fgtable-head-drow" style="height: 25px; padding: 5px 5px 0px 5px; " onclick="$ui.getPages().ITEMS['pnl_edit'].handler.detil_open('pnl_editpicturegrid')">
+					<div id="pnl_edit-txt_picture_title" class="detilgrid-text">Picture</div>
+					<div id="pnl_edit-txt_picture_value" class="detilgrid-value">&nbsp;</div>
+				</div>
+				<div class="fgtable-head-drow" style="height: 25px; padding: 5px 5px 0px 5px; " onclick="$ui.getPages().ITEMS['pnl_edit'].handler.detil_open('pnl_editrefgrid')">
+					<div id="pnl_edit-txt_ref_title" class="detilgrid-text">Referensi</div>
+					<div id="pnl_edit-txt_ref_value" class="detilgrid-value">&nbsp;</div>
+				</div>
+
+			</div>		
+		</div>		
+		
+		
+
+
+	<div style="margin-top: 30px; margin-left:-5px; margin-right: -5px; background-color: #cccccc; display: flex; justify-content: space-between; padding: 10px 2px 2px 2px ">
+		<div>
+			<!-- letakkan tombol yang lin disini -->
+			
+			
+			
+			
+		</div>
+		<div>
+			<a id="pnl_edit-btn_delete" class="easyui-linkbutton c5" style="margin-bottom: 10px; margin-right: 10px">Hapus</a>
+		</div>
+	</div>
+
+</div>
+

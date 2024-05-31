@@ -1,0 +1,104 @@
+<html>
+	<head>
+		<style>
+			.tfrpt-sectiontitle {
+				font-weight: bold; 
+				font-size: 1.2em;
+				margin-top: 50px;
+				margin-bottom: 0px;
+			}
+
+			.tfrpt-thead {
+				font-size: 0.7em;
+				font-weight: bold;
+				padding: 5px;
+				text-align: center;
+				border-color: #888;
+				border-style: solid;
+				border-width: 1px  0px 0px 1px ;
+				
+			}
+
+			.tfrpt-thead-c1 {
+					background-color: #254061;
+					color: #fff;
+			}
+
+			.tfrpt-thead-c2 {
+					background-color: #d7e4bd;
+					color: #002060;
+			}			
+
+			.tfrpt-thead-c3 {
+					background-color: #b9cde5;
+					color: #002060;
+			}
+
+			.tfrpt-thead-c4 {
+					background-color: #dbeef4;
+					color: #002060;
+			}	
+
+			.tfrpt-thead-info {
+				font-size: 0.5em;
+				text-align: center;
+			}		
+
+			.tfrpt-tcell {
+				font-size: 0.7em;
+				text-align: right;
+				border-color: #888;
+				border-style: solid;
+				border-width: 0px  0px 1px 1px ;
+			}
+
+			.tfrpt-tfoot {
+				font-weight: bold;
+				font-size: 0.7em;
+				text-align: right;
+				background-color: #ccc;
+				border-color: #888;
+				border-style: solid;
+				border-width: 0px  1px 1px 1px ;				
+			}
+		</style>
+	</head>
+	<body style="font-size: 10pt; font-family: Verdana, Geneva, sans-serif; ">
+
+		<table style="font-weight: bold;">
+			<tr><td style="font-size: 1.5em;">Trans Fashion Indonesia</td></tr>
+			<tr><td style="font-size: 1.2em;">Daily Sales</td></tr>
+			<tr><td style="font-weight: normal;">per <?=$this->dparam->PERTANGGAL?></td></tr>
+		</table>
+
+		<?php if (property_exists($this->args->params, '--weekly')) { ?>
+
+			<table class="tfrpt-sectiontitle">
+				<tr><td>By Brand - Weekly</td></tr>
+			</table>
+			<?php $this->getBrandWeekly(); ?>
+
+
+
+			<table class="tfrpt-sectiontitle">
+				<tr><td>By Location - Weekly</td></tr>
+			</table>
+			<?php $this->getLocationWeekly();?>
+
+		<?php } else { ?>
+
+			<table class="tfrpt-sectiontitle">
+				<tr><td>By Brand - Daily</td></tr>
+			</table>			
+			<?php $this->getBrandDaily(); ?>
+
+			<table class="tfrpt-sectiontitle">
+				<tr><td>By Location - Daily</td></tr>
+			</table>			
+			<?php $this->getLocationDaily(); ?>
+
+
+		<?php } ?>	
+
+	</body>
+</html>

@@ -1,0 +1,12 @@
+<?php require_once dirname(__FILE__).'/merchshipbudgetacc-list.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchshipbudgetacc-edit.phtml' ?>
+
+
+
+<?php
+$customrecordstatus = __DIR__.'/merchshipbudgetacc-customrecordstatus.phtml'; 
+if (is_file($customrecordstatus)) {
+	include $customrecordstatus;
+} else { ?>
+
+<?php } ?>

@@ -1,0 +1,60 @@
+.grd-lst-id {
+	font-weight: bold
+}
+
+.grd-lst-desc {
+	padding: 0px 0px 0px 10px; 
+	font-weight:lighter; 
+	font-style:italic
+}
+
+.grd-lst-per {
+	padding: 4px 0px 0px 10px;
+}
+
+
+.grd-bud-acc {
+	font-weight: normal;
+}
+
+.grd-bud-desc {
+	font-weight:lighter; 
+	font-style:italic
+}
+
+
+
+.pastebox {
+	margin-left: 0px;
+}
+
+.pastebox-processing {
+	background-color: transparent !important;
+	
+}
+
+[contenteditable][placeholder]:empty:before {
+	margin-top: 0px;
+	content: attr(placeholder);
+	position: absolute;
+	color: gray;
+	background-color: transparent;
+}
+  
+
+.billvalue {
+	text-align: right;
+}
+
+.billheader {
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	background-color: burlywood;
+	font-weight: bold;
+}
+
+.billfooter {
+	border-top: 2px solid #000;
+	background-color: #ccc;
+	font-weight: bold;
+}

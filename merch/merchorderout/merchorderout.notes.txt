@@ -1,0 +1,23 @@
+Order
+		
+Original Path : /Users/agung/Development/fgtacloud4u/server/apps/retail/merch/merchorderout
+Creator Name  : undefined
+                undefined
+Created Date  : Thu Jul 27 2023 12:44:57 GMT+0700 (Western Indonesia Time)				 
+=========================================================================================
+
+<put your notes here>
+		
+
+
+// testing data:
+1692679707
+
+1695716737 => DM 920 | FW22  | Qty 200 | USD 10.368.00
+1695717115 => DM 920 | SS23 | Qty 1.162 | USD 50.624.48
+
+
+
+// receive
+RV/05/GEX/WH-JKT/230000030   - DM 920  | FW22  | Qty 200 | USD 10.368.00
+RV/05/GEX/WH-JKT/230000031   - DM 920  | SS23 | Qty 1.162 | USD 50.624.48

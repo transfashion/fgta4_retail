@@ -1,0 +1,12 @@
+<?php require_once dirname(__FILE__).'/problock-list.phtml' ?>
+<?php require_once dirname(__FILE__).'/problock-edit.phtml' ?>
+
+
+
+<?php
+$customrecordstatus = __DIR__.'/problock-customrecordstatus.phtml'; 
+if (is_file($customrecordstatus)) {
+	include $customrecordstatus;
+} else { ?>
+
+<?php } ?>

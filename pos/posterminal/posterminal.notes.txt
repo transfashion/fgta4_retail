@@ -1,0 +1,10 @@
+POS Terminal
+		
+Original Path : /Users/agung/Development/fgtacloud4u/server/apps/retail/pos/posterminal
+Creator Name  : undefined
+                undefined
+Created Date  : Tue Jan 31 2023 04:10:48 GMT+0700 (Western Indonesia Time)				 
+=========================================================================================
+
+<put your notes here>
+		

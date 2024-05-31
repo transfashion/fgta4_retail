@@ -1,0 +1,229 @@
+<div id="pnl_entry" class="fullcontent page-panel posmain-container">
+	<div class="posmain-column">
+		<div class="posmain-row posmain-left-rowtop">
+			<span><img id="pnl_entry-searchmode" width="40px" height="30px" style="margin-top: 7px; margin-right: 15px" src="index.php/public/assets/icon-search-descr-40x30.svg" ></span>
+			<input id="pnl_entry-lineinput" type="text" placeholder="Scan or type barcode" autocomplete="off">
+			<button id="pnl_entry-btn_ok" class="waves-effect waves-light btn" style="height: 45px; margin-left: 8px; margin-right: 0">Ok</button>
+		</div>
+		<div class="posmain-row posmain-left-rowmiddle posmain-total">
+			<div class="info">
+				<div class="inforow">
+					<div>Add</div>
+					<div class="value">0</div>
+				</div>	
+				<div class="inforow">
+					<div>Voucher</div>
+					<div class="value">0</div>					
+				</div>
+				<div  class="inforow">
+					<div>Paym Disc</div>
+					<div class="value">0</div>
+				</div>
+			</div>
+			<div class="amount">
+				<div class="label">qty</div>
+				<div id="pnl_entry-txt_totalqty" class="value">0</div>
+			</div>
+			<div class="amount">
+				<div class="label">TOTAL</div>
+				<div id="pnl_entry-txt_totalvalue" class="value">0</div>
+			</div>
+		</div>
+		<div class="posmain-row posmain-left-rowbottom" style="background: #eee">
+			<table id="obj_tbl_itemgrid" class="highlight scroll">
+				<thead style="height: 40px">
+					<tr>
+						<th class="description">Item</th>
+						<th class="qtycolumn">Qty</th>
+						<th class="valuecolumn">Subtotal</th>
+						<th class="lastcolumn">&nbsp;</th>
+					</tr>
+				</thead>
+
+				<tbody style="height: calc(100vh - 253px - 14px - 10px);">
+				</tbody>
+			</table>
+
+		</div>		
+		<div id="pnl_entry-columnleft-bottom">
+			<button id="pnl_entry-btn_mode" class="waves-effect waves-light btn">Mode [F1]</button> 
+			<button id="pnl_entry-btn_editqty" class="waves-effect waves-light btn">Edit Qty [F3]</button> 
+			<button id="pnl_entry-btn_remove" class="waves-effect waves-light btn">Remove [F8]</button>
+			<button id="pnl_entry-btn_payment" class="waves-effect waves-light lime darken-4 btn">Paym [F4]</button> 
+		</div>
+	</div>
+	<div id="pnl_entry-columnright" class="posmain-column">
+		<div id="pnl_entry-columnright-top" >
+			<div id="pnl_entry-itemdisplay" class="paneldisplay hidden">
+				<div id="pnl_entry-txt_itemstock_id" style="text-align: center; height: 24px; cursor: pointer">&nbsp;</div>
+				<div style="text-align: center; flex-grow: 1">
+					<img id="pnl_entry-img_itemdisplay" src="index.php/public/assets/icon-itemdisplay.svg" alt="image">
+				</div>
+				<div style="display:flex; flex-direction: column; align-items: center">
+					<div id="pnl_entry-txt_itemstock_descr"></div>
+					<div id="pnl_entry-txt_itemstock_code"></div>
+					<div id="pnl_entry-txt_iteminfo"></div>
+					<div>
+						<span id="pnl_entry-txt_itemstock_grossprice"></span> <span id="pnl_entry-txt_itemstock_disc"></span>
+					</div>
+					<div id="pnl_entry-txt_itemstock_sellprice"></div>
+					<div id="pnl_entry-txt_itemstock_promolineinfo"></div>
+					<div></div>
+				</div>
+			</div>
+			<div id="pnl_entry-camera" class="paneldisplay hidden">
+				<div style="text-align: center">
+					Scan QR/Barcode using Camera	
+				</div>
+				<div class="row">
+					<div class="col s12" style="display: flex; justify-content: center">
+						<div id="pnl_entry-codereadercam" style="width: 400px"></div>
+					</div>
+				</div>
+				<div style="text-align: center">
+					<button id="pnl_entry-btn_camclose" class="waves-effect waves-light btn">Close Camera</button>
+					<button id="pnl_entry-btn_camflip" class="waves-effect waves-light btn">flip</button>
+				</div>
+			</div>
+
+
+
+
+			<div id="pnl_entry-selector" class="paneldisplay hidden">
+				<div class="row">
+					<div class="col s3">
+						<button class="waves-effect waves-light btn" style="height: 45px">BACK</button>
+					</div>
+					<div class="col s9" style="text-align: right">
+						<button class="waves-effect waves-light btn" style="height: 45px">HOME</button>
+						<!-- <button class="waves-effect waves-light btn" style="height: 45px">FOOD</button>
+						<button class="waves-effect waves-light btn" style="height: 45px">DRINKS</button> -->
+					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="col s12" >
+						<button class="waves-effect waves-light btn menuitembutton light-blue darken-1">paper bag #1</button>
+						<button class="waves-effect waves-light btn menuitembutton">paper bag #2</button>
+						<button class="waves-effect waves-light btn menuitembutton" >paper bag #3</button>
+						<button class="waves-effect waves-light btn menuitembutton deep-orange" >box #1</button>
+						<button class="waves-effect waves-light btn menuitembutton" >box #2</button>
+					</div>
+				</div>
+				
+			</div>
+			<div id="pnl_entry-options" class="paneldisplay hidden">
+			</div>
+
+			<div id="pnl_entry-transaksi" class="paneldisplay hidden">
+				<div class="row">
+					<div class="col s4" style="padding-left: 0px">
+						<h4 style="margin-top: 0; margin-bottom: 0px">Transaksi</h4>
+					</div>
+					<div class="col s8" style="text-align: right">
+						<button id="pnl_entry-btn_recall" class="waves-effect waves-light btn" style="height: 45px" disabled>RECALL</button>
+						<button id="pnl_entry-btn_new" class="waves-effect waves-light btn" style="height: 45px">CREATE NEW TX</button>
+					</div>
+
+					
+				</div>
+
+				<div class="row txinfo-subtitle">General</div>
+				<div class="row txinfo-row">
+					<div class="col s2 txlabel">Tx</div>
+					<div class="col s4" id="pnl_entry-obj_tx_id">xxxx</div>
+					<div class="col s2 txlabel">Sales.Code</div>
+					<div class="col s4" id="pnl_entry-obj_sales">xxxx</div>
+				</div>
+				<div class="row txinfo-row" style="height: 60px">
+					<div class="col s2 txlabel">
+						<div style="margin-bottom: 7px">Shift</div>
+						<div>Event</div>
+					</div>
+					<div class="col s4" >
+						<div id="pnl_entry-obj_shift"style="margin-bottom: 7px">xxx</div>
+						<div id="pnl_entry-obj_event">xxx</div>
+					</div>
+					<div class="col s2 txlabel">Ext.Code</div>
+					<div class="col s4" id="pnl_entry-obj_extcode">xxxx</div>
+				</div>
+
+				<div class="row txinfo-subtitle" style="margin-top: 0px">
+					<div class="col s6" style="padding-left: 0px">Customer</div>
+					<div class="col s6" style="padding-left: 0px">Promo Used</div>
+				</div>
+				
+				<div class="row txinfo-row">
+					<div class="col s2 txlabel">ID</div>
+					<div class="col s4" id="pnl_entry-obj_cust_id">xxxx</div>
+					<div class="col s6">
+						<div style="position: absolute" xx-id="pnl_entry-obj_promo">
+							<div id="pnl_entry-obj_promo_b1"></div>
+							<div id="pnl_entry-obj_promo_b2"></div>
+							<div id="pnl_entry-obj_promo_b3"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row txinfo-row">
+					<div class="col s2 txlabel">Nama</div>
+					<div class="col s4" id="pnl_entry-obj_cust_name">Agung Nugroho</div>
+				</div>
+				<div class="row txinfo-row">
+					<div class="col s2 txlabel">VIP Disc</div>
+					<div class="col s4" id="pnl_entry-obj_cust_disc">
+						<span>20</span>%
+						&nbsp;&nbsp;<span>Direksi</span>
+						&nbsp;&nbsp;<span style="font-style: italic">FP only</span>
+					</div>
+				</div>
+				<div class="row txinfo-subtitle">Summary</div>
+				<div class="row txinfo-row">
+					<div class="col s2 txlabel">Item Gross</div>
+					<div class="col s4 sumvalue" id="pnl_entry-obj_totalgross">0</div>
+					<div class="col s2 txlabel">Total</div>
+					<div class="col s4 sumvalue" id="pnl_entry-obj_total">0</div>
+				</div>
+				<div class="row txinfo-row">
+					<div class="col s2 txlabel">Item Disc</div>
+					<div class="col s4" id="pnl_entry-obj_itemdisc">0</div>
+					<div class="col s2 txlabel">Add Disc</div>
+					<div class="col s4" id="pnl_entry-obj_adddisc">0</div>
+				</div>
+				<div class="row txinfo-row">
+					<div class="col s2 txlabel">Subtotal</div>
+					<div class="col s4" id="pnl_entry-obj_subtotal">0</div>
+					<div class="col s2 txlabel">Paym Disc</div>
+					<div class="col s4" id="pnl_entry-obj_paymdisc">0</div>
+				</div>
+				<div class="row txinfo-row">
+					<div class="col s2 txlabel">Voucher</div>
+					<div class="col s4" id="pnl_entry-obj_voucher">0</div>
+					<div class="col s2 txlabel">Grand Total</div>
+					<div class="col s4" id="pnl_entry-obj_grandtotal">0</div>
+				</div>
+
+
+				<div class="row" style="margin-top: 30px">
+					<div class="col s12" style="padding-left: 0px">
+						<button id="pnl_entry-btn_event" class="waves-effect waves-light btn" disabled>Event [F7]</button> 
+						<button id="pnl_entry-btn_staff" class="waves-effect waves-light btn" disabled>Staff [F9]</button> 
+						<button id="pnl_entry-btn_member" class="waves-effect waves-light btn" disabled>Cust [F2]</button> 
+						<button id="pnl_entry-btn_promo" class="waves-effect waves-light btn">Promo [F6]</button> 
+						<button id="pnl_entry-btn_table" class="waves-effect waves-light btn" disabled>Table</button> 
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="pnl_entry-columnright-bottom">
+			<div>
+				<button id="pnl_entry-btn_transaksi" class="waves-effect waves-light btn">Tran</button>
+				<button id="pnl_entry-btn_selector" class="waves-effect waves-light btn">Select</button>
+				<button id="pnl_entry-btn_cam" class="waves-effect waves-light btn">Cam</button>
+				<button id="pnl_entry-btn_itemdisplay" class="waves-effect waves-light btn">Display</button>
+			</div>	
+			<div>
+				<button id="pnl_entry-btn_fullscreen" class="waves-effect waves-light btn"><i class="material-icons">aspect_ratio</i></button>
+			</div>
+		</div>
+	</div>		
+</div>

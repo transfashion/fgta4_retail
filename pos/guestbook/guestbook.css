@@ -1,0 +1,46 @@
+#pnl_main {
+	padding-left: 10px;
+}
+
+#qr-reader {
+	border: 1px solid blue;
+}
+
+
+VIDEO
+{
+    transform: rotateY(180deg) !important;
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
+}
+
+.event-title {
+	font-size: larger;
+	font-weight: bold;
+}
+
+
+.notfound {
+	border: 1px solid rgb(105, 27, 27);
+	padding: 10px;
+	background-color: rgb(243, 234, 197);
+	margin-bottom: 20px;
+}
+
+.welcome {
+	border: 1px solid rgb(0, 1, 65);
+	padding: 10px;
+	background-color: rgb(202, 223, 255);
+	margin-bottom: 20px;
+}
+
+
+.screendisplay {
+	background-color: aliceblue;
+}
+
+
+.lnkctr {
+	margin-left: 10px;
+	margin-right: 10px;
+}

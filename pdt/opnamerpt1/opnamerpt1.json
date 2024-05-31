@@ -1,0 +1,8 @@
+{
+	"title" : "Report Opname",
+	"allowanonymous" : false,
+	"allowedgroups" : ["public"],
+	"apis" : {
+		"viewarticle" : { "allowanonymous" : false }
+	}
+}

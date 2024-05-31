@@ -1,0 +1,124 @@
+<table cellpadding="0" cellspacing="0">
+	<tdead>
+		
+		<!--
+		<tr>
+			<td width="150px" class="tfrpt-thead-info">&nbsp;</td>
+			<td width="10px">&nbsp;</td>
+			<td width="120px" class="tfrpt-thead-info">2 days ago</td>
+			<td width="120px" class="tfrpt-thead-info">yesterday</td>
+			<td width="120px" class="tfrpt-thead-info">MTD Yesterday date</td>
+			<td width="120px" class="tfrpt-thead-info">%LY</td>
+			<td width="120px" class="tfrpt-thead-info">MTD Yesterday date</td>
+			<td width="120px"class="tfrpt-thead-info">%LY</td>
+			<td width="30px">&nbsp;</td>
+			<td width="120px" class="tfrpt-thead-info">%LY Last Month Number (full Month)</td>
+		</tr>
+		-->
+		<!--
+		<tr>
+			<td class="tfrpt-thead-info">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td class="tfrpt-thead-info">:B_DTSTART :B_DTEND</td>
+			<td class="tfrpt-thead-info">:A_DTSTART :A_DTEND</td>
+			<td class="tfrpt-thead-info" colspan="2">:A_DTSTART_MTD_CURRENT :A_DTEND<br>:A_DTSTART_MTD_LY :A_DTEND_LY</td>
+			<td class="tfrpt-thead-info" colspan="2">:A_DTSTART_MTD_CURRENT :A_DTEND<br>:A_DTSTART_MTD_LY :A_DTEND_LY</td>
+			<td>&nbsp;</td>
+			<td class="tfrpt-thead-info">:C_DTSTART_MTD_CURRENT :C_DTEND<br>:C_DTSTART_MTD_LY :C_DTEND_LY</td>
+		</tr>
+		<tr>
+			<td class="tfrpt-thead-info">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td class="tfrpt-thead-info">yesterday</td>
+			<td class="tfrpt-thead-info">today</td>
+			<td class="tfrpt-thead-info" colspan="2">mtd current vs ly</td>
+			<td class="tfrpt-thead-info" colspan="2">mtd current vs ly</td>
+			<td>&nbsp;</td>
+			<td class="tfrpt-thead-info">mtd lastmonth vs ly</td>
+		</tr>
+		-->
+		<tr>
+			<td rowspan="2" class="tfrpt-thead tfrpt-thead-c1" style="border-bottom-width: 2px; border-right-width: 1px;"> Daily Summary</td>
+			<td rowspan="2" width="10px">&nbsp;</td>
+			<td colspan="2" class="tfrpt-thead tfrpt-thead-c2">Net Sales Abs (mio)</td>
+			<td colspan="2" class="tfrpt-thead tfrpt-thead-c3">
+				Net Sales MTD<br>
+				<span style="font-size: 0.5em">
+				<?=date('d/m/Y', strtotime($this->dparam->A_DTSTART_MTD_CURRENT))?> s/d <?=date('d/m/Y', strtotime($this->dparam->A_DTEND))?><br>
+				<?=date('d/m/Y', strtotime($this->dparam->A_DTSTART_MTD_LY))?> s/d <?=date('d/m/Y', strtotime($this->dparam->A_DTEND_LY))?>
+				</span>
+			</td>
+			<td colspan="2" class="tfrpt-thead tfrpt-thead-c4" style="border-right-width: 1px;">
+				GP MTD<br>
+				<span style="font-size: 0.5em">
+				<?=date('d/m/Y', strtotime($this->dparam->A_DTSTART_MTD_CURRENT))?> s/d <?=date('d/m/Y', strtotime($this->dparam->A_DTEND))?><br>
+				<?=date('d/m/Y', strtotime($this->dparam->A_DTSTART_MTD_LY))?> s/d <?=date('d/m/Y', strtotime($this->dparam->A_DTEND_LY))?>
+				</span>
+			</td>
+			<td rowspan="2" width="30px">&nbsp;</td>
+			<td rowspan="2" class="tfrpt-thead tfrpt-thead-c4" style="border-bottom-width: 2px; border-right-width: 1px;">
+				MTD Net Sales (% vs LY)<br>
+				<span style="font-size: 0.5em">
+				<?=date('d/m/Y', strtotime($this->dparam->C_DTSTART_MTD_CURRENT))?> s/d <?=date('d/m/Y', strtotime($this->dparam->C_DTEND))?><br>
+				<?=date('d/m/Y', strtotime($this->dparam->C_DTSTART_MTD_LY))?> s/d <?=date('d/m/Y', strtotime($this->dparam->C_DTEND_LY))?>
+				</span>				
+			</td>
+		</tr>
+		<tr>
+			<td class="tfrpt-thead tfrpt-thead-c2" style="border-bottom-width: 2px;"><?=date('d/m/Y', strtotime($this->dparam->B_DTEND))?></td>
+			<td class="tfrpt-thead tfrpt-thead-c2" style="border-bottom-width: 2px;"><?=date('d/m/Y', strtotime($this->dparam->A_DTEND))?></td>
+			<td class="tfrpt-thead tfrpt-thead-c3" style="border-bottom-width: 2px;">value (in mio)</td>
+			<td class="tfrpt-thead tfrpt-thead-c3" style="border-bottom-width: 2px;">% vs LY</td>
+			<td class="tfrpt-thead tfrpt-thead-c4" style="border-bottom-width: 2px; border-right-width: 1px;">Value (in mio)</td>
+			<td class="tfrpt-thead tfrpt-thead-c4" style="border-bottom-width: 2px; border-right-width: 1px;">% vs LY</td>
+		</tr>
+	<tdead>
+
+	<tbody>
+		<!--
+		<tr>
+			<td width="150px" class="tfrpt-tcell" style="border-right-width: 1px;">&nbsp;</td>
+			<td width="10px">&nbsp;</td>
+			<td width="120px" class="tfrpt-tcell">2 days ago</td>
+			<td width="120px" class="tfrpt-tcell">yesterday</td>
+			<td width="120px" class="tfrpt-tcell">MTD Yesterday date</td>
+			<td width="120px" class="tfrpt-tcell">%LY</td>
+			<td width="120px" class="tfrpt-tcell">MTD Yesterday date</td>
+			<td width="120px"class="tfrpt-tcell" style="border-right-width: 1px;">%LY</td>
+			<td width="30px">&nbsp;</td>
+			<td width="120px" class="tfrpt-tcell" style="border-right-width: 1px;">%LY Last Month Number (full Month)</td>
+		</tr>
+		-->
+		<?php foreach ($rows as $row) { ?>
+		<tr>
+			<td width="150px" class="tfrpt-tcell" style="border-right-width: 1px; text-align: left;"><span style="margin-left: 10px"><?=$row->SUMOF?></span></td>
+			<td width="10px">&nbsp;</td>
+			<td width="120px" class="tfrpt-tcell"><?=$this->mio($row->B_SALES_NETT)?></td>
+			<td width="120px" class="tfrpt-tcell"><?=$this->mio($row->A_SALES_NETT)?></td>
+			<td width="120px" class="tfrpt-tcell"><?=$this->mio($row->A_CURRENT_MTD_SALES_NETT)?></td>
+			<td width="120px" class="tfrpt-tcell"><?=$this->percent($row->A_CURRENT_MTD_SALES_NETT_vsLY)?></td>
+			<td width="120px" class="tfrpt-tcell"><?=$this->mio($row->A_CURRENT_MTD_GPVAL)?></td>
+			<td width="120px"class="tfrpt-tcell" style="border-right-width: 1px;"><?=$this->percent($row->A_CURRENT_MTD_GP_vsLY)?></td>
+			<td width="30px">&nbsp;</td>
+			<td width="120px" class="tfrpt-tcell" style="border-right-width: 1px;"><?=$this->percent($row->C_CURRENT_MTD_SALES_NETT_vsLY)?></td>
+		</tr>		
+		
+		<?php } ?>
+	</tbody>
+
+
+	<tfoot>
+		<tr>
+			<td class="tfrpt-tfoot" style="border-right-width: 1px;">&nbsp;</td>
+			<td >&nbsp;</td>
+			<td class="tfrpt-tfoot"><?=$this->mio($rowtotal->B_SALES_NETT)?></td>
+			<td class="tfrpt-tfoot"><?=$this->mio($rowtotal->A_SALES_NETT)?></td>
+			<td class="tfrpt-tfoot"><?=$this->mio($rowtotal->A_CURRENT_MTD_SALES_NETT)?></td>
+			<td class="tfrpt-tfoot"><?=$this->percent($rowtotal->A_CURRENT_MTD_SALES_NETT_vsLY)?></td>
+			<td class="tfrpt-tfoot"><?=$this->mio($rowtotal->A_CURRENT_MTD_GPVAL)?></td>
+			<td class="tfrpt-tfoot" style="border-right-width: 1px;"><?=$this->percent($rowtotal->A_CURRENT_MTD_GP_vsLY)?></td>
+			<td >&nbsp;</td>
+			<td class="tfrpt-tfoot" style="border-right-width: 1px;"><?=$this->percent($rowtotal->C_CURRENT_MTD_SALES_NETT_vsLY)?></td>
+		</tr>
+	</tfoot>
+</table>

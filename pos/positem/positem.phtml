@@ -1,0 +1,14 @@
+<?php require_once dirname(__FILE__).'/positem-list.phtml' ?>
+<?php require_once dirname(__FILE__).'/positem-edit.phtml' ?>
+<?php require_once dirname(__FILE__).'/positem-barcodegrid.phtml' ?>
+<?php require_once dirname(__FILE__).'/positem-barcodeform.phtml' ?>
+
+
+
+<?php
+$customrecordstatus = __DIR__.'/positem-customrecordstatus.phtml'; 
+if (is_file($customrecordstatus)) {
+	include $customrecordstatus;
+} else { ?>
+
+<?php } ?>

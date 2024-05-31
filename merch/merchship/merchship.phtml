@@ -1,0 +1,41 @@
+<?php require_once dirname(__FILE__).'/merchship-list.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-edit.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-orderoutgrid.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-orderoutform.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-budgetgrid.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-budgetform.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-recvgrid.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-recvform.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-realisasigrid.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-realisasiform.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-preview.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-filter.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-summary.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-bill.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchship-costing.phtml' ?>
+
+
+
+<?php
+$customrecordstatus = __DIR__.'/merchship-customrecordstatus.phtml'; 
+if (is_file($customrecordstatus)) {
+	include $customrecordstatus;
+} else { ?>
+
+<div id="pnl_edit_record_custom" style="display: none">
+	<div class="form_row">
+		<div class="form_label_col">Commit By</div>
+		<div class="form_input_col" style="border: 0px solid black">
+			<span id="pnl_edit_record-commitby"></span>
+		</div>
+	</div>	
+
+	<div class="form_row">
+		<div class="form_label_col">Commit Date</div>
+		<div class="form_input_col" style="border: 0px solid black">
+			<span id="pnl_edit_record-commitdate"></span>
+		</div>
+	</div> 
+</div>		
+		
+<?php } ?>

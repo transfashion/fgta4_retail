@@ -1,0 +1,84 @@
+.pos-outer-panel {
+	border: 0px solid #999;
+	display: flex;
+	flex-direction: column;
+}
+
+.pos-shortcut-panel {
+	display: flex;
+}
+
+.pos-main-panel {
+	display: flex;
+	/* border: 1px solid red; */
+	flex-grow: 1;
+}
+
+.pos-left-panel {
+	display: flex;
+	flex-direction: column;
+	/* border: 1px solid #999; */
+}
+
+.pos-right-panel {
+	display: flex;
+	flex-direction: column;
+	/* border: 1px solid #999; */
+	margin-left: 5px;
+}
+
+
+.pos-payment-valinfo-right {
+	align-self:flex-end; 
+	font-weight: bold;
+	width: 130px;
+	background-color: #ccc;
+	text-align: right;
+}
+
+.shortcutbutton {
+	width: 80px;
+	height: 80px;
+	vertical-align: middle;
+}
+
+.shortcutbutton-content {
+	height: 80px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-size: 0.8em;
+	line-height: 10px;
+}
+
+
+
+
+
+
+
+.c20,.c20:hover,.c20>.panel-header{
+	color: #fff;
+	border-color: #3A0008;
+	background: #3A0008;
+	background: -webkit-linear-gradient(top,#62000D 0, #3A0008 100%);
+	background: -moz-linear-gradient(top,#62000D 0,#3A0008 100%);
+	background: -o-linear-gradient(top,#62000D 0,#3A0008 100%);
+	background: linear-gradient(to bottom,#62000D 0,#3A0008 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#62000D,endColorstr=#3A0008,GradientType=0);
+}
+a.c20:hover{
+	background: #3A0008;
+	filter: none;
+}
+.c20>.panel-body{
+	border-color: #3A0008;
+}
+.c20>.dialog-toolbar,.c20>.dialog-button{
+	border-left-color: #3A0008;
+	border-right-color: #3A0008;
+}
+.c20>.dialog-button{
+	border-bottom-color: #3A0008;
+}

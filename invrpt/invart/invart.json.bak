@@ -1,0 +1,11 @@
+{
+	"title" : "Inv per Artikel",
+	"allowanonymous" : true,
+	"allowedgroups" : ["public"],
+	"apis" : {
+		"list" : { "allowanonymous": false, "allowedgroups" : ["public"] },
+		"listsize" : { "allowanonymous": false, "allowedgroups" : ["public"] },
+		"listsite" : { "allowanonymous": false, "allowedgroups" : ["public"] }
+	}	
+}
+

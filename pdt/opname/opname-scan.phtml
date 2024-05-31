@@ -1,0 +1,103 @@
+<div id="pnl_scan">
+	<div class="fgta-page-title" style="margin-bottom: 5px">Scan Items</div>
+	<div id="pnl_scan-board">
+
+		<div style="display: flex; justify-content: space-between; margin-bottom: 10px">
+			<span>
+				<span id="pnl_scan-obj_txt_site" style="font-weight: bold; margin-right: 10px"></span>
+			</span>
+			<span style="float:right; text-align:right">
+				<span id="pnl_scan-obj_txt_stockdate" style="font-weight: bold; font-style: italic"></span>
+			</span>
+
+		</div>
+
+		<div id="pnl_scan-opnameinfo" style="display: flex;">
+			<div >
+				<input id="pnl_scan-obj_txt_input" class="easyui-textbox" data-options="prompt:'input/scan barcode',buttonText:'ok'">
+			</div>
+			<div style="width: 70px; padding-left: 5px">
+				<a id="pnl_scan-btn_opencam" class="easyui-linkbutton" style="width: 65px">cam</a>
+			</div>
+		</div>
+
+		<div style="display: flex; justify-content: space-between; margin-bottom: 10px; margin-top:10px">
+			<span>
+				Items Scanned
+			</span>
+			<span style="float:right; text-align:right">
+				TOTAL
+			</span>
+		</div>
+		
+		<div style="display: flex; justify-content: space-between; margin-bottom: 10px; margin-top:10px">
+			<span>
+				<span id="pnl_scan-txt_currscanned">0</span> 
+				<span style="font-size: 0.8em">of</span> 
+				<span id="pnl_scan-txt_currscannedtotal" style="font-weight: bold">0</span>
+			</span>
+			<span style="float:right; text-align:right">
+				<span id="pnl_scan-txt_itemscanned">0</span> 
+				<span style="font-size: 0.8em">of</span> 
+				<span id="pnl_scan-txt_itemtotal" style="font-weight: bold">0</span>
+			</span>
+		</div>
+		
+		<div style="display: flex; justify-content: space-between; margin-bottom: 30px; margin-top:10px; background-color: #eee; padding-top: 10px">
+
+			<div class="scanresulcol-1" style="padding-left: 10px">
+
+				<div style="margin-bottom: 15px">
+					<div style="font-size: 0.8em; font-weight: bold">Article</div>
+					<div id="pnl_scan-txt_art" style="height: 20px">-</div>
+				</div>
+
+				<div style="margin-bottom: 15px">
+					<div style="font-size: 0.8em; font-weight: bold">Size</div>
+					<div id="pnl_scan-txt_size" style="height: 20px">-</div>
+				</div>	
+
+			</div>	
+
+
+			<div class="scanresulcol-1" style="padding-right: 10px">
+
+				<div style="margin-bottom: 15px">
+					<div style="font-size: 0.8em; font-weight: bold">Material</div>
+					<div id="pnl_scan-txt_mat" style="height: 20px">-</div>
+				</div>
+
+				<div style="margin-bottom: 15px">
+					<div style="font-size: 0.8em; font-weight: bold">Color</div>
+					<div id="pnl_scan-txt_col" style="height: 20px">-</div>
+				</div>
+
+			</div>
+			
+			<div class="scanresulcol-0">
+			</div>
+
+		</div>
+
+
+		<div style="display: flex; justify-content: space-between; margin-bottom: 10px">
+			<div style="width: 50%">
+				<a id="pnl_scan-btn_cleartext" class="easyui-linkbutton">Clear Input</a>
+			</div>
+			<div style="float:right; text-align:right; width: 50%">
+				<a id="pnl_scan-btn_cleardata" class="easyui-linkbutton c5">Clear All Data</a>
+			</div>
+		</div>
+
+		
+
+		<div style="margin-top: 20px">
+			<a id="pnl_scan-btn_test" class="easyui-linkbutton">Run Test</a>
+		</div>
+		
+	</div>
+	<div id="pnl_scan-boarderror">
+	</div>
+	
+
+</div>

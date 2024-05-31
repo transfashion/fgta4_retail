@@ -1,0 +1,14 @@
+.setupinfo {
+	margin: 10px;
+	border: 1px solid #cfcfcf;
+	background-color: #efefef;
+	padding: 5px;
+}
+
+.setupinfo-hidden {
+	display: none !important;
+}
+
+.row-generated {
+	background-color: #e5e5e5 !important;
+}

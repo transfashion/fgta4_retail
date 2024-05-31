@@ -1,0 +1,12 @@
+<?php require_once dirname(__FILE__).'/pospaymethod-list.phtml' ?>
+<?php require_once dirname(__FILE__).'/pospaymethod-edit.phtml' ?>
+
+
+
+<?php
+$customrecordstatus = __DIR__.'/pospaymethod-customrecordstatus.phtml'; 
+if (is_file($customrecordstatus)) {
+	include $customrecordstatus;
+} else { ?>
+
+<?php } ?>

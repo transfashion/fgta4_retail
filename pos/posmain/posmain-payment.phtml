@@ -1,0 +1,144 @@
+<div id="pnl_payment" class="fullcontent page-panel posmain-container">
+	<div class="posmain-column">
+		<h5>Payment</h5>
+		<div id="pnl_payment-shortcut" style="margin-top: 20px">
+		</div>
+		<div id="pnl_payment-paymententry" class="col s12" style="margin-top: 20px">
+		
+			<div class="row">
+				<div class="input-field col s6">
+					<select id="pnl_payment-obj_cbo_method" >
+					</select>
+					<label>Payment Method</label>
+				</div>
+				<div class="input-field col s5">
+					&nbsp;
+				</div>
+			</div>	
+
+			<!-- AMOUNT -->
+			<div class="row paymethod-noncash">
+				<div class="input-field col s5">
+					<label for="pnl_payment-obj_amount">Amount</label>
+					<input id="pnl_payment-obj_amount" type="text" inputmode="numeric" class="validate paymentinput-value" style="text-align: right" autocomplete="off">
+				</div>
+			</div>
+			
+			<!-- CASH -->
+			<div class="row paymethod-cash">
+				<div class="input-field col s5">
+					<label for="pnl_payment-obj_cash">Cash</label>
+					<input id="pnl_payment-obj_cash" type="text" inputmode="numeric" class="validate paymentinput-value" style="text-align: right" autocomplete="off">
+				</div>
+			</div>
+
+
+			<!-- CARD NUMBER -->
+			<div class="row paymethod-noncash">
+				<div class="input-field col s11">
+					<input id="pnl_payment-obj_cardnumber" type="text" class="validate paymentinput-text" style="text-transform: uppercase" autocomplete="off">
+					<label for="pnl_payment-obj_cardnumber">Card Number</label>
+				</div>
+			</div>
+
+			<!-- CARD HOLDER -->
+			<div class="row paymethod-noncash">
+				<div class="input-field col s8">
+					<input id="pnl_payment-obj_cardholder" type="text" class="validate paymentinput-text" style="text-transform: uppercase" autocomplete="off">
+					<label for="pnl_payment-obj_cardholder">Card Holder</label>
+				</div>
+				<div class="input-field col s3">
+					<input id="pnl_payment-obj_approval" type="text" class="validate paymentinput-text" style="text-transform: uppercase" autocomplete="off">
+					<label for="pnl_payment-obj_approval">Aproval</label>
+				</div>
+			</div>
+
+			<div class="row paymethod-action">
+				<div class="input-field col s11">
+					<button id="pnl_payment-btn_addtopayment" class="waves-effect waves-light btn">Add Payment [F5]</button>
+				</div>
+			</div>
+
+
+
+		</div>
+	
+
+
+
+	</div>
+	<div id="pnl_payment-columnright" class="posmain-column">
+		<div id="pnl_payment-columnright-top" class="posmain-total">
+			<div class="info">
+				<div class="inforow">
+					<div>Total Qty</div>
+					<div id="pnl_payment-txt_totalqty" class="value">0</div>
+				</div>
+				<div class="inforow">
+					<div>Add Disc</div>
+					<div id="pnl_payment-txt_adddisc" class="value">0</div>
+				</div>	
+				<div class="inforow">
+					<div>Voucher</div>
+					<div id="pnl_payment-txt_voucher" class="value">0</div>					
+				</div>
+				<div  class="inforow">
+					<div>Paym Disc</div>
+					<div id="pnl_payment-txt_discount" class="value">0</div>
+				</div>
+				<div  class="inforow">
+					<div>Outstanding</div>
+					<div id="pnl_payment-txt_outstanding" class="value">0</div>
+				</div>
+				<div  class="inforow">
+					<div>Paid</div>
+					<div id="pnl_payment-txt_paid" class="value">0</div>
+				</div>							
+			</div>
+			<div class="amount" style="flex-grow: 1">
+				<div class="label">TOTAL</div>
+				<div id="pnl_payment-txt_totalvalue" class="value">0</div>
+
+				<div id="pnl_payment-cashpayminfo">
+				<div class="row" style="margin-top: 20px; margin-bottom: 0px">
+					<div class="col s6">&nbsp;</div>
+					<div class="col s3" style="text-align: right">Cash</div>
+					<div class="col s3" style="text-align: right; padding-right: 0" id="pnl_payment-txt_cashpaid">0</div>
+				</div>
+				<div class="row" style="margin-top: 0px; margin-bottom: 0px">
+					<div class="col s6">&nbsp;</div>
+					<div class="col s3" style="text-align: right">Return</div>
+					<div class="col s3" style="text-align: right; padding-right: 0" id="pnl_payment-txt_cashreturn">0</div>
+				</div>
+				</div>
+
+			</div>
+		</div>
+		<div id="pnl_payment-columnright-middle" style="background: #eee">
+			<table id="pnl_payment-tbl_payment" class="highlight scroll">
+				<thead>
+					<tr>
+						<th class="description">Payment</th>
+						<th class="valuecolumn">Amount</th>
+						<th class="lastcolumn">&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody style="height: calc(100vh - 264px - 14px -10px);">
+				</tbody>
+			</table>			
+		</div>
+		<div id="pnl_payment-columnright-bottom">
+			<div>
+				<button id="pnl_payment-btn_cancel" class="waves-effect waves-light btn">Cancel [ESC]</button>
+				<button id="pnl_payment-btn_remove" class="waves-effect waves-light btn">Remove [F8]</button>
+				<span>
+					<img id="pnl_payment-img_logo" src="index.php/asset/retail/pos/afeattest/image/logo-mblock.bmp" style="width:1px; height:1px;">
+				</span>
+			</div>
+			<div>
+				<button id="pnl_payment-btn_checkout" class="waves-effect waves-light btn" style="margin-right: 0px">Checkout [F10]</button>
+			</div>
+		</div>
+	</div>
+</div>
+

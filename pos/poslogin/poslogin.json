@@ -1,0 +1,9 @@
+{
+	"title" : "POS Login",
+	"isloginpage": true,
+	"allowanonymous" : true,
+	"allowedgroups" : ["public"],
+	"apis" : {
+		"doposlogin" : { "allowanonymous": true }
+	}
+}

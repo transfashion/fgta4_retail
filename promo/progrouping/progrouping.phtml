@@ -1,0 +1,12 @@
+<?php require_once dirname(__FILE__).'/progrouping-list.phtml' ?>
+<?php require_once dirname(__FILE__).'/progrouping-edit.phtml' ?>
+
+
+
+<?php
+$customrecordstatus = __DIR__.'/progrouping-customrecordstatus.phtml'; 
+if (is_file($customrecordstatus)) {
+	include $customrecordstatus;
+} else { ?>
+
+<?php } ?>

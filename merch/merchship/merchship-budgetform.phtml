@@ -1,0 +1,147 @@
+<div id="pnl_editbudgetform">
+	<div class="fgta-page-title" style="display: flex; align-items: center ">
+		<div id="pnl_editbudgetform-caption">{{STATE_BEG}}Budget{{STATE_END}}</div>
+		<a id="pnl_editbudgetform-btn_edit" href="javascript:void(0)" class="easyui-linkbutton fgta-button-edit" style="margin-left:10px;" data-options="plain:true,iconCls:'fgta-icon-edit'">edit</a>
+	</div>
+	<div id="pnl_editbudgetform-title" class="fgta-page-subtitle">XXXXXXX</div>
+
+
+	<form id="pnl_editbudgetform-form">
+
+		<div class="form_row pnl_editbudgetform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">ID</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editbudgetform-txt_merchshipbudget_id" class="easyui-textbox" mapping="merchshipbudget_id"  maxlength="14"  style="width: 400px" data-options="multiline:false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editbudgetform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Budget Account</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editbudgetform-cbo_merchshipbudgetacc_id" class="easyui-combo" style="width: 400px" mapping="merchshipbudgetacc_id" display="merchshipbudgetacc_name" data-options="editable:false, valueField:'id', textField:'text' , required: true, invalidMessage: 'Budget harus diisi', prompt: '-- PILIH --'"  validType="requiredcombo['pnl_editbudgetform-cbo_merchshipbudgetacc_id']" >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editbudgetform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Descr</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editbudgetform-txt_merchshipbudget_descr" class="easyui-textbox" mapping="merchshipbudget_descr"  maxlength="255"  style="width: 400px" data-options="multiline:false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editbudgetform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Value</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editbudgetform-txt_merchshipbudget_value" class="easyui-numberbox" mapping="merchshipbudget_value" style="width: 400px; text-align:right" data-options="precision: 2, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editbudgetform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Currency</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editbudgetform-cbo_curr_id" class="easyui-combo" style="width: 400px" mapping="curr_id" display="curr_name" data-options="editable:false, valueField:'id', textField:'text' , required: true, invalidMessage: 'Currency harus diisi', prompt: '-- PILIH --'"  validType="requiredcombo['pnl_editbudgetform-cbo_curr_id']" >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editbudgetform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Rate</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editbudgetform-txt_curr_rate" class="easyui-numberbox" mapping="curr_rate" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editbudgetform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">IDR</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editbudgetform-txt_merchshipbudget_idr" class="easyui-numberbox" mapping="merchshipbudget_idr" style="width: 400px; text-align:right" data-options="precision: 2, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editbudgetform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Allocated Value</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editbudgetform-txt_merchshipbudget_alcvalue" class="easyui-numberbox" mapping="merchshipbudget_alcvalue" style="width: 400px; text-align:right" data-options="precision: 2, decimalSeparator:'.', groupSeparator:','  , disabled: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editbudgetform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Allocated IDR</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editbudgetform-txt_merchshipbudget_alcidr" class="easyui-numberbox" mapping="merchshipbudget_alcidr" style="width: 400px; text-align:right" data-options="precision: 2, decimalSeparator:'.', groupSeparator:','  , disabled: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editbudgetform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Actual Value</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editbudgetform-txt_merchshipbudget_relvalue" class="easyui-numberbox" mapping="merchshipbudget_relvalue" style="width: 400px; text-align:right" data-options="precision: 2, decimalSeparator:'.', groupSeparator:','  , disabled: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editbudgetform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Actual IDR</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editbudgetform-txt_merchshipbudget_relidr" class="easyui-numberbox" mapping="merchshipbudget_relidr" style="width: 400px; text-align:right" data-options="precision: 2, decimalSeparator:'.', groupSeparator:','  , disabled: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editbudgetform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Shipment</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editbudgetform-txt_merchship_id" class="easyui-textbox" mapping="merchship_id"  maxlength="30"  style="width: 400px" data-options="multiline:false  , disabled: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+	</form>
+
+
+	<div class="form_row" style="margin-top: 30px">
+		<div class="form_label_col"></div>
+		<div class="form_input_col" style="border: 0px solid black">
+			<div style="margin-bottom: 10px">
+				<input id="pnl_editbudgetform-autoadd" type="checkbox"><label for="pnl_editbudgetform-autoadd">Otomatis tambah baru setelah berhasil disimpan</label>
+			</div>
+			<div>
+				<a id="pnl_editbudgetform-btn_save" class="easyui-linkbutton c1 fgta-button-save" style="width: 100px">Simpan</a>
+			</div>
+		</div>
+	</div>	
+
+
+	<?php
+	$custombuttonbar = __DIR__.'/merchship-budgetform-custombuttonbar.phtml';
+	if (is_file($custombuttonbar)) {
+		include $custombuttonbar;
+	} else { ?>
+	<div id="pnl_editbudgetform-buttonbar" style="margin-top: 30px; margin-left:-5px; margin-right: -5px; background-color: #cccccc; height: 40px; display: flex; justify-content: space-between; padding: 5px 2px 2px 2px ">
+		<div id="pnl_editbudgetform-buttonbar-left">
+			<a id="pnl_editbudgetform-btn_prev" class="easyui-linkbutton c8 fgta-button-detilprev" style="width: 50px">Prev</a>
+			<a id="pnl_editbudgetform-btn_next" class="easyui-linkbutton c8 fgta-button-detilnext" style="width: 50px">Next</a>
+		</div>
+
+		<div id="pnl_editbudgetform-buttonbar-middle">
+			<a id="pnl_editbudgetform-btn_addnew" class="easyui-linkbutton c8 fgta-button-detiladd" style="width: 100px">Tambah Baru</a>
+		</div>
+
+		<div id="pnl_editbudgetform-buttonbar-right">
+			<a id="pnl_editbudgetform-btn_delete" class="easyui-linkbutton c5" style="width: 100px">Hapus</a>
+		</div>
+	</div>
+	<?php } ?>
+
+
+
+
+</div>	

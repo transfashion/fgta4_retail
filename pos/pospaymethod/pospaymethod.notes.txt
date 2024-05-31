@@ -1,0 +1,10 @@
+POS Paym Method
+		
+Original Path : /home/agung/Development/fgtacloud4u/server/apps/retail/pos/pospaymethod
+Creator Name  : undefined
+                undefined
+Created Date  : Mon Mar 06 2023 20:20:34 GMT+0700 (Western Indonesia Time)				 
+=========================================================================================
+
+<put your notes here>
+		

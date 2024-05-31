@@ -1,0 +1,170 @@
+<style>
+	.rptrow {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row;
+	
+	}
+
+	.rptbox {
+		margin-bottom: 0px;
+		font-weight: bold;
+	}
+
+	.right {
+		margin-left: 0px;
+	}
+
+
+	.thcol {
+		background-color: cadetblue;
+		border-bottom: 1px solid;
+		border-bottom-color: darkcyan;
+		height: 30px;
+	}
+
+
+	.rptdet {
+		margin-top: 50px;
+	}
+
+
+	@media screen and (max-width: 500px) {
+		.rptrow {
+			justify-content: flex-start;
+			flex-direction: column;
+		}
+
+		.rptbox {
+			margin-bottom: 20px;
+		}	
+
+		.right {
+			margin-left: 0px;
+		}
+
+		.rptdet {
+			margin-top: 0px;
+		}					
+
+		.cr {
+			display: none;
+		}
+
+	}
+
+</style>
+
+<div id="pnl_main">
+
+	<div class="fgta-page-title">Sales Dashboard</div>
+
+
+	<div class="rptrow">
+		<div class="rptbox" style="flex-grow: 1;">
+			<div style="width: 100%;">Montly Sales</div>
+			<canvas id="myChart-1"></canvas>
+		</div>
+		<div class="rptbox" style="flex-grow: 1;">
+			<div style="width: 100%;">Sales by Category</div>
+			<canvas id="myChart-2"></canvas>
+		</div>
+	</div>
+
+
+	<div class="rptdet" style="width: 100%;">
+		<div style="font-weight: bold;">Sales Detil</div>
+		<table style="width: 100%;">
+			<thead>
+				<tr>
+					<th class="thcol cr">Tahun</th>
+					<th class="thcol">Bulan</th>
+					<th class="thcol cr">Gross</th>
+					<th class="thcol">Nett</th>
+					<th class="thcol cr">COGS</th>
+					<th class="thcol cr">GP</th>
+					<th class="thcol">GP%</th>
+				</tr>
+
+			</thead>
+			<tbody>
+				<tr>
+					<td class="tblrowev cr">2020</th>
+					<td class="tblrowev ">JAN</th>
+					<td class="tblrowev cr" style="text-align: right;">20,000,000</th>
+					<td class="tblrowev " style="text-align: right;">12,000,000</th>
+					<td class="tblrowev cr" style="text-align: right;">7,000,000</th>
+					<td class="tblrowev cr" style="text-align: right;">5,000,000</th>
+					<td class="tblrowev " style="text-align: right;">41%</th>					
+				</tr>
+
+				<tr>
+					<td class="tblrowev cr">2020</th>
+					<td class="tblrowev ">FEB</th>
+					<td class="tblrowev cr" style="text-align: right;">25,000,000</th>
+					<td class="tblrowev "  style="text-align: right;">19,000,000</th>
+					<td class="tblrowev cr" style="text-align: right;">11,000,000</th>
+					<td class="tblrowev cr" style="text-align: right;">8,000,000</th>
+					<td class="tblrowev " style="text-align: right;">42%</th>					
+				</tr>
+
+				<tr>
+					<td class="tblrowev cr">2020</th>
+					<td class="tblrowev ">MAR</th>
+					<td class="tblrowev cr" style="text-align: right;">5,000,000</th>
+					<td class="tblrowev " style="text-align: right;">3,000,000</th>
+					<td class="tblrowev cr" style="text-align: right;">2,000,000</th>
+					<td class="tblrowev cr" style="text-align: right;">1,000,000</th>
+					<td class="tblrowev " style="text-align: right;">33%</th>					
+				</tr>
+
+				<tr>
+					<td class="tblrowev cr">2020</th>
+					<td class="tblrowev ">APR</th>
+					<td class="tblrowev cr" style="text-align: right;">8,000,000</th>
+					<td class="tblrowev " style="text-align: right;">5,000,000</th>
+					<td class="tblrowev cr" style="text-align: right;">3,000,000</th>
+					<td class="tblrowev cr" style="text-align: right;">2,000,000</th>
+					<td class="tblrowev " style="text-align: right;">40%</th>					
+				</tr>
+
+				<tr>
+					<td class="tblrowev cr">2020</th>
+					<td class="tblrowev ">MEI</th>
+					<td class="tblrowev cr" style="text-align: right;">4,000,000</th>
+					<td class="tblrowev " style="text-align: right;">2,000,000</th>
+					<td class="tblrowev cr" style="text-align: right;">1,500,000</th>
+					<td class="tblrowev cr" style="text-align: right;">500,000</th>
+					<td class="tblrowev " style="text-align: right;">25%</th>					
+				</tr>
+
+				<tr>
+					<td class="tblrowev cr">2020</th>
+					<td class="tblrowev ">JUN</th>
+					<td class="tblrowev cr" style="text-align: right;">6,000,000</th>
+					<td class="tblrowev " style="text-align: right;">3,000,000</th>
+					<td class="tblrowev cr" style="text-align: right;">4,500,000</th>
+					<td class="tblrowev cr" style="text-align: right;">500,000</th>
+					<td class="tblrowev " style="text-align: right;">16%</th>					
+				</tr>
+
+			</tbody>
+
+			<tfoot>
+				<tr>
+					<td class="tblfoot cr"></th>
+					<td class="tblfoot "></th>
+					<td class="tblfoot cr" style="font-weight:bold; text-align: right; border-top: 1px solid black;">68,000,000</th>
+					<td class="tblfoot " style="font-weight:bold; text-align: right; border-top: 1px solid black;">34,000,000</th>
+					<td class="tblfoot cr" style="font-weight:bold; text-align: right; border-top: 1px solid black;">29,000,000</th>
+					<td class="tblfoot cr" style="font-weight:bold; text-align: right; border-top: 1px solid black;">17,000,000</th>
+					<td class="tblfoot " style="font-weight:bold; text-align: right; border-top: 1px solid black;">38%</th>					
+				</tr>				
+			</tfoot>
+
+		</table>
+
+
+	</div>
+
+</div>

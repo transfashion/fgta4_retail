@@ -1,0 +1,10 @@
+Promo Rule
+		
+Original Path : /home/agung/Development/fgtacloud4u/server/apps/retail/promo/prorule
+Creator Name  : undefined
+                undefined
+Created Date  : Tue Mar 28 2023 18:20:43 GMT+0700 (Western Indonesia Time)				 
+=========================================================================================
+
+<put your notes here>
+		

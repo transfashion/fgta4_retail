@@ -1,0 +1,18 @@
+<?php require_once dirname(__FILE__).'/mercharticle-list.phtml' ?>
+<?php require_once dirname(__FILE__).'/mercharticle-edit.phtml' ?>
+<?php require_once dirname(__FILE__).'/mercharticle-propgrid.phtml' ?>
+<?php require_once dirname(__FILE__).'/mercharticle-propform.phtml' ?>
+<?php require_once dirname(__FILE__).'/mercharticle-variancegrid.phtml' ?>
+<?php require_once dirname(__FILE__).'/mercharticle-varianceform.phtml' ?>
+<?php require_once dirname(__FILE__).'/mercharticle-picturegrid.phtml' ?>
+<?php require_once dirname(__FILE__).'/mercharticle-pictureform.phtml' ?>
+
+
+
+<?php
+$customrecordstatus = __DIR__.'/mercharticle-customrecordstatus.phtml'; 
+if (is_file($customrecordstatus)) {
+	include $customrecordstatus;
+} else { ?>
+
+<?php } ?>

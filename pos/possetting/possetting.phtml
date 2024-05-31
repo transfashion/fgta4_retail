@@ -1,0 +1,119 @@
+<div id="pnl_setting" class="fullcontent">
+	<h5>Setting</h5>
+	<div class="col s12">
+		<div class="row">
+		</div>	
+		<div class="row">
+			<div class="col s12">
+				<label>
+					<input id="obj_chk_bylicensefile" class="with-gap" name="group1" type="radio" checked />
+					<span>By License File</span>
+				</label>
+			</div>	
+			<div class="col s12">
+				<label>
+					<input id="obj_chk_bycode"  class="with-gap" name="group1" type="radio" />
+					<span>By Code</span>
+				</label>
+			</div>		
+		</div>
+
+		<div id="row_licensefile" class="row">
+			<div class="file-field input-field col s12">
+				<div class="btn">
+					<span>Browse License File</span>
+					<input id="obj_file_content" type="file">
+				</div>
+				<div class="file-path-wrapper">
+					<input id="obj_txt_file" class="file-path validate" type="text">
+				</div>
+			</div>
+		</div>
+
+		<div id="row_code" class="row mode-row-hidden">
+			<div class="input-field col s2">
+               <input id="obj_txt_site" type="text" class="validate" style="text-transform: uppercase">
+               <label for="obj_txt_site">Site</label>
+           </div>
+			<div class="input-field col s2">
+               <input id="obj_txt_code" type="text" class="validate">
+               <label for="obj_txt_code">Code</label>
+           </div>
+           <div class="input-field col s8">
+               <button id="btn_applycode" class="btn waves-effect waves-light" name="action">  Apply  </button>
+           </div>
+		</div>
+
+		<div class="row">
+			<h6 id="obj_txt_settingtitle" class="col s12">
+				Current Setting
+			</h6>
+		</div>
+		<div class="row">
+			<div class="col s2">
+				Terminal ID
+			</div>
+			<div id="obj_txt_terminal_id" class="col s10">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s2">
+				Site ID
+			</div>
+			<div id="obj_txt_site_id" class="col s10">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s2">
+				Site Name
+			</div>
+			<div id="obj_txt_site_name" class="col s10">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s2">
+				Licensed To
+			</div>
+			<div id="obj_txt_license_to" class="col s10">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s2">
+				License Date
+			</div>
+			<div id="obj_txt_license_date" class="col s10">
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col s2">
+				License Valid Until
+			</div>
+			<div id="obj_txt_license_validuntil" class="col s10">
+			</div>
+		</div>				
+		<!-- <div class="row">
+			<div class="col s2">
+				License Data
+			</div>
+			<div id="obj_txt_licensedata" class="col s10">
+			</div>
+		</div>		 -->
+	</div>	
+	<div id="pnl_savesetting" class="col s12 hidden-element">
+		<div class="row">
+			<div class="col s12">
+				<a id="btn_save" class="waves-effect waves-light btn">Save Setting</a>
+				<a id="btn_cancel" class="waves-effect waves-light btn">Cancel</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="pnl_buttons" class="col s12">
+		<div class="row">
+			<div class="col s12">
+				<a id="btn_back" class="waves-effect waves-light btn">Back</a>
+			</div>
+		</div>
+	</div>
+</div>

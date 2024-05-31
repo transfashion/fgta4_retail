@@ -1,0 +1,12 @@
+<?php require_once dirname(__FILE__).'/promodel-list.phtml' ?>
+<?php require_once dirname(__FILE__).'/promodel-edit.phtml' ?>
+
+
+
+<?php
+$customrecordstatus = __DIR__.'/promodel-customrecordstatus.phtml'; 
+if (is_file($customrecordstatus)) {
+	include $customrecordstatus;
+} else { ?>
+
+<?php } ?>

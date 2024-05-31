@@ -1,0 +1,38 @@
+.pos-outer-panel {
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+.shortcutbutton {
+	width: 80px;
+	height: 80px;
+	vertical-align: middle;
+}
+
+.shortcutbutton-content {
+	height: 80px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-size: 0.8em;
+	line-height: 10px;
+}
+
+
+
+.pos-payment-valinfo-right {
+	align-self:flex-end; 
+	font-weight: bold;
+	width: 130px;
+	/* background-color: #ccc; */
+	text-align: right;
+}
+
+.pos-payment-forminput-right {
+	align-self:flex-end; 
+	width: 300px;
+	/* background-color: #ccc; */
+}

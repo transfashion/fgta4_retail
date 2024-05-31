@@ -1,0 +1,22 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] {
+	text-align: right;
+}
+
+
+.barcode {
+	height: 150px;
+}
+
+.barcode-hidden {
+	display: none;
+}
+
+.timeout {
+	height: 50px;
+}

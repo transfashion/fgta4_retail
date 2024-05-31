@@ -1,0 +1,169 @@
+<div id="pnl_payment" class="pos-outer-panel">
+	<div id="pnl_payment-main" class="pos-main-panel" style="display:flex;">
+
+		<!-- LEFT -->
+		<div id="pnl_payment-left" style="min-width:550px;  width: 550px; display: flex; flex-direction: column;  margin-right: 5px; ">
+			<!-- HEADER -->
+			<div style="height: 50px;">
+				<div class="pos-store-name" style="font-size: 1.7em; font-weight:bold;">Store Name</div>
+				<div class="pos-datetime"   style="margin-bottom: 10px">Current Date</div> 
+			</div>
+
+
+			<!-- FORM -->
+			<div style="margin-top: 50px">
+				<div style="display: flex; margin-top: 10px; font-size: 1.2em">
+					<div style="flex-grow: 1; padding-top: 6px; border-bottom: 1px solid #ddd">Outstanding Payment</div>
+					<div class="pos-payment-forminput-right">
+						<input type="text" class="easyui-textbox"  style="width:150px; align:right">
+					</div>
+				</div>
+
+				<div style="display: flex; margin-top: 10px; font-size: 1.2em">
+					<div style="flex-grow: 1; padding-top: 6px; border-bottom: 1px solid #ddd">Method</div>
+					<div class="pos-payment-forminput-right">
+						<select id="pnl_payment-cbo_paymentmethod" class="easyui-combobox" style="width:150px;" data-options="editable:false,valueField:'id',textField:'text'">
+						</select>
+					</div>
+				</div>		
+				
+
+				<!-- CASH -->
+				<div>
+
+				</div>
+				
+
+
+				<div style="display: flex; margin-top: 30px; font-size: 1.2em">
+					<div style="flex-grow: 1; padding-top: 6px;">&nbsp;</div>
+					<div class="pos-payment-forminput-right">
+						<a id="pnl_payment-btn_addtopayment" href="javascript:void(0)" class="easyui-linkbutton c8" style="width: 150px; margin-left: 3px;">Add To Payment</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- RIGHT -->
+		<div id="pnl_payment-right" style="display: flex; flex-direction: column; min-width:425px; flex: 1; ">
+			
+			<!-- SUMMARY -->
+			<div id="pnl_payment-pnl_summary" style="height: 300px;">
+				<div style="padding-top: 10px">
+					<div>
+						<span>Agung Nugroho</span> <span>085885525565</span> <span>agung@ferrine.com</span>
+					</div>
+					<div style="display: flex; margin-top: 40px; font-size: 1.5em">
+						<div style="flex-grow: 1;"><span style="font-weight: bold; font-size: 1.4em">1</span> pcs items, Subtotal Value</div>
+						<div class="pos-payment-valinfo-right">5,000,000</div>
+					</div>
+					<div style="display: flex; margin-top: 10px; font-size: 1.5em">
+						<div style="flex-grow: 1; font-size: 0.8em">Additional Disc / Redeem / Voucher</div>
+						<div class="pos-payment-valinfo-right">1,000</div>
+					</div>
+					<div style="display: flex; margin-top: 10px; font-size: 1.5em">
+						<div style="flex-grow: 1; font-size: 0.8em">Payment Discount <span>MEGA 10%</span></div>
+						<div class="pos-payment-valinfo-right">1,000</div>
+					</div>
+					<div style="display: flex; margin-top: 10px; font-size: 1.8em">
+						<div style="flex-grow: 1; font-weight: bold;">TOTAL</div>
+						<div class="pos-payment-valinfo-right">99,000,000</div>
+					</div>					
+				</div>
+			</div>
+
+
+
+			<!-- DATAGRID -->
+			<div id="pnl_payment-pnl_grid" style="flex-grow: 1; ">
+				<table id="pnl_payment-dgv_payment" class="easyui-datagrid" data-options="fit:true, fitColumns:true, singleSelect:true">
+					<thead>
+						<tr>
+							<th field="code" width="100">Descr</th>
+							<th field="name" width="150" fixed="true" align="right" formatter="$ui.formatPrice">Subtotal</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>001</td><td>name1</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
+
+			<!-- TOTAL PAYMENT -->
+			<div style="height: 80px; margin-top: 5px; ">
+
+				<div style="display: flex; font-size: 1.5em">
+					<div style="flex-grow: 1;">Total Payment</div>
+					<div class="pos-payment-valinfo-right" style="margin-right: 23px">5,000,000</div>
+				</div>	
+				
+				<div style="display: flex; margin-top: 10px; font-size: 1.1em">
+					<div style="flex-grow: 1; ">Refund</div>
+					<div class="pos-payment-valinfo-right" style="margin-right: 23px">0</div>
+				</div>	
+			</div>
+
+
+
+		</div>
+
+	</div>
+
+
+	<!-- SHORTCUT -->
+	<div class="pos-shortcut-panel" style="display: flex; height:80px; justify-content: space-between">
+		<div style="width: 850px; ">
+
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true" >
+				<?=$this->ShortcutButton('', 'blank.png', 'F1')?>
+			</a>			
+
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true" >
+				<?=$this->ShortcutButton('', 'blank.png', 'F2')?>
+			</a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F3')?>
+			</a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F4')?>
+			</a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F5')?>
+			</a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F6')?>
+			</a>
+			
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F7')?>
+			</a>
+			
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F8')?>
+			</a>		
+
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F9')?>
+			</a>
+			
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F10')?>
+			</a>
+
+		</div>
+		<div style="width: 80px; ">
+			<a href="javascript:void(0)" id="pnl_payment-btn_escape" class="easyui-linkbutton c8 shortcutbutton">
+				<?=$this->ShortcutButton('Back to Entry', 'blank.png', 'Esc')?>
+			</a>
+		</div>
+	</div>
+
+</div>	

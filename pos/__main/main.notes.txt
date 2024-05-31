@@ -1,0 +1,7 @@
+main
+
+original path : /apps/retail/pos/main
+created by    : Agung Nugroho
+                agung_dhewe@yahoo.com
+created date  : 2019-12-11
+================================================

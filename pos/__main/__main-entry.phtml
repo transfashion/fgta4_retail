@@ -1,0 +1,218 @@
+<div id="pnl_entry" class="pos-outer-panel">
+
+	<div id="pnl_entry-main" style="display:flex; flex-direction: column; border: 1px solid red">
+		<div id="pnl_entry-left" style="border: 1px solid green; overflow: hidden">
+			<div style="display: flex; flex-direction: column; justify-content: space-between; height: 100px; border: 1px solid blue">
+				<!-- JUDUL -->
+				<div>
+					<div class="pos-store-name" style="font-size: 1.7em; font-weight:bold;">Store Name</div>
+					<div class="pos-datetime"   style="margin-bottom: 10px">Current Date</div> 
+				</div>
+
+				<!-- SEARCH -->
+				<div style="display:flex; margin-bottom: 10px">
+					<div style="display:inline-block; width:50px; text-align:right; margin-right: 5px;"><img id="pnl_entry-img_searchmode"  src="" width="50px" height="28px"></div>
+					<input id="pnl_entry-txt_lineinput" type="text" class="easyui-textbox" style="width: 400px;">
+					<a id="pnl_entry-btn_cari" href="javascript:void(0)" class="easyui-linkbutton c8" style="width: 70px;  margin-left: 3px">Cari</a>
+				</div>
+			</div>
+
+			<!-- GRID -->
+			<div id="pnl_entry-pnl_grid" style="border: 1px solid #eee; ">
+				<table id="pnl_entry-dgv_item" class="easyui-datagrid" data-options="fitColumns:true,singleSelect:true">
+					<thead>
+						<tr>
+							<th data-options="field:'code'">Code</th>
+							<th data-options="field:'name'">Name</th>
+							<th data-options="field:'price'">Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>001</td><td>name1</td><td>2323</td>
+						</tr>
+						<tr>
+							<td>002</td><td>name2</td><td>4612</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<!-- TOTAL -->
+			<div style="height: 100px; background-color: #eee">
+				Subtotal
+			</div>
+
+		</div>
+
+		<div id="pnl_entry-right" style=" overflow: hidden; border: 1px solid green">
+
+			<div id="pnl_entry-tab_info" class="easyui-tabs">
+				<div title="Transaksi" style="padding:20px;">
+
+
+					<div id="iniinfo"></div>
+
+					<div style="display: flex" >
+						<div style="width: 150px; margin-right: 5px">
+							<div style="font-weight: bold; margin-bottom: 5px">Tipe</div>
+							<div>
+								<select id="cc" class="easyui-combobox" style="width:150px;" data-options="editable:false">
+									<option>REGULER</option>
+									<option>RESERVASI</option>
+									<option>OPEN TRANSACTION</option>
+								</select>
+							</div>
+						</div>
+						<div style="width: 250px; ">
+							<div style="margin-bottom: 5px; font-weight: bold;">Id</div>
+							<div style="height: 30px; padding-top: 5px; padding-left: 5px; border: 1px solid #ccc; border-radius: 3px; background-color: #ddd">
+								<?=uniqid()?>
+							</div>
+						</div>
+					</div>
+
+					<div style="margin-top: 40px; font-weight: bold;" >
+						Active Promo
+					</div>
+					<div>
+						<ul>
+							<li>Mega 10%</li>
+							<li>Bundling</li>
+						</ul>
+					</div>
+
+					<div style="margin-top: 40px; display: flex; justify-content: space-between" >
+						<div style="width: 250px; margin-right: 5px">
+							<div style="margin-bottom: 5px; font-weight: bold;">Claimed Vouchers</div>
+							<div style="height: 30px; padding-top: 5px; padding-left: 5px; border: 1px solid #ccc; border-radius: 3px; background-color: #ddd">
+								0
+							</div>
+						</div>
+						<div style="width: 60px; margin-right: 5px">
+							<div style="margin-bottom: 5px">&nbsp;</div>
+							<a href="javascript:void(0)" class="easyui-linkbutton c8" style="width: 60px">Edit</a>
+						</div>
+					</div>
+
+
+					<div style="margin-top: 40px; display: flex; justify-content: space-between" >
+						<div>
+							<div style="margin-bottom: 5px; font-weight: bold;">Sales Person</div>
+							<div>
+								<input id="pnl_edit-cbo_salesperson" class="easyui-combo" style="width: 400px" mapping="dept_id" display="dept_name" data-options="editable:false, valueField:'id', textField:'text' , prompt: '-- PILIH --'">
+							</div>
+						</div>
+					</div>
+
+					
+
+
+				</div>
+
+
+
+
+				<div title="Customer" style="padding:20px;">
+					<div style="display: flex" >
+						<div style="width: 150px; margin-right: 5px">
+							<div style="margin-bottom: 5px; font-weight: bold;">Customer Id</div>
+							<div style="height: 30px; padding-top: 5px; padding-left: 5px; border: 1px solid #ccc; border-radius: 3px; background-color: #ddd">
+								234234 234234
+							</div>
+						</div>
+						<div style="width: 250px">
+							<div style="margin-bottom: 5px; font-weight: bold;">Nama</div>
+							<div style="height: 30px; padding-top: 5px; padding-left: 5px; border: 1px solid #ccc; border-radius: 3px; background-color: #ddd">
+							Agung Nugrroho
+							</div>
+						</div>
+					</div>
+
+					<div style="margin-top: 15px; display: flex; justify-content: space-between" >
+						<div style="width: 250px; margin-right: 5px">
+							<div style="margin-bottom: 5px; font-weight: bold;">Email</div>
+							<div style="height: 30px; padding-top: 5px; padding-left: 5px; border: 1px solid #ccc; border-radius: 3px; background-color: #ddd">
+								&nbsp;
+							</div>
+						</div>
+
+						<div style="width: 60px; margin-right: 5px">
+							<div style="margin-bottom: 5px">&nbsp;</div>
+							<a href="javascript:void(0)" class="easyui-linkbutton c8" style="width: 60px">Edit</a>
+						</div>
+						
+					</div>
+				</div>
+
+
+				<div title="Item Info" style="overflow:auto;padding:20px;display:none;">
+					tab2
+				</div>
+				<div title="Promo" style="display:none;">
+					tab3
+				</div>
+			</div>
+
+
+		</div>
+
+
+
+
+	</div>
+	<div class="pos-shortcut-panel" style="justify-content: space-between">
+		<div>
+
+			<a href="javascript:void(0)" id="pnl_entry-btn_searchmode" class="easyui-linkbutton c8 shortcutbutton">
+				<div class="shortcutbutton-content">
+					<div style="height: 14px; margin-top: 0px; padding-top: 0px; font-size: 0.8em">F1</div>
+					<div style="height: 32px"><img src="index.php/asset/retail/pos/main/icons/search.svg" height="32px" width="32px"></div>
+					<div style="height: 20px; line-height: 14px; margin-top: 4px; font-size: 0.8em;"  id="pnl_entry-txt_next_searchmode">Search Mode</div>
+				</div>	
+			</a>
+		
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true" >
+				<?=$this->ShortcutButton('', 'blank.png', 'F2')?>
+			</a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F3')?>
+			</a>
+
+			<a href="javascript:void(0)" id="pnl_entry-btn_payment" class="easyui-linkbutton c8 shortcutbutton">
+				<?=$this->ShortcutButton('Payment', 'payment.svg', 'F4')?>
+			</a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F5')?>
+			</a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F6')?>
+			</a>
+			
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F7')?>
+			</a>
+			
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F8')?>
+			</a>		
+
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F9')?>
+			</a>
+			
+			<a href="javascript:void(0)" class="easyui-linkbutton c8 shortcutbutton" data-options="disabled: true">
+				<?=$this->ShortcutButton('', 'blank.png', 'F10')?>
+			</a>
+		
+		</div>	
+
+		<a href="javascript:void(0)" id="pnl_entry-btn_escape" class="easyui-linkbutton c8 shortcutbutton">
+			<?=$this->ShortcutButton('', 'blank.png', 'Esc')?>
+		</a>		
+
+	</div>
+</div>

@@ -1,0 +1,404 @@
+<div id="pnl_edit">
+	<div class="fgta-page-title" style="display: flex; align-items: center ">
+		<div>Edit Promo AB</div>
+		<a id="pnl_edit-btn_edit" href="javascript:void(0)" class="easyui-linkbutton fgta-button-edit" style="margin-left:10px;" data-options="plain:true,iconCls:'fgta-icon-edit'">edit</a>
+	</div>
+
+
+	<form id="pnl_edit-form">
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">ID</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_id" class="easyui-textbox" mapping="promoab_id"  maxlength="10" style="width: 400px" data-options="multiline: false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Brand</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-cbo_brand_id" class="easyui-combo" style="width: 400px" mapping="brand_id" display="brand_name" data-options="editable:false, valueField:'id', textField:'text' , required: true, invalidMessage: 'Brand harus diisi'"   validType="requiredcombo['pnl_edit-cbo_brand_id']" >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Model</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-cbo_promoabmodel_id" class="easyui-combo" style="width: 400px" mapping="promoabmodel_id" display="promoabmodel_descr" data-options="editable:false, valueField:'id', textField:'text' , required: true, invalidMessage: 'Model harus diisi'"   validType="requiredcombo['pnl_edit-cbo_promoabmodel_id']" >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Promo Name</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoabrule_name" class="easyui-textbox" mapping="promoabrule_name" uppercase="true" maxlength="10" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Nama Rule Promo harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Promo Descr</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_descr" class="easyui-textbox" mapping="promoab_descr"  maxlength="255" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Descr harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Date Start</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-dt_promoabrule_dtstart" class="easyui-datebox" style="width: 400px" mapping="promoabrule_dtstart" data-options="editable:false ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Time Start</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoabrule_timestart" class="easyui-textbox" mapping="promoabrule_timestart"  maxlength="8" style="width: 400px" data-options="multiline: false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Date End</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-dt_promoabrule_dtend" class="easyui-datebox" style="width: 400px" mapping="promoabrule_dtend" data-options="editable:false ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Time End</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoabrule_timeend" class="easyui-textbox" mapping="promoabrule_timeend"  maxlength="8" style="width: 400px" data-options="multiline: false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col">Payment Disc</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_promoabrule_ispaymdiscallowed" class="easyui-checkbox c1" mapping="promoabrule_ispaymdiscallowed" data-options="label: 'Allowed', labelPosition: 'after', checked: false , labelWidth: '300px'">
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Min Total Value</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoabrule_valuethreshold" class="easyui-numberbox" mapping="promoabrule_valuethreshold" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<?=$this->Section('Group A', false, false, 'group-a group-hidden')?>
+		<div class="fgta_section_collapsible " >
+					
+		<div class="form_row pnl_edit_rowgroup-a group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Rule Section</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-cbo_a_promoabrulesection_id" class="easyui-combo" style="width: 400px" mapping="a_promoabrulesection_id" display="a_promoabrulesection_name" data-options="editable:false, valueField:'id', textField:'text' , prompt: 'NONE', disabled: true"  >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-a group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Label</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_a_label" class="easyui-textbox" mapping="promoab_a_label"  maxlength="20" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Label harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-a group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Item List</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_a_itemlist" class="easyui-textbox" mapping="promoab_a_itemlist"  maxlength="30" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Item List harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-a group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Min Qty</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_a_qtythreshold" class="easyui-numberbox" mapping="promoab_a_qtythreshold" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  , required: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-a group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Min Value</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_a_valuethreshold" class="easyui-numberbox" mapping="promoab_a_valuethreshold" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  , required: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-a group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Disc (%)</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_a_disc" class="easyui-numberbox" mapping="promoab_a_disc" style="width: 400px; text-align:right" data-options="precision: 1, decimalSeparator:'.', groupSeparator:','  , required: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-a group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Max Qty Applied</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_a_qtymax" class="easyui-numberbox" mapping="promoab_a_qtymax" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  , required: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-a group-hidden" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_promoab_a_isreplacedisc" class="easyui-checkbox c1" mapping="promoab_a_isreplacedisc" data-options="label: 'Replace current discount', labelPosition: 'after', checked: false , labelWidth: '300px'">
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-a group-hidden" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_promoab_a_isblockonmeet" class="easyui-checkbox c1" mapping="promoab_a_isblockonmeet" data-options="label: 'Block on unmeet condition', labelPosition: 'after', checked: false , labelWidth: '300px'">
+			</div>
+		</div>
+
+		</div>
+					
+		<?=$this->Section('Group B', true, false, 'group-b group-hidden')?>
+		<div class="fgta_section_collapsible " >
+							
+					<!-- BEGIN: Container 2 Kolom -->
+					<div style="display:flex; flex-wrap: wrap"> 
+						<div style="width: 550px;"><!-- BEGIN: Kolom 1 -->
+
+					
+					
+
+		<div class="form_row pnl_edit_rowgroup-b group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Rule Section</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-cbo_b_promoabrulesection_id" class="easyui-combo" style="width: 400px" mapping="b_promoabrulesection_id" display="b_promoabrulesection_name" data-options="editable:false, valueField:'id', textField:'text' , prompt: 'NONE', disabled: true"  >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-b group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Label</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_b_label" class="easyui-textbox" mapping="promoab_b_label"  maxlength="20" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Label harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-b group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Item List</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_b_itemlist" class="easyui-textbox" mapping="promoab_b_itemlist"  maxlength="30" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Item List harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-b group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Min Qty</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_b_qtythreshold" class="easyui-numberbox" mapping="promoab_b_qtythreshold" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  , required: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-b group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Min Value</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_b_valuethreshold" class="easyui-numberbox" mapping="promoab_b_valuethreshold" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  , required: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+		
+						</div> <!-- END: Kolom 1 -->
+						<div style="width: 550px;"> <!-- BEGIN: Kolom 2 -->
+					
+
+		<div class="form_row pnl_edit_row group-b group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Disc (%)</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_b_disc" class="easyui-numberbox" mapping="promoab_b_disc" style="width: 400px; text-align:right" data-options="precision: 1, decimalSeparator:'.', groupSeparator:','  , required: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-b group-hidden" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Max Qty Applied</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_b_qtymax" class="easyui-numberbox" mapping="promoab_b_qtymax" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  , required: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-b group-hidden" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_promoab_b_isreplacedisc" class="easyui-checkbox c1" mapping="promoab_b_isreplacedisc" data-options="label: 'Replace current discount', labelPosition: 'after', checked: false , labelWidth: '300px'">
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row group-b group-hidden" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_promoab_b_isblockonmeet" class="easyui-checkbox c1" mapping="promoab_b_isblockonmeet" data-options="label: 'Block on unmeet condition', labelPosition: 'after', checked: false , labelWidth: '300px'">
+			</div>
+		</div>
+		
+
+						</div> <!-- END: Kolom 2 -->
+					</div> 
+					<!-- END: Container 2 Kolom -->
+					
+
+		</div>
+					
+		<?=$this->Section('Setting', true, true, '')?>
+		<div class="fgta_section_collapsible " style="display: none">
+					
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Rule</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-cbo_promoabrule_id" class="easyui-combo" style="width: 400px" mapping="promoabrule_id" display="promoabrule_name" data-options="editable:false, valueField:'id', textField:'text' , required: true, invalidMessage: 'Rule harus diisi', disabled: true"   validType="requiredcombo['pnl_edit-cbo_promoabrule_id']" >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Rule Code</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoabrule_code" class="easyui-textbox" mapping="promoabrule_code"  maxlength="3" style="width: 400px" data-options="multiline: false , disabled: true ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Brand Code</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_brand_nameshort" class="easyui-textbox" mapping="brand_nameshort" uppercase="true" maxlength="10" style="width: 400px" data-options="multiline: false , disabled: true, required: true, invalidMessage: 'Brand Shortname harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_promoabrule_ishasgroupa" class="easyui-checkbox c1" mapping="promoabrule_ishasgroupa" data-options="label: 'Group A', labelPosition: 'after', checked: false , disabled: true, labelWidth: '300px'">
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_promoabrule_ishasgroupb" class="easyui-checkbox c1" mapping="promoabrule_ishasgroupb" data-options="label: 'Group B', labelPosition: 'after', checked: false , disabled: true, labelWidth: '300px'">
+			</div>
+		</div>
+
+		</div>
+					
+		<?=$this->Section('Status', true, true, '')?>
+		<div class="fgta_section_collapsible " style="display: none">
+					
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Doc Version</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_version" class="easyui-numberbox" mapping="promoab_version" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  , disabled: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_promoab_iscommit" class="easyui-checkbox c1" mapping="promoab_iscommit" data-options="label: 'Commit', labelPosition: 'after', checked: false , disabled: true">
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" style="display: none">
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">CommitBy</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_commitby" class="easyui-textbox" mapping="promoab_commitby"  maxlength="14" style="width: 400px" data-options="multiline: false , disabled: true ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" style="display: none">
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">CommitDate</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_promoab_commitdate" class="easyui-textbox" mapping="promoab_commitdate"   style="width: 400px" data-options="multiline: false , disabled: true ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-chk_promoab_isdownload" class="easyui-checkbox c1" mapping="promoab_isdownload" data-options="label: 'Downloaded', labelPosition: 'after', checked: false , disabled: true">
+			</div>
+		</div>
+
+		</div>
+					
+	</form>
+
+
+	<div class="form_row" style="margin-top: 30px">
+		<div class="form_label_col"></div>
+		<div class="form_input_col" style="border: 0px solid black">
+			<a id="pnl_edit-btn_save" class="easyui-linkbutton c1 fgta-button-save" style="width">Simpan</a>
+		</div>
+	</div>	
+
+
+
+		<div id="pnl_edit-detil" class="form_row" style="margin-top: 30px">
+			<div class="form_label_col"></div>
+			<div class="form_input_col detilbox" style="border: 0px solid black">
+				<div class="fgtable-head" style="height: 25px; padding: 5px 0px 0px 5px">Detil Informations</div>
+				<div class="fgtable-head-drow" style="height: 25px; padding: 5px 5px 0px 5px; " onclick="$ui.getPages().ITEMS['pnl_edit'].handler.detil_open('pnl_editsitegrid')">
+					<div id="pnl_edit-txt_site_title" class="detilgrid-text">Restrict Site</div>
+					<div id="pnl_edit-txt_site_value" class="detilgrid-value">&nbsp;</div>
+				</div>
+				<div class="fgtable-head-drow" style="height: 25px; padding: 5px 5px 0px 5px; " onclick="$ui.getPages().ITEMS['pnl_edit'].handler.detil_open('pnl_editpospaymgrid')">
+					<div id="pnl_edit-txt_pospaym_title" class="detilgrid-text">Restrict Pos Payment</div>
+					<div id="pnl_edit-txt_pospaym_value" class="detilgrid-value">&nbsp;</div>
+				</div>
+
+			</div>		
+		</div>		
+		
+		
+
+
+	<div style="margin-top: 30px; margin-left:-5px; margin-right: -5px; background-color: #cccccc; display: flex; justify-content: space-between; padding: 10px 2px 2px 2px ">
+		<div>
+			<!-- letakkan tombol-tombol xtion disini -->
+			<?php
+			$customheaderxtion = __DIR__.'/promoab-edit-customxtion.phtml'; 
+			if (is_file($customheaderxtion)) {
+				include $customheaderxtion;
+			} else { ?>
+			
+			
+			<a id="pnl_edit-btn_commit" href="javascript:void(0)" class="easyui-linkbutton c8" style="margin-left:10px; margin-bottom: 10px;" data-options="iconCls:'fgta-icon-commit'">Commit</a>			
+			<a id="pnl_edit-btn_uncommit" href="javascript:void(0)" class="easyui-linkbutton c8" style="margin-left:10px; margin-bottom: 10px;" data-options="iconCls:'fgta-icon-uncommit'">UnCommit</a>
+			
+			
+			
+			<?php } ?>
+		</div>
+		<div>
+			<a id="pnl_edit-btn_delete" class="easyui-linkbutton c5 fgta-button-delete" style="margin-bottom: 10px; margin-right: 10px">Hapus</a>
+		</div>
+	</div>
+
+</div>
+

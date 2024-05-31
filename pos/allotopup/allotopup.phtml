@@ -1,0 +1,135 @@
+<div id="pnl_memberinfo" class="page-panel fullcontent">
+	<h5>Top Up Allo</h5>
+
+	<div class="col s12">
+		<div class="row">
+			<div class="input-field col s9">
+				<input placeholder="Nama" id="obj_txt_nama" type="text" class="validate">
+				<label for="obj_txt_nama">Nama</label>
+			</div>
+			<div class="input-field col s1">
+				<a id="btn_member" class="waves-effect waves-light btn">Member</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s7">
+				<input placeholder="Email" id="obj_txt_email" type="email" class="validate">
+				<label for="obj_txt_email">Email</label>
+			</div>
+			<div class="input-field col s4">
+				<input placeholder="HP" id="obj_txt_phone" type="text" class="validate">
+				<label for="obj_txt_phone">HP</label>
+			</div>			
+		</div>
+		<div class="row">
+			<div class="input-field col s3">
+				<input placeholder="Amount" id="obj_txt_amount" type="number" class="validate">
+				<label for="obj_txt_amount">Amount</label>
+			</div>
+			<div class="input-field col s9">
+				<a class="waves-effect waves-light btn topupamount" data-value="50000">50 rb</a>
+				<a class="waves-effect waves-light btn topupamount" data-value="100000">100 rb</a>
+				<a class="waves-effect waves-light btn topupamount" data-value="200000">200 rb</a>
+				<a class="waves-effect waves-light btn topupamount" data-value="500000">500 rb</a>
+				<a class="waves-effect waves-light btn topupamount" data-value="1000000">1 jt</a>
+			</div>
+		</div>
+
+	</div>
+
+	<div>
+		<a id="btn_generatebarcode" class="waves-effect waves-light btn">Generate Barcode TopUp</a>
+		<a id="btn_reset" class="waves-effect waves-light btn">Reset</a>
+	</div>
+	<div style="margin-top: 30px">
+		<a id="btn_openmytopup" href="javascript:void(0)">My Top Ups</a>
+	</div>
+</div>
+
+<div id="pnl_barcode" class="page-panel fullcontent" style="padding-left: 75px">
+	<h5>Scan this Barcode to Top Up</h5>
+	<div class="barcode">
+		<div id="barcodecontainer" class="barcode-hidden">
+			<svg id="obj_img_barcode"></svg>
+		</div>
+		<div id="timeoutinfo" class="barcode-hidden">
+			<div id="timeoutmessage">
+				Barcode expired. Please re-generate barcode from top up page.
+			</div>
+			<a id="btn_timeoutok" class="waves-effect waves-light btn">Ok</a>
+		</div>
+	</div>
+	<div id="pnl_barcodetimeout" class="timeout">
+		<span id="obj_txt_timeout"></span>
+	</div>
+	<div id="pnl_barcodepagebutton">
+		<a id="btn_cancel" class="waves-effect waves-light btn">Cancel</a>
+	</div>	
+</div>
+
+<div id="pnl_scan" class="page-panel fullcontent">
+	<h5>Scan QR Member</h5>
+
+	<div class="col s12">
+		<div class="row">
+			<div class="input-field col s9">
+				<input placeholder="Scan QR" id="obj_lineinput" type="text" class="validate">
+				<label for="obj_lineinput">Scan QR</label>
+			</div>
+			<div class="input-field col s1">
+				<a id="btn_scanmember" class="waves-effect waves-light btn">Ok</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<a id="pnl_scan-btn_back" class="waves-effect waves-light btn">Back</a>
+			</div>
+		</div>
+	</div>	
+
+</div>
+
+<div id="pnl_list" class="page-panel fullcontent">
+	<h5>My Top Ups</h5>
+	<div class="col s12">
+		<div class="row">
+			<div class="input-field col s2">
+				<input id="obj_datestart" type="text" class="datepicker">
+				<label for="obj_datestart">Tanggal Awal</label>
+			</div>
+			<div class="input-field col s2">
+				<input id="obj_dateend" type="text" class="datepicker">
+				<label for="obj_dateend">Tanggal Akhir</label>
+			</div>
+			<div class="input-field col s6">
+				<a id="pnl_list-btn_load" class="waves-effect waves-light btn">Load</a>
+			</div>
+		</div>
+	</div>
+	<div id="pnl_result" class="hidden">
+		<div style="margin-top: 20px; margin-bottom: 10px">
+			<div>PIC: <span id="obj_txt_result_pic" style="font-weight: bold"></span></div>
+			<div>
+				Periode 
+				<span id="obj_txt_result_datestart" style="font-weight: bold"></span> s/d 
+				<span id="obj_txt_result_dateend" style="font-weight: bold"></span>
+			</div>
+		</div>
+		<table style="border-top: 1px solid #dfdfdf">
+			<thead>
+				<tr>
+					<th style="border-bottom: 3px solid #dfdfdf">Tanggal</th>
+					<th style="border-bottom: 3px solid #dfdfdf">Nomor</th>
+					<th style="border-bottom: 3px solid #dfdfdf">Nama Customer</th>
+					<th style="border-bottom: 3px solid #dfdfdf; text-align: right">Top Up</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+	<div style="margin-top: 50px">
+		<a id="pnl_list-btn_back" class="waves-effect waves-light btn">Back</a>
+	</div>
+</div>
+

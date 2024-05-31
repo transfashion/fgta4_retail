@@ -1,0 +1,215 @@
+#pnl_display-screen {
+	background-color: white;
+	position:absolute; 
+	right:0px; 
+	bottom:0px; 
+	left:0px;
+	top: 0px;
+}
+
+
+.bgimage {
+	background: url('/index.php/asset/retail/pos/guestbookdisplay/images/bg-02-blue.jpg') no-repeat fixed;
+	background-size: cover;
+}
+
+.display-header {
+	text-align: center;
+}
+
+.header-title{
+	color: white;
+	font-weight: bold;
+	font-size: 40px;
+}
+
+.header-subtitle {
+	color: white;
+	font-weight: bold;
+	font-size: 26px;
+}
+
+.display-column {
+	text-align: center;
+}
+
+.display-cellcontainer {
+	display: flex;
+	align-items: center;
+	justify-content:center;
+}
+
+.display-chart {
+	height: 20vh;
+	width: 600px;
+	/* margin-top: -80px; */
+}
+
+
+.display-banner-text {
+	color: white;
+	height: 30px;
+	font-size: 26px;
+}
+
+
+.display-listitem {
+	/* overflow: hidden; */
+	height: 700px;
+	/* border: 1px solid red; */
+}
+
+.display-listitem-tran {
+	margin-top: -100px;
+}
+
+.display-itembox {
+	position: absolute;
+	width: 100%;
+	border: 1px white solid;
+}
+
+
+
+.listitemdata {
+	color: white;
+	font-size: 24px;
+	line-height: 35px;
+	height: 35px;
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.123));
+	margin-bottom: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+
+@keyframes buang_ke_atas {
+	0% {
+		opacity: 1;
+		margin-top: 100px;
+	}
+
+	100% { 
+		opacity: 0;
+		margin-top: 0px;
+	}
+}
+
+
+.toberemove {
+	animation-name: buang_ke_atas;
+	animation-duration: 0.25s;
+	margin-top: 0px;
+	opacity: 0;
+}
+
+
+.tobedisplay {
+	position: relative;
+	opacity: 1;
+	animation-name: tampil_ke_atas; 
+	animation-duration: 1s;
+	margin-top: 100px;
+	width: 100%;
+}
+
+@keyframes tampil_ke_atas {
+	0% {
+		opacity: 0;
+		visibility:hidden;
+		margin-top: 200px;
+		width: 100%;
+	}
+
+	25% {
+		visibility: hidden;
+	}
+
+	100% { 
+		opacity: 1;
+		margin-top: 100px;
+	}
+}
+
+
+.invisible {
+	visibility: hidden in !important;
+}
+
+
+/* Marquee styles */
+.marquee {
+	--gap: 1rem;
+	position: relative;
+	display: flex;
+	overflow: hidden;
+	user-select: none;
+	gap: var(--gap);
+  }
+  
+  .marquee__content {
+	flex-shrink: 0;
+	display: flex;
+	justify-content: space-around;
+	gap: var(--gap);
+	min-width: 100%;
+  }
+  
+  @keyframes scroll {
+	from {
+	  transform: translateX(0);
+	}
+	to {
+	  transform: translateX(calc(-100% - var(--gap)));
+	}
+  }
+  
+  /* Pause animation when reduced-motion is set */
+  @media (prefers-reduced-motion: reduce) {
+	.marquee__content {
+	  animation-play-state: paused !important;
+	}
+  }
+  
+  /* Enable animation */
+  .enable-animation .marquee__content {
+	animation: scroll 10s linear infinite;
+  }
+  
+  /* Reverse animation */
+  .marquee--reverse .marquee__content {
+	animation-direction: reverse;
+  }
+  
+  /* Pause on hover */
+  .marquee--hover-pause:hover .marquee__content {
+	animation-play-state: paused;
+  }
+  
+  /* Attempt to size parent based on content. Keep in mind that the parent width is equal to both content containers that stretch to fill the parent. */
+  .marquee--fit-content {
+	max-width: fit-content;
+  }
+  
+  /* A fit-content sizing fix: Absolute position the duplicate container. This will set the size of the parent wrapper to a single child container. Shout out to Olavi's article that had this solution 👏 @link: https://olavihaapala.fi/2021/02/23/modern-marquee.html  */
+  .marquee--pos-absolute .marquee__content:last-child {
+	position: absolute;
+	top: 0;
+	left: 0;
+  }
+  
+  /* Enable position absolute animation on the duplicate content (last-child) */
+  .enable-animation .marquee--pos-absolute .marquee__content:last-child {
+	animation-name: scroll-abs;
+  }
+  
+  @keyframes scroll-abs {
+	from {
+	  transform: translateX(calc(100% + var(--gap)));
+	}
+	to {
+	  transform: translateX(0);
+	}
+  }
+  
+
