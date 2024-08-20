@@ -198,21 +198,25 @@ $API = new class extends promoabBase {
 	}
 
 
-	public function getItemPricing(string $price_id) : array {
+	public function getItemPricing(string $pricing_ids) : array {
 		try {
-			
 
 			$sql = "
 				select heinv_id from transaksi_heinvpricedetil where price_id = :price_id
 			";
 			$stmt = $this->db_frm2->prepare($sql);
-			$stmt->execute([':price_id'=>$price_id]);
-			$rows = $stmt->fetchall();
-
+			
+			$arr_pricing_ids = explode(';', $pricing_ids);
 			$items = [];
-			foreach ($rows as $row) {
-				$items[] = $row['heinv_id'];
+			foreach ($arr_pricing_ids as $price_id) {
+				$price_id = trim($price_id);
+				$stmt->execute([':price_id'=>$price_id]);
+				$rows = $stmt->fetchall();
+				foreach ($rows as $row) {
+					$items[] = $row['heinv_id'];
+				}
 			}
+			
 			return $items;
 		} catch (\Exception $ex) {
 			throw $ex;
