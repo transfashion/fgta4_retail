@@ -33,7 +33,7 @@ use \FGTA4\exceptions\WebException;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 21/03/2023
+ * tanggal 20/08/2024
  */
 $API = new class extends promoabBase {
 	
@@ -65,17 +65,30 @@ $API = new class extends promoabBase {
 				$hnd->init($options);
 			}
 			
+			// data yang akan di update dari table
+			$sqlUpdateField  = [
+					'promoabpospaym_id', 'pospaym_code', 'promoab_id'
+			];
+			if (method_exists(get_class($hnd), 'setUpdateField')) {
+				// setUpdateField(&$sqlUpdateField, $data, $options)
+				$hnd->setUpdateField($sqlUpdateField, $data, $options);
+			}
+
+
+
 			$result = new \stdClass; 
 			
 			$key = new \stdClass;
 			$obj = new \stdClass;
-			foreach ($data as $fieldname => $value) {
-				if ($fieldname=='_state') { continue; }
+			foreach ($sqlUpdateField as $fieldname) {
 				if ($fieldname==$primarykey) {
 					$key->{$fieldname} = $value;
 				}
-				$obj->{$fieldname} = $value;
+				if (property_exists($data, $fieldname)) {
+					$obj->{$fieldname} = $data->{$fieldname};
+				}
 			}
+
 
 			// apabila ada tanggal, ubah ke format sql sbb:
 			// $obj->tanggal = (\DateTime::createFromFormat('d/m/Y',$obj->tanggal))->format('Y-m-d');
@@ -138,15 +151,16 @@ $API = new class extends promoabBase {
 				// Update user & timestamp di header
 				$header_table = 'mst_promoab';
 				$header_primarykey = 'promoab_id';
+				$detil_primarykey = 'promoab_id';
 				$sqlrec = "update $header_table set _modifyby = :user_id, _modifydate=NOW() where $header_primarykey = :$header_primarykey";
 				$stmt = $this->db->prepare($sqlrec);
 				$stmt->execute([
 					":user_id" => $userdata->username,
-					":$header_primarykey" => $obj->{$header_primarykey}
+					":$header_primarykey" => $obj->{$detil_primarykey}
 				]);
 
 				\FGTA4\utils\SqlUtility::WriteLog($this->db, $this->reqinfo->modulefullname, $tablename, $obj->{$primarykey}, $action, $userdata->username, (object)[]);
-				\FGTA4\utils\SqlUtility::WriteLog($this->db, $this->reqinfo->modulefullname, $header_table, $obj->{$header_primarykey}, $action . "_DETIL", $userdata->username, (object)[]);
+				\FGTA4\utils\SqlUtility::WriteLog($this->db, $this->reqinfo->modulefullname, $header_table, $obj->{$detil_primarykey}, $action . "_DETIL", $userdata->username, (object)[]);
 
 
 
@@ -219,6 +233,7 @@ $API = new class extends promoabBase {
 
 				$result->dataresponse = (object) $dataresponse;
 				if (method_exists(get_class($hnd), 'DataSavedSuccess')) {
+					// DataSavedSuccess(object &$result) : void
 					$hnd->DataSavedSuccess($result);
 				}
 

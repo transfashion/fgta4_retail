@@ -91,7 +91,10 @@ module.exports = {
 					text: 'Label', type: dbtype.varchar(20), null: true,  suppresslist: true, options: { required: true, invalidMessage: 'Label harus diisi' } },
 				promoab_a_itemlist: { 
 					class: 'group-a group-hidden',
-					text: 'Item List', type: dbtype.varchar(600), null: true, suppresslist: true, options: { required: true, invalidMessage: 'Item List harus diisi' } },
+					text: 'Item List', type: dbtype.varchar(600), null: true, suppresslist: true, options: { required: true, invalidMessage: 'Item List harus diisi' }, 
+					tips: 'Pisahkan dengan titik koma (;) untuk multiple pricing',
+					tipstype: 'visible'
+				},
 				promoab_a_qtythreshold: { 
 					class: 'group-a group-hidden',
 					text: 'Min Qty', type: dbtype.int(4), null:false, default:0, suppresslist: true, options: {required: true}},
@@ -145,7 +148,10 @@ module.exports = {
 					text: 'Label', type: dbtype.varchar(20), null: true,  suppresslist: true, options: { required: true, invalidMessage: 'Label harus diisi' } },
 				promoab_b_itemlist: { 
 					class: 'group-b group-hidden',
-					text: 'Item List', type: dbtype.varchar(600), null: true, suppresslist: true, options: { required: true, invalidMessage: 'Item List harus diisi' } },
+					text: 'Item List', type: dbtype.varchar(600), null: true, suppresslist: true, options: { required: true, invalidMessage: 'Item List harus diisi' },
+					tips: 'Pisahkan dengan titik koma (;) untuk multiple pricing',
+					tipstype: 'visible'
+				},
 				promoab_b_qtythreshold: { 
 					class: 'group-b group-hidden',
 					text: 'Min Qty', type: dbtype.int(4), null:false, default:0, suppresslist: true, options: {required: true}},
@@ -220,7 +226,7 @@ module.exports = {
 
 			},
 			
-			defaultsearch: ['promoabrule_name', 'promoab_descr']
+			defaultsearch: ['promoab_id', 'promoabrule_name', 'promoab_descr']
 		},
 
 

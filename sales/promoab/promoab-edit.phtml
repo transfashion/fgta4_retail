@@ -1,6 +1,6 @@
 <div id="pnl_edit">
 	<div class="fgta-page-title" style="display: flex; align-items: center ">
-		<div>Edit Promo AB</div>
+		<div id="pnl_edit-caption">{{STATE_BEG}}Promo AB{{STATE_END}}</div>
 		<a id="pnl_edit-btn_edit" href="javascript:void(0)" class="easyui-linkbutton fgta-button-edit" style="margin-left:10px;" data-options="plain:true,iconCls:'fgta-icon-edit'">edit</a>
 	</div>
 
@@ -94,7 +94,7 @@
 			</div>
 		</div>
 
-		<?=$this->Section('Group A', false, false, 'group-a group-hidden')?>
+		<?=$this->SectionBegin('Group A', false, false, 'group-a group-hidden')?>
 		<div class="fgta_section_collapsible " >
 					
 		<div class="form_row pnl_edit_rowgroup-a group-hidden" >
@@ -116,8 +116,8 @@
 		<div class="form_row pnl_edit_row group-a group-hidden" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Item List</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_promoab_a_itemlist" class="easyui-textbox" mapping="promoab_a_itemlist"  maxlength="30" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Item List harus diisi' ">
-				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+				<input id="pnl_edit-txt_promoab_a_itemlist" class="easyui-textbox" mapping="promoab_a_itemlist"  maxlength="600" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Item List harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;">Pisahkan dengan titik koma (;) untuk multiple pricing</div>
 			</div>
 		</div>
 
@@ -167,9 +167,10 @@
 			</div>
 		</div>
 
-		</div>
+		</div>			
+		<?=$this->SectionEnd('')?>
 					
-		<?=$this->Section('Group B', true, false, 'group-b group-hidden')?>
+		<?=$this->SectionBegin('Group B', true, false, 'group-b group-hidden')?>
 		<div class="fgta_section_collapsible " >
 							
 					<!-- BEGIN: Container 2 Kolom -->
@@ -198,8 +199,8 @@
 		<div class="form_row pnl_edit_row group-b group-hidden" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Item List</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_promoab_b_itemlist" class="easyui-textbox" mapping="promoab_b_itemlist"  maxlength="30" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Item List harus diisi' ">
-				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+				<input id="pnl_edit-txt_promoab_b_itemlist" class="easyui-textbox" mapping="promoab_b_itemlist"  maxlength="600" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Item List harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;">Pisahkan dengan titik koma (;) untuk multiple pricing</div>
 			</div>
 		</div>
 
@@ -259,9 +260,10 @@
 					<!-- END: Container 2 Kolom -->
 					
 
-		</div>
+		</div>			
+		<?=$this->SectionEnd('')?>
 					
-		<?=$this->Section('Setting', true, true, '')?>
+		<?=$this->SectionBegin('Setting', true, true, '')?>
 		<div class="fgta_section_collapsible " style="display: none">
 					
 		<div class="form_row pnl_edit_row" >
@@ -302,9 +304,10 @@
 			</div>
 		</div>
 
-		</div>
+		</div>			
+		<?=$this->SectionEnd('')?>
 					
-		<?=$this->Section('Status', true, true, '')?>
+		<?=$this->SectionBegin('Status', true, true, '')?>
 		<div class="fgta_section_collapsible " style="display: none">
 					
 		<div class="form_row pnl_edit_row" >
@@ -345,7 +348,8 @@
 			</div>
 		</div>
 
-		</div>
+		</div>			
+		<?=$this->SectionEnd('')?>
 					
 	</form>
 
@@ -365,11 +369,11 @@
 				<div class="fgtable-head" style="height: 25px; padding: 5px 0px 0px 5px">Detil Informations</div>
 				<div class="fgtable-head-drow" style="height: 25px; padding: 5px 5px 0px 5px; " onclick="$ui.getPages().ITEMS['pnl_edit'].handler.detil_open('pnl_editsitegrid')">
 					<div id="pnl_edit-txt_site_title" class="detilgrid-text">Restrict Site</div>
-					<div id="pnl_edit-txt_site_value" class="detilgrid-value">&nbsp;</div>
+					<div id="pnl_edit-txt_site_value" class="detilgrid-value site_totalvalue">&nbsp;</div>
 				</div>
 				<div class="fgtable-head-drow" style="height: 25px; padding: 5px 5px 0px 5px; " onclick="$ui.getPages().ITEMS['pnl_edit'].handler.detil_open('pnl_editpospaymgrid')">
 					<div id="pnl_edit-txt_pospaym_title" class="detilgrid-text">Restrict Pos Payment</div>
-					<div id="pnl_edit-txt_pospaym_value" class="detilgrid-value">&nbsp;</div>
+					<div id="pnl_edit-txt_pospaym_value" class="detilgrid-value pospaym_totalvalue">&nbsp;</div>
 				</div>
 
 			</div>		
