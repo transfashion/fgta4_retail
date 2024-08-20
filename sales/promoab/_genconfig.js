@@ -119,6 +119,12 @@ module.exports = {
 					text: 'Replace current discount', type: dbtype.boolean, null: false, default: '0', suppresslist: true, options: { labelWidth:'300px' } },
 				promoab_a_isblockonmeet: { 
 					section: section.End(),
+					after: `
+
+						</div> <!-- END: Kolom 2 -->
+					</div> 
+					<!-- END: Container 2 Kolom -->
+					`,
 					class: 'group-a group-hidden',
 					text: 'Block on unmeet condition', type: dbtype.boolean, null: false, default: '0', suppresslist: true, options: { labelWidth:'300px' } },
 
