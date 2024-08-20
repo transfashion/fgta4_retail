@@ -59,21 +59,29 @@ class promoab_headerHandler extends WebAPI  {
 	}
 
 
-	function cek_pricing($db_frm2, $price_id, $groupname) {
+	function cek_pricing($db_frm2, $str_price_ids, $groupname) {
+
+		// $price_id
 		try {
 			$sql = "select * from transaksi_heinvprice where price_id = :price_id ";
 			$stmt = $db_frm2->prepare($sql);
-			$stmt->execute([':price_id' => $price_id]);
-			$rows = $stmt->fetchall();
-			if (count($rows)==0) {
-				throw new \Exception("Pricing '$price_id' di group $groupname tidak ditemukan.", 1001); // Code > 1000 munculkan alert 
-			}
 
-			$price_isverified = $rows[0]['price_isverified'];
-			if ($price_isverified==0) {
-				throw new \Exception("Pricing '$price_id' di group $groupname belum di verifikasi.", 1002); // Code > 1000 munculkan alert 
-			}
+			$arr_price_id = explode(';', $str_price_ids);
+			foreach ($arr_price_id as $price_id) {
+				$price_id = trim($price_id);
 
+				$stmt->execute([':price_id' => $price_id]);
+				$rows = $stmt->fetchall();
+				if (count($rows)==0) {
+					throw new \Exception("Pricing '$price_id' di group $groupname tidak ditemukan.", 1001); // Code > 1000 munculkan alert 
+				}
+	
+				$price_isverified = $rows[0]['price_isverified'];
+				if ($price_isverified==0) {
+					throw new \Exception("Pricing '$price_id' di group $groupname belum di verifikasi.", 1002); // Code > 1000 munculkan alert 
+				}
+
+			}
 			
 		} catch  (\Exception $ex) {
 			throw $ex;
