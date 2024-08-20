@@ -17,7 +17,8 @@ module.exports = {
 
 				promoablevel_id: {
 					text: 'Level', type: dbtype.varchar(2), null: true, suppresslist: true,
-					options: { required: true, invalidMessage: 'Level harus diisi'},
+					options: {prompt:'NONE'},
+					// options: { required: true, invalidMessage: 'Level harus diisi'},
 					comp: comp.Combo({
 						table: 'mst_promoablevel',
 						field_value: 'promoablevel_id', field_display: 'promoablevel_name',

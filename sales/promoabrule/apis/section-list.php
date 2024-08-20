@@ -27,7 +27,7 @@ use \FGTA4\exceptions\WebException;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 28/03/2023
+ * tanggal 20/08/2024
  */
 $API = new class extends promoabruleBase {
 
@@ -111,8 +111,14 @@ $API = new class extends promoabruleBase {
 				$options->sortData = [];
 			}			
 			if (!is_array($options->sortData)) {
-				$options->sortData = [];
+				if (is_object($options->sortData)) {
+					$options->sortData = (array)$options->sortData;
+				} else {
+					$options->sortData = [];
+				}
 			}
+
+
 			if (method_exists(get_class($hnd), 'sortListOrder')) {
 				// ** sortListOrder(array &$sortData) : void
 				//    jika ada keperluan mengurutkan data
@@ -183,12 +189,7 @@ $API = new class extends promoabruleBase {
 				array_push($records, $record);
 			}
 
-			/* modify and finalize records */
-			if (method_exists(get_class($hnd), 'DataListFinal')) {
-				// ** DataListFinal(array &$records) : void
-				//    finalisasi data list
-				$hnd->DataListFinal($records);
-			}
+
 
 
 			// kembalikan hasilnya
@@ -196,7 +197,17 @@ $API = new class extends promoabruleBase {
 			$result->total = $total;
 			$result->offset = $offset + $maxrow;
 			$result->maxrow = $maxrow;
+
+
+			/* modify and finalize records */
+			if (method_exists(get_class($hnd), 'DataListFinal')) {
+				// ** DataListFinal(array &$records, object &$result) : void
+				//    finalisasi data list
+				$hnd->DataListFinal($records, $result);
+			}
+
 			$result->records = $records;
+
 			return $result;
 		} catch (\Exception $ex) {
 			throw $ex;
