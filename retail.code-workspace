@@ -2,12 +2,23 @@
 	"folders": [
 		{
 			"path": ".",
-			"name": "HRMS Module"
+			"name": "Retail Module"
 		},
 		{
 			"path": "../fgta4_generator",
 			"name": "FGTA4 Generator"
+		},
+		{
+			"path": "../fgta4-tfi/kalista/localsetting",
+			"name": "Local Setting"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"favorites.resources": [
+			{
+				"filePath": "/Volumes/Development/transfashion/fgta4-tfi/kalista/localsetting/database/menus/modules-kalista-all.json",
+				"group": "Default"
+			}
+		]
+	}
 }
