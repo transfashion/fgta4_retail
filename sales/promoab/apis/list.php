@@ -28,7 +28,7 @@ use \FGTA4\exceptions\WebException;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 20/08/2024
+ * tanggal 21/03/2023
  */
 $API = new class extends promoabBase {
 
@@ -61,7 +61,7 @@ $API = new class extends promoabBase {
 			}
 
 			$criteriaValues = [
-				"search" => " A.promoab_id LIKE CONCAT('%', :search, '%') OR A.promoabrule_name LIKE CONCAT('%', :search, '%') OR A.promoab_descr LIKE CONCAT('%', :search, '%') "
+				"search" => " A.promoabrule_name LIKE CONCAT('%', :search, '%') OR A.promoab_descr LIKE CONCAT('%', :search, '%') "
 			];
 
 			if (method_exists(get_class($hnd), 'buildListCriteriaValues')) {
@@ -129,13 +129,8 @@ $API = new class extends promoabBase {
 				$options->sortData = [];
 			}
 			if (!is_array($options->sortData)) {
-				if (is_object($options->sortData)) {
-					$options->sortData = (array)$options->sortData;
-				} else {
-					$options->sortData = [];
-				}
+				$options->sortData = [];
 			}
-
 		
 
 

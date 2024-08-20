@@ -4,8 +4,6 @@ var this_page_options;
 import {fgta4slideselect} from  '../../../../../index.php/asset/fgta/framework/fgta4libs/fgta4slideselect.mjs'
 import * as hnd from  './promoab-edit-hnd.mjs'
 
-const txt_caption = $('#pnl_edit-caption')
-
 
 const btn_edit = $('#pnl_edit-btn_edit')
 const btn_save = $('#pnl_edit-btn_save')
@@ -75,9 +73,20 @@ export async function init(opt) {
 	this_page_id = opt.id;
 	this_page_options = opt;
 
-	txt_caption.template = txt_caption.html();
+
 	var disableedit = false;
 
+	if (opt.settings.btn_edit_visible===false) {
+		btn_edit.hide();
+	} 
+
+	if (opt.settings.btn_save_visible===false) {
+		btn_save.hide();
+	} 
+
+	if (opt.settings.btn_delete_visible===false) {
+		btn_delete.hide();
+	} 
 
 	form = new global.fgta4form(pnl_form, {
 		primary: obj.txt_promoab_id,
@@ -109,7 +118,7 @@ export async function init(opt) {
 
 
 	btn_commit.linkbutton({ onClick: async () => { 
-		var args = { action: 'commit', cancel: false, options: {}};
+		var args = { action: 'commit', cancel: false, param: {}};
 		if (typeof hnd.action_starting === 'function') {
 			await hnd.action_starting(args);
 		}
@@ -117,11 +126,11 @@ export async function init(opt) {
 			if (typeof args.cancelShowMessage === 'function') { args.cancelShowMessage(); }
 			return;
 		}
-		btn_action_click({ action: args.action, options: args.options }); 
+		btn_action_click({ action: args.action, param: args.param }); 
 	} });
 
 	btn_uncommit.linkbutton({ onClick: async () => { 
-		var args = { action: 'uncommit', cancel: false, options: {}};
+		var args = { action: 'uncommit', cancel: false, param: {}};
 		if (typeof hnd.action_starting === 'function') {
 			await hnd.action_starting(args);
 		}
@@ -129,7 +138,7 @@ export async function init(opt) {
 			if (typeof args.cancelShowMessage === 'function') { args.cancelShowMessage(); }
 			return;
 		}
-		btn_action_click({ action: args.action, options: args.options }); 
+		btn_action_click({ action: args.action, param: args.param }); 
 	} });
 
 			
@@ -314,12 +323,6 @@ export function getCurrentRowdata() {
 
 export function open(data, rowid, viewmode=true, fn_callback) {
 
-	var caption = txt_caption.template;
-	caption = caption.replace('{{STATE_BEG}}', '');
-	caption = caption.replace('{{STATE_END}}', ' View');
-	txt_caption.html(caption);
-
-
 	rowdata = {
 		data: data,
 		rowid: rowid
@@ -409,13 +412,6 @@ export function open(data, rowid, viewmode=true, fn_callback) {
 
 
 export function createnew() {
-
-	var caption = txt_caption.template;
-	caption = caption.replace('{{STATE_BEG}}', 'Create New ');
-	caption = caption.replace('{{STATE_END}}', '');
-	txt_caption.html(caption);
-
-
 	form.createnew(async (data, options)=>{
 		// console.log(data)
 		// console.log(options)
@@ -569,35 +565,24 @@ function updatebuttonstate(record) {
 }
 
 function updategridstate(record) {
-	var updategriddata = {}
-
 	// apabila ada keperluan untuk update state grid list di sini
+
+
+
+	var updategriddata = {}
 
 	var col_commit = 'promoab_iscommit';
 	updategriddata[col_commit] = record.promoab_iscommit;	
 	
+	$ui.getPages().ITEMS['pnl_list'].handler.updategrid(updategriddata, form.rowid);
+		
 
 	if (typeof hnd.form_updategridstate == 'function') {
-		hnd.form_updategridstate(updategriddata, record);
+		hnd.form_updategridstate(record);
 	}
-
-	$ui.getPages().ITEMS['pnl_list'].handler.updategrid(updategriddata, form.rowid);
-
 }
 
 function form_viewmodechanged(viewmode) {
-
-	var caption = txt_caption.template;
-	if (viewmode) {
-		caption = caption.replace('{{STATE_BEG}}', '');
-		caption = caption.replace('{{STATE_END}}', ' View');
-	} else {
-		caption = caption.replace('{{STATE_BEG}}', '');
-		caption = caption.replace('{{STATE_END}}', ' Edit');
-	}
-	txt_caption.html(caption);
-
-
 	var OnViewModeChangedEvent = new CustomEvent('OnViewModeChanged', {detail: {}})
 	$ui.triggerevent(OnViewModeChangedEvent, {
 		viewmode: viewmode
@@ -654,14 +639,10 @@ async function form_datasaving(data, options) {
 async function form_datasaveerror(err, options) {
 	// apabila mau olah error messagenya
 	// $ui.ShowMessage(err.errormessage)
-	console.error(err)
+	console.log(err)
 	if (typeof hnd.form_datasaveerror == 'function') {
 		hnd.form_datasaveerror(err, options);
 	}
-	if (options.supress_error_dialog!=true) {
-		$ui.ShowMessage('[ERROR]'+err.message);
-	}
-
 }
 
 
@@ -702,7 +683,7 @@ async function form_datasaved(result, options) {
 		}
 	}
 	form.rowid = $ui.getPages().ITEMS['pnl_list'].handler.updategrid(data, form.rowid)
-	var rowdata = {
+	rowdata = {
 		data: data,
 		rowid: form.rowid
 	}
@@ -760,10 +741,10 @@ async function btn_action_click(args) {
 	switch (args.action) {
 		
 		case 'commit' :
-			args.xtion_version = '1.1';
 			args.act_url = `${global.modulefullname}/xtion-commit`;
 			args.act_msg_quest = `Apakah anda yakin akan <b>${args.action}</b> ${docname} no ${args.id} ?`;
 			args.act_msg_result = `${docname} no ${args.id} telah di ${args.action}.`;
+			args.use_otp = true;
 			args.act_do = (result) => {
 				chk_iscommit.checkbox('check');
 				
@@ -772,7 +753,6 @@ async function btn_action_click(args) {
 			break;
 
 		case 'uncommit' :
-			args.xtion_version = '1.1';
 			args.act_url = `${global.modulefullname}/xtion-uncommit`;
 			args.act_msg_quest = `Apakah anda yakin akan <b>${args.action}</b> ${docname} no ${args.id} ?`;
 			args.act_msg_result = `${docname} no ${args.id} telah di ${args.action}.`;

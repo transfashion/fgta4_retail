@@ -74,11 +74,6 @@ module.exports = {
 							cancollapse: false,
 							collapse: false
 						}), 
-					before: `
-						<!-- BEGIN: Container 2 Kolom -->
-						<div style="display:flex; flex-wrap: wrap"> 
-							<div style="width: 550px;"><!-- BEGIN: Kolom 1 -->
-						`,						
 					text: 'Rule Section', type: dbtype.varchar(14), null: true, suppresslist: true,
 					options: { prompt:'NONE', disabled: true},
 					comp: comp.Combo({
@@ -96,21 +91,13 @@ module.exports = {
 					text: 'Label', type: dbtype.varchar(20), null: true,  suppresslist: true, options: { required: true, invalidMessage: 'Label harus diisi' } },
 				promoab_a_itemlist: { 
 					class: 'group-a group-hidden',
-					text: 'Item List', type: dbtype.varchar(600), null: true, suppresslist: true, options: { required: true, invalidMessage: 'Item List harus diisi' }, 
-					tips: 'Pisahkan dengan titik koma (;) untuk multiple pricing',
-					tipstype: 'visible'
-				},
+					text: 'Item List', type: dbtype.varchar(30), null: true, suppresslist: true, options: { required: true, invalidMessage: 'Item List harus diisi' } },
 				promoab_a_qtythreshold: { 
 					class: 'group-a group-hidden',
 					text: 'Min Qty', type: dbtype.int(4), null:false, default:0, suppresslist: true, options: {required: true}},
 				promoab_a_valuethreshold: { 
 					class: 'group-a group-hidden',
-					text: 'Min Value', type: dbtype.decimal(16,0), null: false, default:0, suppresslist: true, options: {required: true},
-					after: `
-						</div> <!-- END: Kolom 1 -->
-						<div style="width: 550px;"> <!-- BEGIN: Kolom 2 -->
-					`
-				},
+					text: 'Min Value', type: dbtype.decimal(16,0), null: false, default:0, suppresslist: true, options: {required: true}},
 				promoab_a_disc: { 
 					class: 'group-a group-hidden',
 					text: 'Disc (%)', type: dbtype.decimal(4,1), null: false, default:0, suppresslist: true, options: {required: true}},
@@ -122,11 +109,6 @@ module.exports = {
 					text: 'Replace current discount', type: dbtype.boolean, null: false, default: '0', suppresslist: true, options: { labelWidth:'300px' } },
 				promoab_a_isblockonmeet: { 
 					section: section.End(),
-					after: `
-						</div> <!-- END: Kolom 2 -->
-					</div> 
-					<!-- END: Container 2 Kolom -->
-					`,
 					class: 'group-a group-hidden',
 					text: 'Block on unmeet condition', type: dbtype.boolean, null: false, default: '0', suppresslist: true, options: { labelWidth:'300px' } },
 
@@ -163,10 +145,7 @@ module.exports = {
 					text: 'Label', type: dbtype.varchar(20), null: true,  suppresslist: true, options: { required: true, invalidMessage: 'Label harus diisi' } },
 				promoab_b_itemlist: { 
 					class: 'group-b group-hidden',
-					text: 'Item List', type: dbtype.varchar(600), null: true, suppresslist: true, options: { required: true, invalidMessage: 'Item List harus diisi' },
-					tips: 'Pisahkan dengan titik koma (;) untuk multiple pricing',
-					tipstype: 'visible'
-				},
+					text: 'Item List', type: dbtype.varchar(30), null: true, suppresslist: true, options: { required: true, invalidMessage: 'Item List harus diisi' } },
 				promoab_b_qtythreshold: { 
 					class: 'group-b group-hidden',
 					text: 'Min Qty', type: dbtype.int(4), null:false, default:0, suppresslist: true, options: {required: true}},
@@ -241,7 +220,7 @@ module.exports = {
 
 			},
 			
-			defaultsearch: ['promoab_id', 'promoabrule_name', 'promoab_descr']
+			defaultsearch: ['promoabrule_name', 'promoab_descr']
 		},
 
 
