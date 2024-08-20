@@ -31,7 +31,7 @@ use \FGTA4\exceptions\WebException;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 21/03/2023
+ * tanggal 20/08/2024
  */
 $API = new class extends promoabBase {
 	
@@ -138,9 +138,21 @@ $API = new class extends promoabBase {
 					if ($autoid) {
 						$obj->{$primarykey} = $this->NewId($hnd, $obj);
 					}
+					
+					// handle data sebelum pada saat pembuatan SQL Insert
+					if (method_exists(get_class($hnd), 'RowInserting')) {
+						// ** RowInserting(object &$obj)
+						$hnd->RowInserting($obj);
+					}
 					$cmd = \FGTA4\utils\SqlUtility::CreateSQLInsert($tablename, $obj);
 				} else {
 					$action = 'MODIFY';
+
+					// handle data sebelum pada saat pembuatan SQL Update
+					if (method_exists(get_class($hnd), 'RowUpdating')) {
+						// ** RowUpdating(object &$obj, object &$key))
+						$hnd->RowUpdating($obj, $key);
+					}
 					$cmd = \FGTA4\utils\SqlUtility::CreateSQLUpdate($tablename, $obj, $key);
 				}
 	
@@ -233,8 +245,10 @@ $API = new class extends promoabBase {
 					$hnd->DataOpen($dataresponse);
 				}
 
+				$result->username = $userdata->username;
 				$result->dataresponse = (object) $dataresponse;
 				if (method_exists(get_class($hnd), 'DataSavedSuccess')) {
+					// DataSavedSuccess(object &$result) : void
 					$hnd->DataSavedSuccess($result);
 				}
 

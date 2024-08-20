@@ -26,7 +26,7 @@ use \FGTA4\exceptions\WebException;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 21/03/2023
+ * tanggal 20/08/2024
  */
 class promoabBase extends WebAPI {
 
@@ -60,13 +60,6 @@ class promoabBase extends WebAPI {
 		
 	}
 
-	function pre_action_check($data, $action) {
-		try {
-			return true;
-		} catch (\Exception $ex) {
-			throw $ex;
-		}
-	}
 
 	public function get_header_row($id) {
 		try {
