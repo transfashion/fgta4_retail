@@ -78,8 +78,6 @@ module.exports = {
 						<!-- BEGIN: Container 2 Kolom -->
 						<div style="display:flex; flex-wrap: wrap"> 
 							<div style="width: 550px;"><!-- BEGIN: Kolom 1 -->
-	
-						
 						`,						
 					text: 'Rule Section', type: dbtype.varchar(14), null: true, suppresslist: true,
 					options: { prompt:'NONE', disabled: true},
@@ -107,7 +105,12 @@ module.exports = {
 					text: 'Min Qty', type: dbtype.int(4), null:false, default:0, suppresslist: true, options: {required: true}},
 				promoab_a_valuethreshold: { 
 					class: 'group-a group-hidden',
-					text: 'Min Value', type: dbtype.decimal(16,0), null: false, default:0, suppresslist: true, options: {required: true}},
+					text: 'Min Value', type: dbtype.decimal(16,0), null: false, default:0, suppresslist: true, options: {required: true},
+					after: `
+						</div> <!-- END: Kolom 1 -->
+						<div style="width: 550px;"> <!-- BEGIN: Kolom 2 -->
+					`
+				},
 				promoab_a_disc: { 
 					class: 'group-a group-hidden',
 					text: 'Disc (%)', type: dbtype.decimal(4,1), null: false, default:0, suppresslist: true, options: {required: true}},
@@ -120,7 +123,6 @@ module.exports = {
 				promoab_a_isblockonmeet: { 
 					section: section.End(),
 					after: `
-
 						</div> <!-- END: Kolom 2 -->
 					</div> 
 					<!-- END: Container 2 Kolom -->
