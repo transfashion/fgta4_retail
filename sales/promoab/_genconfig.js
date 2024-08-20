@@ -74,6 +74,13 @@ module.exports = {
 							cancollapse: false,
 							collapse: false
 						}), 
+					before: `
+						<!-- BEGIN: Container 2 Kolom -->
+						<div style="display:flex; flex-wrap: wrap"> 
+							<div style="width: 550px;"><!-- BEGIN: Kolom 1 -->
+	
+						
+						`,						
 					text: 'Rule Section', type: dbtype.varchar(14), null: true, suppresslist: true,
 					options: { prompt:'NONE', disabled: true},
 					comp: comp.Combo({
