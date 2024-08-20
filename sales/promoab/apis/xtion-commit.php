@@ -34,7 +34,7 @@ use \FGTA4\StandartApproval;
  */
 $API = new class extends promoabBase {
 
-	public function execute($id, $param) {
+	public function execute($id, $options) {
 		$tablename = 'mst_promoab';
 		$primarykey = 'promoab_id';
 		$userdata = $this->auth->session_get_user();
