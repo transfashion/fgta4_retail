@@ -1,7 +1,16 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": ".",
+			"name": "Retail Module"
+		},
+		{
+			"path": "../generator",
+			"name": "FGTA4 Generator"
+		},
+		{
+			"path": "../framework",
+			"name": "Framework"
 		}
 	],
 	"settings": {}
