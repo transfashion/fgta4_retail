@@ -5,20 +5,13 @@
 			"name": "Retail Module"
 		},
 		{
-			"path": "../fgta4_generator",
+			"path": "../generator",
 			"name": "FGTA4 Generator"
 		},
 		{
-			"path": "../fgta4-tfi/kalista/localsetting",
-			"name": "Local Setting"
+			"path": "../framework",
+			"name": "Framework"
 		}
 	],
-	"settings": {
-		"favorites.resources": [
-			{
-				"filePath": "/Volumes/Development/transfashion/fgta4-tfi/kalista/localsetting/database/menus/modules-kalista-all.json",
-				"group": "Default"
-			}
-		]
-	}
+	"settings": {}
 }
