@@ -103,6 +103,9 @@ $API = new class extends promoabBase {
 				throw new \Exception("Promo rule $id doesn't exists!");
 			}
 
+			$hasgroup_a = $row['promoabrule_ishasgroupa'] == 1 ? true : false; //promoabrule_ishasgroupa
+			$hasgroup_b = $row['promoabrule_ishasgroupb'] == 1 ? true : false;
+
 
 			$promoab_a_itemlist = $row['promoab_a_itemlist'] ?? '';
 			$promoab_b_itemlist = $row['promoab_b_itemlist'] ?? '';
@@ -111,8 +114,22 @@ $API = new class extends promoabBase {
 			
 			$region_id = $this->getRegion($brand_id);
 
-			$itemDataA = $this->getItemPricing($promoab_a_itemlist);
-			$itemDataB = $this->getItemPricing($promoab_b_itemlist);
+
+			// ambil data group A
+			if ($hasgroup_a) {
+				$itemDataA = $this->getItemPricing($promoab_a_itemlist);
+			} else {
+				$itemDataA = [];
+			}
+
+			// ambil data group B
+			if ($hasgroup_b) {
+				$itemDataB = $this->getItemPricing($promoab_b_itemlist);
+			} else {
+				$itemDataB = [];
+			}
+
+			
 			$validBranch = $this->getValidBranch($id);
 			$allowedPaymentType = $this->getAllowedPaymentType($id);			
 		
