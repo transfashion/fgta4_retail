@@ -111,9 +111,18 @@ module.exports = {
 						<div style="width: 550px;"> <!-- BEGIN: Kolom 2 -->
 					`
 				},
+
+				promoab_a_fixprice: { 
+					class: 'group-b group-hidden',
+					text: 'Fix Price', type: dbtype.decimal(16,0), null: false, default:0, suppresslist: true, options: {required: true}
+				},
+
 				promoab_a_disc: { 
 					class: 'group-a group-hidden',
-					text: 'Disc (%)', type: dbtype.decimal(4,1), null: false, default:0, suppresslist: true, options: {required: true}},
+					text: 'Disc (%)', type: dbtype.decimal(4,1), null: false, default:0, suppresslist: true, options: {required: true},
+					tips: 'Jika fixprice diisi, discount ini tidak akan berpengaruh',
+					tipstype: 'visible'						
+				},
 				promoab_a_qtymax: { 
 					class: 'group-a group-hidden',
 					text: 'Max Qty Applied', type: dbtype.int(4), null:false, default:0, suppresslist: true, options: {required: true} },
@@ -178,9 +187,18 @@ module.exports = {
 						<div style="width: 550px;"> <!-- BEGIN: Kolom 2 -->
 					`
 				},
+
+
+				promoab_b_fixprice: { 
+					class: 'group-b group-hidden',
+					text: 'Fix Price', type: dbtype.decimal(16,0), null: false, default:0, suppresslist: true, options: {required: true}},
+
 				promoab_b_disc: { 
 					class: 'group-b group-hidden',
-					text: 'Disc (%)', type: dbtype.decimal(4,1), null: false, default:0, suppresslist: true, options: {required: true}},
+					text: 'Disc (%)', type: dbtype.decimal(4,1), null: false, default:0, suppresslist: true, options: {required: true},
+					tips: 'Jika fixprice diisi, discount ini tidak akan berpengaruh',
+					tipstype: 'visible'					
+				},
 				promoab_b_qtymax: { 
 					class: 'group-b group-hidden',
 					text: 'Max Qty Applied', type: dbtype.int(4), null:false, default:0, suppresslist: true, options: {required: true} },

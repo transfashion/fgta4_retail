@@ -28,7 +28,7 @@ use \FGTA4\exceptions\WebException;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 20/08/2024
+ * tanggal 23/08/2024
  */
 $API = new class extends promoabBase {
 	
@@ -95,12 +95,13 @@ $API = new class extends promoabBase {
 				'promoab_descr' => 'A.`promoab_descr`', 'promoabrule_dtstart' => 'A.`promoabrule_dtstart`', 'promoabrule_timestart' => 'A.`promoabrule_timestart`', 'promoabrule_dtend' => 'A.`promoabrule_dtend`',
 				'promoabrule_timeend' => 'A.`promoabrule_timeend`', 'promoabrule_ispaymdiscallowed' => 'A.`promoabrule_ispaymdiscallowed`', 'promoabrule_valuethreshold' => 'A.`promoabrule_valuethreshold`', 'a_promoabrulesection_id' => 'A.`a_promoabrulesection_id`',
 				'promoab_a_label' => 'A.`promoab_a_label`', 'promoab_a_itemlist' => 'A.`promoab_a_itemlist`', 'promoab_a_qtythreshold' => 'A.`promoab_a_qtythreshold`', 'promoab_a_valuethreshold' => 'A.`promoab_a_valuethreshold`',
-				'promoab_a_disc' => 'A.`promoab_a_disc`', 'promoab_a_qtymax' => 'A.`promoab_a_qtymax`', 'promoab_a_isreplacedisc' => 'A.`promoab_a_isreplacedisc`', 'promoab_a_isblockonmeet' => 'A.`promoab_a_isblockonmeet`',
-				'b_promoabrulesection_id' => 'A.`b_promoabrulesection_id`', 'promoab_b_label' => 'A.`promoab_b_label`', 'promoab_b_itemlist' => 'A.`promoab_b_itemlist`', 'promoab_b_qtythreshold' => 'A.`promoab_b_qtythreshold`',
-				'promoab_b_valuethreshold' => 'A.`promoab_b_valuethreshold`', 'promoab_b_disc' => 'A.`promoab_b_disc`', 'promoab_b_qtymax' => 'A.`promoab_b_qtymax`', 'promoab_b_isreplacedisc' => 'A.`promoab_b_isreplacedisc`',
-				'promoab_b_isblockonmeet' => 'A.`promoab_b_isblockonmeet`', 'promoabrule_id' => 'A.`promoabrule_id`', 'promoabrule_code' => 'A.`promoabrule_code`', 'brand_nameshort' => 'A.`brand_nameshort`',
-				'promoabrule_ishasgroupa' => 'A.`promoabrule_ishasgroupa`', 'promoabrule_ishasgroupb' => 'A.`promoabrule_ishasgroupb`', 'promoab_version' => 'A.`promoab_version`', 'promoab_iscommit' => 'A.`promoab_iscommit`',
-				'promoab_commitby' => 'A.`promoab_commitby`', 'promoab_commitdate' => 'A.`promoab_commitdate`', 'promoab_isdownload' => 'A.`promoab_isdownload`', '_createby' => 'A.`_createby`',
+				'promoab_a_fixprice' => 'A.`promoab_a_fixprice`', 'promoab_a_disc' => 'A.`promoab_a_disc`', 'promoab_a_qtymax' => 'A.`promoab_a_qtymax`', 'promoab_a_isreplacedisc' => 'A.`promoab_a_isreplacedisc`',
+				'promoab_a_isblockonmeet' => 'A.`promoab_a_isblockonmeet`', 'b_promoabrulesection_id' => 'A.`b_promoabrulesection_id`', 'promoab_b_label' => 'A.`promoab_b_label`', 'promoab_b_itemlist' => 'A.`promoab_b_itemlist`',
+				'promoab_b_qtythreshold' => 'A.`promoab_b_qtythreshold`', 'promoab_b_valuethreshold' => 'A.`promoab_b_valuethreshold`', 'promoab_b_fixprice' => 'A.`promoab_b_fixprice`', 'promoab_b_disc' => 'A.`promoab_b_disc`',
+				'promoab_b_qtymax' => 'A.`promoab_b_qtymax`', 'promoab_b_isreplacedisc' => 'A.`promoab_b_isreplacedisc`', 'promoab_b_isblockonmeet' => 'A.`promoab_b_isblockonmeet`', 'promoabrule_id' => 'A.`promoabrule_id`',
+				'promoabrule_code' => 'A.`promoabrule_code`', 'brand_nameshort' => 'A.`brand_nameshort`', 'promoabrule_ishasgroupa' => 'A.`promoabrule_ishasgroupa`', 'promoabrule_ishasgroupb' => 'A.`promoabrule_ishasgroupb`',
+				'promoab_version' => 'A.`promoab_version`', 'promoab_iscommit' => 'A.`promoab_iscommit`', 'promoab_commitby' => 'A.`promoab_commitby`', 'promoab_commitdate' => 'A.`promoab_commitdate`',
+				'promoab_isdownload' => 'A.`promoab_isdownload`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`',
 				'_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`', '_modifydate' => 'A.`_modifydate`'
 			];
 			$sqlFromTable = "mst_promoab A";

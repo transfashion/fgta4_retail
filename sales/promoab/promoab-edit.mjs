@@ -37,6 +37,7 @@ const obj = {
 	txt_promoab_a_itemlist: $('#pnl_edit-txt_promoab_a_itemlist'),
 	txt_promoab_a_qtythreshold: $('#pnl_edit-txt_promoab_a_qtythreshold'),
 	txt_promoab_a_valuethreshold: $('#pnl_edit-txt_promoab_a_valuethreshold'),
+	txt_promoab_a_fixprice: $('#pnl_edit-txt_promoab_a_fixprice'),
 	txt_promoab_a_disc: $('#pnl_edit-txt_promoab_a_disc'),
 	txt_promoab_a_qtymax: $('#pnl_edit-txt_promoab_a_qtymax'),
 	chk_promoab_a_isreplacedisc: $('#pnl_edit-chk_promoab_a_isreplacedisc'),
@@ -46,6 +47,7 @@ const obj = {
 	txt_promoab_b_itemlist: $('#pnl_edit-txt_promoab_b_itemlist'),
 	txt_promoab_b_qtythreshold: $('#pnl_edit-txt_promoab_b_qtythreshold'),
 	txt_promoab_b_valuethreshold: $('#pnl_edit-txt_promoab_b_valuethreshold'),
+	txt_promoab_b_fixprice: $('#pnl_edit-txt_promoab_b_fixprice'),
 	txt_promoab_b_disc: $('#pnl_edit-txt_promoab_b_disc'),
 	txt_promoab_b_qtymax: $('#pnl_edit-txt_promoab_b_qtymax'),
 	chk_promoab_b_isreplacedisc: $('#pnl_edit-chk_promoab_b_isreplacedisc'),
@@ -428,12 +430,14 @@ export function createnew() {
 		data.promoabrule_valuethreshold = 0
 		data.promoab_a_qtythreshold = 0
 		data.promoab_a_valuethreshold = 0
+		data.promoab_a_fixprice = 0
 		data.promoab_a_disc = 0
 		data.promoab_a_qtymax = 0
 		data.promoab_a_isreplacedisc = '0'
 		data.promoab_a_isblockonmeet = '0'
 		data.promoab_b_qtythreshold = 0
 		data.promoab_b_valuethreshold = 0
+		data.promoab_b_fixprice = 0
 		data.promoab_b_disc = 0
 		data.promoab_b_qtymax = 0
 		data.promoab_b_isreplacedisc = '0'

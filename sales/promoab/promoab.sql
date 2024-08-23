@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS `mst_promoab` (
 	`promoab_a_itemlist` varchar(600)  , 
 	`promoab_a_qtythreshold` int(4) NOT NULL DEFAULT 0, 
 	`promoab_a_valuethreshold` decimal(16, 0) NOT NULL DEFAULT 0, 
+	`promoab_a_fixprice` decimal(16, 0) NOT NULL DEFAULT 0, 
 	`promoab_a_disc` decimal(4, 1) NOT NULL DEFAULT 0, 
 	`promoab_a_qtymax` int(4) NOT NULL DEFAULT 0, 
 	`promoab_a_isreplacedisc` tinyint(1) NOT NULL DEFAULT 0, 
@@ -31,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `mst_promoab` (
 	`promoab_b_itemlist` varchar(600)  , 
 	`promoab_b_qtythreshold` int(4) NOT NULL DEFAULT 0, 
 	`promoab_b_valuethreshold` decimal(16, 0) NOT NULL DEFAULT 0, 
+	`promoab_b_fixprice` decimal(16, 0) NOT NULL DEFAULT 0, 
 	`promoab_b_disc` decimal(4, 1) NOT NULL DEFAULT 0, 
 	`promoab_b_qtymax` int(4) NOT NULL DEFAULT 0, 
 	`promoab_b_isreplacedisc` tinyint(1) NOT NULL DEFAULT 0, 
@@ -70,7 +72,8 @@ ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_a_label` varchar(20
 ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_a_itemlist` varchar(600)   AFTER `promoab_a_label`;
 ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_a_qtythreshold` int(4) NOT NULL DEFAULT 0 AFTER `promoab_a_itemlist`;
 ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_a_valuethreshold` decimal(16, 0) NOT NULL DEFAULT 0 AFTER `promoab_a_qtythreshold`;
-ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_a_disc` decimal(4, 1) NOT NULL DEFAULT 0 AFTER `promoab_a_valuethreshold`;
+ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_a_fixprice` decimal(16, 0) NOT NULL DEFAULT 0 AFTER `promoab_a_valuethreshold`;
+ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_a_disc` decimal(4, 1) NOT NULL DEFAULT 0 AFTER `promoab_a_fixprice`;
 ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_a_qtymax` int(4) NOT NULL DEFAULT 0 AFTER `promoab_a_disc`;
 ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_a_isreplacedisc` tinyint(1) NOT NULL DEFAULT 0 AFTER `promoab_a_qtymax`;
 ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_a_isblockonmeet` tinyint(1) NOT NULL DEFAULT 0 AFTER `promoab_a_isreplacedisc`;
@@ -79,7 +82,8 @@ ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_b_label` varchar(20
 ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_b_itemlist` varchar(600)   AFTER `promoab_b_label`;
 ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_b_qtythreshold` int(4) NOT NULL DEFAULT 0 AFTER `promoab_b_itemlist`;
 ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_b_valuethreshold` decimal(16, 0) NOT NULL DEFAULT 0 AFTER `promoab_b_qtythreshold`;
-ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_b_disc` decimal(4, 1) NOT NULL DEFAULT 0 AFTER `promoab_b_valuethreshold`;
+ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_b_fixprice` decimal(16, 0) NOT NULL DEFAULT 0 AFTER `promoab_b_valuethreshold`;
+ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_b_disc` decimal(4, 1) NOT NULL DEFAULT 0 AFTER `promoab_b_fixprice`;
 ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_b_qtymax` int(4) NOT NULL DEFAULT 0 AFTER `promoab_b_disc`;
 ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_b_isreplacedisc` tinyint(1) NOT NULL DEFAULT 0 AFTER `promoab_b_qtymax`;
 ALTER TABLE `mst_promoab` ADD COLUMN IF NOT EXISTS  `promoab_b_isblockonmeet` tinyint(1) NOT NULL DEFAULT 0 AFTER `promoab_b_isreplacedisc`;
@@ -110,7 +114,8 @@ ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_a_label` varchar(20)
 ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_a_itemlist` varchar(600)    AFTER `promoab_a_label`;
 ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_a_qtythreshold` int(4) NOT NULL DEFAULT 0  AFTER `promoab_a_itemlist`;
 ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_a_valuethreshold` decimal(16, 0) NOT NULL DEFAULT 0  AFTER `promoab_a_qtythreshold`;
-ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_a_disc` decimal(4, 1) NOT NULL DEFAULT 0  AFTER `promoab_a_valuethreshold`;
+ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_a_fixprice` decimal(16, 0) NOT NULL DEFAULT 0  AFTER `promoab_a_valuethreshold`;
+ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_a_disc` decimal(4, 1) NOT NULL DEFAULT 0  AFTER `promoab_a_fixprice`;
 ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_a_qtymax` int(4) NOT NULL DEFAULT 0  AFTER `promoab_a_disc`;
 ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_a_isreplacedisc` tinyint(1) NOT NULL DEFAULT 0  AFTER `promoab_a_qtymax`;
 ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_a_isblockonmeet` tinyint(1) NOT NULL DEFAULT 0  AFTER `promoab_a_isreplacedisc`;
@@ -119,7 +124,8 @@ ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_b_label` varchar(20)
 ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_b_itemlist` varchar(600)    AFTER `promoab_b_label`;
 ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_b_qtythreshold` int(4) NOT NULL DEFAULT 0  AFTER `promoab_b_itemlist`;
 ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_b_valuethreshold` decimal(16, 0) NOT NULL DEFAULT 0  AFTER `promoab_b_qtythreshold`;
-ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_b_disc` decimal(4, 1) NOT NULL DEFAULT 0  AFTER `promoab_b_valuethreshold`;
+ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_b_fixprice` decimal(16, 0) NOT NULL DEFAULT 0  AFTER `promoab_b_valuethreshold`;
+ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_b_disc` decimal(4, 1) NOT NULL DEFAULT 0  AFTER `promoab_b_fixprice`;
 ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_b_qtymax` int(4) NOT NULL DEFAULT 0  AFTER `promoab_b_disc`;
 ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_b_isreplacedisc` tinyint(1) NOT NULL DEFAULT 0  AFTER `promoab_b_qtymax`;
 ALTER TABLE `mst_promoab` MODIFY COLUMN IF EXISTS  `promoab_b_isblockonmeet` tinyint(1) NOT NULL DEFAULT 0  AFTER `promoab_b_isreplacedisc`;
