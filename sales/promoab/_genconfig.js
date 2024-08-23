@@ -113,7 +113,7 @@ module.exports = {
 				},
 
 				promoab_a_fixprice: { 
-					class: 'group-b group-hidden',
+					class: 'group-a group-hidden',
 					text: 'Fix Price', type: dbtype.decimal(16,0), null: false, default:0, suppresslist: true, options: {required: true}
 				},
 
