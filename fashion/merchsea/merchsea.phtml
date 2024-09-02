@@ -1,0 +1,14 @@
+<?php require_once dirname(__FILE__).'/merchsea-list.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchsea-edit.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchsea-refgrid.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchsea-refform.phtml' ?>
+
+
+
+<?php
+$customrecordstatus = __DIR__.'/merchsea-customrecordstatus.phtml'; 
+if (is_file($customrecordstatus)) {
+	include $customrecordstatus;
+} else { ?>
+
+<?php } ?>
