@@ -34,8 +34,6 @@ const obj = {
 	txt_merchrvitem_budgetlandedcostidr: $('#pnl_edititemsform-txt_merchrvitem_budgetlandedcostidr'),
 	txt_merchrvitem_budgetmarkupidr: $('#pnl_edititemsform-txt_merchrvitem_budgetmarkupidr'),
 	txt_merchrvitem_budgetbillidr: $('#pnl_edititemsform-txt_merchrvitem_budgetbillidr'),
-	txt_merchrvitem_budgetbillppn: $('#pnl_edititemsform-txt_merchrvitem_budgetbillppn'),
-	txt_merchrvitem_budgetbilldpp: $('#pnl_edititemsform-txt_merchrvitem_budgetbilldpp'),
 	txt_merchrvitem_actualvaluefrg: $('#pnl_edititemsform-txt_merchrvitem_actualvaluefrg'),
 	txt_merchrvitem_actualrate: $('#pnl_edititemsform-txt_merchrvitem_actualrate'),
 	txt_merchrvitem_actualvalueidr: $('#pnl_edititemsform-txt_merchrvitem_actualvalueidr'),
@@ -332,8 +330,6 @@ export function createnew(hdata) {
 		data.merchrvitem_budgetlandedcostidr = 0
 		data.merchrvitem_budgetmarkupidr = 0
 		data.merchrvitem_budgetbillidr = 0
-		data.merchrvitem_budgetbillppn = 0
-		data.merchrvitem_budgetbilldpp = 0
 		data.merchrvitem_actualvaluefrg = 0
 		data.merchrvitem_actualrate = 0
 		data.merchrvitem_actualvalueidr = 0

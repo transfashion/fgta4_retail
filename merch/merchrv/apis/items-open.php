@@ -29,7 +29,7 @@ use \FGTA4\exceptions\WebException;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 02/11/2023
+ * tanggal 18/10/2023
  */
 $API = new class extends merchrvBase {
 
@@ -80,9 +80,9 @@ $API = new class extends merchrvBase {
 				'merchrvitem_id' => 'A.`merchrvitem_id`', 'merchitem_id' => 'A.`merchitem_id`', 'merchitem_combo' => 'A.`merchitem_combo`', 'merchitem_name' => 'A.`merchitem_name`',
 				'merchrvitem_valuepo' => 'A.`merchrvitem_valuepo`', 'merchrvitem_value' => 'A.`merchrvitem_value`', 'merchrvitem_qtyinit' => 'A.`merchrvitem_qtyinit`', 'merchrvitem_qty' => 'A.`merchrvitem_qty`',
 				'merchrvitem_rate' => 'A.`merchrvitem_rate`', 'merchrvitem_subtotalvaluefrg' => 'A.`merchrvitem_subtotalvaluefrg`', 'merchrvitem_subtotalvalueidr' => 'A.`merchrvitem_subtotalvalueidr`', 'merchrvitem_budgetaddcostidr' => 'A.`merchrvitem_budgetaddcostidr`',
-				'merchrvitem_budgetlandedcostidr' => 'A.`merchrvitem_budgetlandedcostidr`', 'merchrvitem_budgetmarkupidr' => 'A.`merchrvitem_budgetmarkupidr`', 'merchrvitem_budgetbillidr' => 'A.`merchrvitem_budgetbillidr`', 'merchrvitem_budgetbillppn' => 'A.`merchrvitem_budgetbillppn`',
-				'merchrvitem_budgetbilldpp' => 'A.`merchrvitem_budgetbilldpp`', 'merchrvitem_actualvaluefrg' => 'A.`merchrvitem_actualvaluefrg`', 'merchrvitem_actualrate' => 'A.`merchrvitem_actualrate`', 'merchrvitem_actualvalueidr' => 'A.`merchrvitem_actualvalueidr`',
-				'merchrvitem_actualaddcostidr' => 'A.`merchrvitem_actualaddcostidr`', 'merchrvitem_actuallandedcostidr' => 'A.`merchrvitem_actuallandedcostidr`', 'merchrv_id' => 'A.`merchrv_id`', '_createby' => 'A.`_createby`',
+				'merchrvitem_budgetlandedcostidr' => 'A.`merchrvitem_budgetlandedcostidr`', 'merchrvitem_budgetmarkupidr' => 'A.`merchrvitem_budgetmarkupidr`', 'merchrvitem_budgetbillidr' => 'A.`merchrvitem_budgetbillidr`', 'merchrvitem_actualvaluefrg' => 'A.`merchrvitem_actualvaluefrg`',
+				'merchrvitem_actualrate' => 'A.`merchrvitem_actualrate`', 'merchrvitem_actualvalueidr' => 'A.`merchrvitem_actualvalueidr`', 'merchrvitem_actualaddcostidr' => 'A.`merchrvitem_actualaddcostidr`', 'merchrvitem_actuallandedcostidr' => 'A.`merchrvitem_actuallandedcostidr`',
+				'merchrv_id' => 'A.`merchrv_id`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`',
 				'_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`', '_modifydate' => 'A.`_modifydate`'
 			];
 			$sqlFromTable = "trn_merchrvitem A";

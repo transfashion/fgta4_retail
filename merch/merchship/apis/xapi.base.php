@@ -26,7 +26,7 @@ use \FGTA4\exceptions\WebException;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 06/11/2023
+ * tanggal 10/11/2023
  */
 class merchshipBase extends WebAPI {
 

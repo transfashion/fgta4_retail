@@ -98,6 +98,19 @@ $API = new class extends merchshipBase {
 		
 		try {
 			$billout_id = $idset['BK'];
+			$orderin_id = $idset['SO'];
+
+			// get shipment info
+			$sql = "
+				select * from trn_merchship where merchship_id = :merchship_id
+			";
+			$stmt = $this->db->prepare($sql);
+			$stmt->execute([':merchship_id'=>$id]);
+			$row = $stmt->fetch();
+			$calculated_dpp = $row['calculated_dpp'];
+			$calculated_ppn = $row['calculated_ppn'];
+			$calculated_bill = $row['calculated_bill'];
+
 
 			$sqlcek = "
 				select * from trn_billout where billout_id = :billout_id
@@ -111,7 +124,7 @@ $API = new class extends merchshipBase {
 			$obj->billout_id = $billout_id;
 			$obj->billtype_id = 'BIL';
 			$obj->billout_ref = $id;
-			$obj->billout_descr = $param->header['merchship_descr'];
+			$obj->billout_descr = "pembelian atas " . $param->header['merchship_descr'];
 			$obj->billout_date = date('Y-m-d');
 			$obj->billout_datedue = date('Y-m-d');
 			$obj->unit_id = $param->header['unit_id'];
@@ -120,13 +133,13 @@ $API = new class extends merchshipBase {
 			$obj->orderin_id = null;
 			$obj->orderinterm_id = null;
 			$obj->billout_isdp = 0;
-			$obj->partner_id = $param->header['principal_partner_id']; 
-			$obj->billout_value = 0;
+			$obj->partner_id = '64f1af115234f'; 
+			$obj->billout_value = $calculated_bill;
 			$obj->curr_id = __LOCAL_CURR;
 			$obj->billout_frgrate = 1;
-			$obj->billout_valueidr = 0;
-			$obj->billout_ppnidr = 0;
-			$obj->billout_dppidr = 0;
+			$obj->billout_valueidr = $calculated_bill;
+			$obj->billout_ppnidr = $calculated_ppn;
+			$obj->billout_dppidr = $calculated_dpp;
 			$obj->owner_dept_id = $param->setting->owner_dept_id;
 			$obj->doc_id = $param->setting->doc_id;
 
@@ -157,6 +170,62 @@ $API = new class extends merchshipBase {
 
 			\FGTA4\utils\SqlUtility::WriteLog($this->db, 'finact/fin/billout', $tablename, $obj->billout_id, $action, $userdata->username, (object)[]);
 
+
+			// Buat Detil
+			$items = [[
+				'value'=>$calculated_dpp, 
+				'descr'=>'DPP',
+				'billoutrowtype_id'=>'ITM',
+				'billoutdetil_ppnidr' => 0,
+				'billoutdetil_dppidr' => $calculated_dpp,
+			], [
+				'value'=>$calculated_ppn, 
+				'descr'=>'PPN',
+				'billoutrowtype_id'=>'PPN',
+				'billoutdetil_ppnidr' => $calculated_ppn,
+				'billoutdetil_dppidr' => 0,
+
+			]];
+			
+			$sqlcek = "
+				select * from trn_billoutdetil where billout_id = :billout_id and billoutrowtype_id=:billoutrowtype_id
+			";
+			$stmtdetilcek = $this->db->prepare($sqlcek);
+
+
+			foreach ($items as $item) {
+				$billoutrowtype_id = $item['billoutrowtype_id'];
+				$stmtdetilcek->execute([':billout_id'=>$billout_id , ':billoutrowtype_id'=>$billoutrowtype_id]);
+				$billitem = $stmtdetilcek->fetch();
+
+				$obj = new \stdClass;
+				$obj->billout_id = $billout_id;
+				$obj->billoutrowtype_id = $item['billoutrowtype_id'];
+				$obj->billoutdetil_descr = $item['descr'];
+				$obj->billoutdetil_value = $item['value'];
+				$obj->curr_id = 'IDR';
+				$obj->billoutdetil_frgrate = 1;
+				$obj->billoutdetil_ppnidr = $item['billoutdetil_ppnidr'];
+				$obj->billoutdetil_dppidr = $item['billoutdetil_dppidr'];
+
+				if ($billitem==null) {
+					$obj->billoutdetil_id = uniqid();	
+					$obj->_createby = $userdata->username;
+					$obj->_createdate = date('Y-m-d H:i:s');
+					$cmd = \FGTA4\utils\SqlUtility::CreateSQLInsert("trn_billoutdetil", $obj);
+				} else {
+					//$obj->billoutdetil_id = $billitem['billoutdetil_id'];
+					$obj->_modifyby = $userdata->username;
+					$obj->_modifydate = date('Y-m-d H:i:s');
+					$cmd = \FGTA4\utils\SqlUtility::CreateSQLUpdate("trn_billoutdetil", $obj, $key);
+				}
+
+				$stmt = $this->db->prepare($cmd->sql);
+				$stmt->execute($cmd->params);
+
+			}
+
+
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
@@ -185,7 +254,7 @@ $API = new class extends merchshipBase {
 
 			$initial = __COMPANY_INITIAL;
 			$idset = [];
-			$docs = ['BK','SO', 'DO'];
+			$docs = ['BK','SO', 'DO', 'SA'];
 			foreach ($docs as $doc) {
 				// cek data dulu
 				$stmtcek->execute([

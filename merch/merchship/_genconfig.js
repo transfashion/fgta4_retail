@@ -272,12 +272,12 @@ module.exports = {
 					})
 				},
 				curr_rate: { text: 'Rate', type: dbtype.decimal(12,0), null:false, default:0},
-				merchshipbudget_idr: { text: 'IDR', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true},
+				merchshipbudget_idr: { text: 'IDR', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true, options:{disabled:true}},
 
-				merchshipbudget_alcvalue: { text: 'Allocated Value', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true, options:{disabled:true}},
-				merchshipbudget_alcidr: { text: 'Allocated IDR', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true, options:{disabled:true}},
-				merchshipbudget_relvalue: { text: 'Actual Value', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true, options:{disabled:true}},
-				merchshipbudget_relidr: { text: 'Actual IDR', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true, options:{disabled:true}},
+				merchshipbudget_alcvalue: { text: 'Allocated Value', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true, hidden:true, options:{disabled:true}},
+				merchshipbudget_alcidr: { text: 'Allocated IDR', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true, hidden:true, options:{disabled:true}},
+				merchshipbudget_relvalue: { text: 'Actual Value', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true, hidden:true, options:{disabled:true}},
+				merchshipbudget_relidr: { text: 'Actual IDR', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true, hidden:true, options:{disabled:true}},
 
 				merchship_id: {text:'Shipment', type: dbtype.varchar(30), null:false}
 			}

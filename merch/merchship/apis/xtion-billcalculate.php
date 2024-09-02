@@ -162,6 +162,10 @@ $API = new class extends merchshipBase {
 			$stmtupd = $this->db->prepare($sqlRVUpdate);
 
 
+			$calculated_dpp = 0;
+			$calculated_ppn = 0;
+			$calculated_bill = 0;
+
 			$ppn = (float)__TAX_PPN;
 			foreach ($items as $item) {
 				$id = $item['id'];
@@ -177,9 +181,13 @@ $API = new class extends merchshipBase {
 				$landedcostIDR = $subtotalIDR + $addCostIDR;
 				$markupIDR = $landedcostIDR * $markup;
 				$billIDR = $landedcostIDR + $markupIDR;
-				$billDPP = $billIDR/(1+($ppn/100));
+				$billDPP = $billIDR / (1+$ppn);
 				$billPPN = $billIDR - $billDPP;
 
+
+				$calculated_dpp += $billDPP;
+				$calculated_ppn += $billPPN;
+				$calculated_bill += $billIDR;
 
 				try {
 					$stmtupd->execute([
@@ -206,6 +214,9 @@ $API = new class extends merchshipBase {
 			$sql = "
 				update  trn_merchship 
 				set 
+				calculated_dpp = :calculated_dpp,
+				calculated_ppn = :calculated_ppn,
+				calculated_bill = :calculated_bill,
 				merchship_iscalculate = 1,
 				merchship_calculateby = :username,
 				merchship_calculatedate = :date
@@ -216,11 +227,11 @@ $API = new class extends merchshipBase {
 			$stmt->execute([
 				':username' => $userdata->username,
 				':date' => date('Y-m-d'),
-				':merchship_id' => $merchship_id
+				':merchship_id' => $merchship_id,
+				':calculated_dpp' => $calculated_dpp,
+				':calculated_ppn' => $calculated_ppn,
+				':calculated_bill' => $calculated_bill
 			]);
-
-
-
 
 			return $ret;
 		} catch (\Exception $ex) {

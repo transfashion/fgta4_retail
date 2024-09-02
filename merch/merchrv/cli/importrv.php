@@ -272,14 +272,17 @@ console::class(new class($args) extends syncWorkerBase {
 				$obj->_createby = $merchrvheader['_createby'];
 				$obj->_createdate = $merchrvheader['_createdate'];
 
+				$progress = $progress_start + ((int)($taskportion*((float)$i/(float)$max)));
+				$taskdescr = "processing item:  $merchitem_id " . ($i+1) . " of $max";
+				$this->updateProcess($progress, $taskdescr);
+	
+
 				$cmd = \FGTA4\utils\SqlUtility::CreateSQLInsert("trn_merchrvitem", $obj);
 				$stmt = $this->db->prepare($cmd->sql);
 				$stmt->execute($cmd->params);
 
-				$progress = $progress_start + ((int)($taskportion*((float)$i/(float)$max)));
-				$taskdescr = "processing item " . ($i+1) . " of $max";
 				
-				$this->updateProcess($progress, $taskdescr);
+				//$this->updateProcess($progress, $taskdescr);
 
 
 			}

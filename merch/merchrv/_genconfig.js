@@ -174,8 +174,6 @@ module.exports = {
 				merchrvitem_budgetlandedcostidr: { text: 'Landed Cost IDR', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true},
 				merchrvitem_budgetmarkupidr: { text: 'Markup IDR', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true},
 				merchrvitem_budgetbillidr: { text: 'Bill IDR', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true},
-				merchrvitem_budgetbillppn: { text: 'Bill PPn', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true},
-				merchrvitem_budgetbilldpp: { text: 'Bill DPP', type: dbtype.decimal(14,2), null:false, default:0, suppresslist: true},
 
 
 				merchrvitem_actualvaluefrg: { text: 'Actual Value', type: dbtype.decimal(14,2), null:false, default:0},
@@ -201,7 +199,7 @@ module.exports = {
 			'preview' : {
 				title: 'Preview', table: 'trn_merchrvitem', form: false, genHandler: 'printpreview', 
 				tabvisible: false,
-				overwrite:{mjs:false, phtml:false}
+				overwrite:{mjs:true, phtml:true}
 			},
 
 			'importdata' : {

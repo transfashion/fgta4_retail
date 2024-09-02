@@ -68,6 +68,9 @@ $API = new class extends merchshipBase {
 		$ret = new \stdClass;
 
 		try {
+
+
+			// get summary RV
 			$sql = "
 				select 
 				A.merchrv_id,
@@ -97,6 +100,8 @@ $API = new class extends merchshipBase {
 			$rows = $stmt->fetchall();
 			$ret->receive = $rows;
 
+
+			// get additional cost
 			$sql = "
 				select 
 				B.merchshipbudgetacc_id,
@@ -118,6 +123,47 @@ $API = new class extends merchshipBase {
 			$stmt->execute([':merchship_id' => $id]);
 			$rows = $stmt->fetchall();
 			$ret->shipcost = $rows;
+
+
+			// get document related
+			$ret->invoice = null;
+			$ret->salesorder = null;
+			$ret->delivery = null;
+			$ret->salesjurnal = null;
+
+			$sql = "
+				select * from trn_merchshipidset where merchship_id = :id
+			";
+			$stmt = $this->db->prepare($sql);
+			$stmt->execute([':id'=>$id]);
+			$rows = $stmt->fetchall();
+			foreach ($rows as $row) {
+				$doc = $row['merchshipidset_doc'];
+				$doc_id = $row['merchshipidset_value'];
+				if ($doc=='BK') {
+					// Tagihan (Invoice)
+					$ret->invoice = new \stdClass;
+					$ret->invoice->invoice_id = $doc_id;
+
+				} else if ($doc=='SO') {
+					// Sales Order
+					$ret->salesorder = new \stdClass;
+					$ret->salesorder->salesorder_id = $doc_id;
+
+				} else if ($doc=='DO') {
+					// Delivery Order
+					$ret->delivery = new \stdClass;
+					$ret->delivery->delivery_id = $doc_id;
+
+				} else if ($doc=='SA') {
+					// Jurnal Sales
+					$ret->salesjurnal = new \stdClass;
+					$ret->salesjurnal->jurnal_id = $doc_id;
+
+				}
+
+			}
+
 
 			return $ret;
 		} catch (err) {

@@ -144,8 +144,6 @@ export async function OpenDetil(data) {
 			<td class="billfooter billvalue">${total_billidr.toLocaleString('en-US')}</td>
 		`;
 		content += `</tr>`;
-
-
 		content += `</table>`
 		$('#pnl_editbill-currentcalculation').html(content);
 	
@@ -187,11 +185,58 @@ export async function OpenDetil(data) {
 			<td class="billfooter billvalue">${total_exclude.toLocaleString('en-US')}</td>
 		`;
 		content += `</tr>`;
-
 		content += `</table>`
-
-
 		$('#pnl_editbill-shipmentdata').html(content);
+
+
+
+
+
+
+		// salesorder
+		content = '';
+		content += `<div style="font-weight: bold">Sales Order</div>`; 
+		if (result.data.salesorder!=null) {
+			content += `<div>${result.data.salesorder.salesorder_id}</div>`; 
+		} else {
+			content += `<div>-</div>`; 
+		}
+		$('#pnl_editbill-salesorder').html(content);
+
+
+		// delivery
+		content = '';
+		content += `<div style="font-weight: bold">Delivery</div>`; 
+		if (result.data.delivery!=null) {
+			content += `<div>${result.data.delivery.delivery_id}</div>`; 
+		} else {
+			content += `<div>-</div>`; 
+		}
+		$('#pnl_editbill-delivery').html(content);
+
+
+		// Invoice
+		content = '';
+		content += `<div style="font-weight: bold">Invoice</div>`; 
+		if (result.data.invoice!=null) {
+			content += `<div>${result.data.invoice.invoice_id}</div>`; 
+		} else {
+			content += `<div>-</div>`; 
+		}
+		$('#pnl_editbill-invoice').html(content);
+
+
+		// salesjurnal
+		content = '';
+		content += `<div style="font-weight: bold">Jurnal Sales</div>`; 
+		if (result.data.salesjurnal!=null) {
+			content += `<div>${result.data.salesjurnal.jurnal_id}</div>`; 
+		} else {
+			content += `<div>-</div>`; 
+		}
+		$('#pnl_editbill-salesjurnal').html(content);
+
+
 
 	} catch (err) {
 		console.error(err);
@@ -255,6 +300,7 @@ async function executeShipment() {
 	console.log(result);
 
 	if (result.success) {
+		OpenDetil(header_data);
 		$ui.ShowMessage('[INFO]Data shipment telah di exekusi');
 	} else {
 		$ui.ShowMessage('[ERROR]eksekusi gagal');

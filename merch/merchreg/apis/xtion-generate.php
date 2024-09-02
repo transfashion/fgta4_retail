@@ -31,7 +31,7 @@ $API = new class extends merchregBase {
 			$stmtcat = $this->db->prepare($sqlcat);
 
 			$merchreg_id = $id;
-			$header = (array)$this->get_header_row($id);  print_r($header);
+			$header = (array)$this->get_header_row($id);  
 			$sql = "select * from trn_merchregitem where merchreg_id=:merchreg_id ";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute([
@@ -64,6 +64,7 @@ $API = new class extends merchregBase {
 					$stmtci->execute([':itemstock_id'=>$itemstock_id]);
 					$rowci = $stmtci->fetch();
 					if ($rowci==null) {
+						
 						$this->createItemStock($item, $header);
 					} 
 

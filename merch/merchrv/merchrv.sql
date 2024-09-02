@@ -108,8 +108,6 @@ CREATE TABLE IF NOT EXISTS `trn_merchrvitem` (
 	`merchrvitem_budgetlandedcostidr` decimal(14, 2) NOT NULL DEFAULT 0, 
 	`merchrvitem_budgetmarkupidr` decimal(14, 2) NOT NULL DEFAULT 0, 
 	`merchrvitem_budgetbillidr` decimal(14, 2) NOT NULL DEFAULT 0, 
-	`merchrvitem_budgetbillppn` decimal(14, 2) NOT NULL DEFAULT 0, 
-	`merchrvitem_budgetbilldpp` decimal(14, 2) NOT NULL DEFAULT 0, 
 	`merchrvitem_actualvaluefrg` decimal(14, 2) NOT NULL DEFAULT 0, 
 	`merchrvitem_actualrate` decimal(12, 2) NOT NULL DEFAULT 0, 
 	`merchrvitem_actualvalueidr` decimal(14, 2) NOT NULL DEFAULT 0, 
@@ -140,9 +138,7 @@ ALTER TABLE `trn_merchrvitem` ADD COLUMN IF NOT EXISTS  `merchrvitem_budgetaddco
 ALTER TABLE `trn_merchrvitem` ADD COLUMN IF NOT EXISTS  `merchrvitem_budgetlandedcostidr` decimal(14, 2) NOT NULL DEFAULT 0 AFTER `merchrvitem_budgetaddcostidr`;
 ALTER TABLE `trn_merchrvitem` ADD COLUMN IF NOT EXISTS  `merchrvitem_budgetmarkupidr` decimal(14, 2) NOT NULL DEFAULT 0 AFTER `merchrvitem_budgetlandedcostidr`;
 ALTER TABLE `trn_merchrvitem` ADD COLUMN IF NOT EXISTS  `merchrvitem_budgetbillidr` decimal(14, 2) NOT NULL DEFAULT 0 AFTER `merchrvitem_budgetmarkupidr`;
-ALTER TABLE `trn_merchrvitem` ADD COLUMN IF NOT EXISTS  `merchrvitem_budgetbillppn` decimal(14, 2) NOT NULL DEFAULT 0 AFTER `merchrvitem_budgetbillidr`;
-ALTER TABLE `trn_merchrvitem` ADD COLUMN IF NOT EXISTS  `merchrvitem_budgetbilldpp` decimal(14, 2) NOT NULL DEFAULT 0 AFTER `merchrvitem_budgetbillppn`;
-ALTER TABLE `trn_merchrvitem` ADD COLUMN IF NOT EXISTS  `merchrvitem_actualvaluefrg` decimal(14, 2) NOT NULL DEFAULT 0 AFTER `merchrvitem_budgetbilldpp`;
+ALTER TABLE `trn_merchrvitem` ADD COLUMN IF NOT EXISTS  `merchrvitem_actualvaluefrg` decimal(14, 2) NOT NULL DEFAULT 0 AFTER `merchrvitem_budgetbillidr`;
 ALTER TABLE `trn_merchrvitem` ADD COLUMN IF NOT EXISTS  `merchrvitem_actualrate` decimal(12, 2) NOT NULL DEFAULT 0 AFTER `merchrvitem_actualvaluefrg`;
 ALTER TABLE `trn_merchrvitem` ADD COLUMN IF NOT EXISTS  `merchrvitem_actualvalueidr` decimal(14, 2) NOT NULL DEFAULT 0 AFTER `merchrvitem_actualrate`;
 ALTER TABLE `trn_merchrvitem` ADD COLUMN IF NOT EXISTS  `merchrvitem_actualaddcostidr` decimal(14, 2) NOT NULL DEFAULT 0 AFTER `merchrvitem_actualvalueidr`;
@@ -164,9 +160,7 @@ ALTER TABLE `trn_merchrvitem` MODIFY COLUMN IF EXISTS  `merchrvitem_budgetaddcos
 ALTER TABLE `trn_merchrvitem` MODIFY COLUMN IF EXISTS  `merchrvitem_budgetlandedcostidr` decimal(14, 2) NOT NULL DEFAULT 0  AFTER `merchrvitem_budgetaddcostidr`;
 ALTER TABLE `trn_merchrvitem` MODIFY COLUMN IF EXISTS  `merchrvitem_budgetmarkupidr` decimal(14, 2) NOT NULL DEFAULT 0  AFTER `merchrvitem_budgetlandedcostidr`;
 ALTER TABLE `trn_merchrvitem` MODIFY COLUMN IF EXISTS  `merchrvitem_budgetbillidr` decimal(14, 2) NOT NULL DEFAULT 0  AFTER `merchrvitem_budgetmarkupidr`;
-ALTER TABLE `trn_merchrvitem` MODIFY COLUMN IF EXISTS  `merchrvitem_budgetbillppn` decimal(14, 2) NOT NULL DEFAULT 0  AFTER `merchrvitem_budgetbillidr`;
-ALTER TABLE `trn_merchrvitem` MODIFY COLUMN IF EXISTS  `merchrvitem_budgetbilldpp` decimal(14, 2) NOT NULL DEFAULT 0  AFTER `merchrvitem_budgetbillppn`;
-ALTER TABLE `trn_merchrvitem` MODIFY COLUMN IF EXISTS  `merchrvitem_actualvaluefrg` decimal(14, 2) NOT NULL DEFAULT 0  AFTER `merchrvitem_budgetbilldpp`;
+ALTER TABLE `trn_merchrvitem` MODIFY COLUMN IF EXISTS  `merchrvitem_actualvaluefrg` decimal(14, 2) NOT NULL DEFAULT 0  AFTER `merchrvitem_budgetbillidr`;
 ALTER TABLE `trn_merchrvitem` MODIFY COLUMN IF EXISTS  `merchrvitem_actualrate` decimal(12, 2) NOT NULL DEFAULT 0  AFTER `merchrvitem_actualvaluefrg`;
 ALTER TABLE `trn_merchrvitem` MODIFY COLUMN IF EXISTS  `merchrvitem_actualvalueidr` decimal(14, 2) NOT NULL DEFAULT 0  AFTER `merchrvitem_actualrate`;
 ALTER TABLE `trn_merchrvitem` MODIFY COLUMN IF EXISTS  `merchrvitem_actualaddcostidr` decimal(14, 2) NOT NULL DEFAULT 0  AFTER `merchrvitem_actualvalueidr`;
