@@ -8,15 +8,10 @@ if (!defined('FGTA4')) {
 
 class merchsea_headerHandler extends WebAPI  {
 
-	public function sortOrder($sortdata) {
-		return "
-			ORDER BY merchsea_year DESC, merchseagroup_id
-		";
+	public function sortListOrder(array &$sortData) : void {
+		$sortData['merchsea_year'] = 'DESC';
 	}
 
-	public function DataSavedSuccess($result) {
-		// $this->caller->log('save success');
-	}
 
 
 

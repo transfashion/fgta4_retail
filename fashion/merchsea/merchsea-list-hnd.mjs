@@ -13,3 +13,10 @@ export function init(param, fn_callback) {
 }
 
 	
+export function grd_list_rowrender(row) {
+	// {td:td, mapping:td.mapping, text:td.innerHTML}
+	// console.log(row.record.merchsea_isdisabled)
+	if (row.record.merchsea_isdisabled==1) {
+		row.td.classList.add('row-disabled')
+	}
+}
