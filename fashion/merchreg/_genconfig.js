@@ -69,6 +69,9 @@ module.exports = {
 					})
 				},
 
+
+
+
 				merchreg_version: {
 					section: section.Begin('Status'),
 					text:'Doc Version', type: dbtype.int(4), null:false, default:'0', suppresslist: true, options:{disabled:true}
@@ -90,6 +93,16 @@ module.exports = {
 					text:'GenerateDate', type: dbtype.datetime, suppresslist: true, unset:true, comp:comp.Textbox(), options:{disabled:true}, hidden: true
 				},	
 
+				interface_id: {
+					text:'Interface', type: dbtype.varchar(7), null:true, suppresslist: true,
+					unset: true,
+					options: { disabled: true},
+					reference: {
+						table: 'mst_interface', 
+						field_value: 'interface_id', 
+						field_display:'interface_name',  field_display_name:'interface_name'
+					}, 
+				},
 
 				merchreg_isinsynprogress: {
 					text:'Syn In Progress', type: dbtype.boolean, null:false, default:'0', unset:true, suppresslist: true, options:{disabled:true}

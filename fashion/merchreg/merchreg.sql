@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `fsn_merchreg` (
 	`merchreg_isgenerate` tinyint(1) NOT NULL DEFAULT 0, 
 	`merchreg_generateby` varchar(14)  , 
 	`merchreg_generatedate` datetime  , 
+	`interface_id` varchar(7)  , 
 	`merchreg_isinsynprogress` tinyint(1) NOT NULL DEFAULT 0, 
 	`_createby` varchar(14) NOT NULL , 
 	`_createdate` datetime NOT NULL DEFAULT current_timestamp(), 
@@ -47,7 +48,8 @@ ALTER TABLE `fsn_merchreg` ADD COLUMN IF NOT EXISTS  `merchreg_commitdate` datet
 ALTER TABLE `fsn_merchreg` ADD COLUMN IF NOT EXISTS  `merchreg_isgenerate` tinyint(1) NOT NULL DEFAULT 0 AFTER `merchreg_commitdate`;
 ALTER TABLE `fsn_merchreg` ADD COLUMN IF NOT EXISTS  `merchreg_generateby` varchar(14)   AFTER `merchreg_isgenerate`;
 ALTER TABLE `fsn_merchreg` ADD COLUMN IF NOT EXISTS  `merchreg_generatedate` datetime   AFTER `merchreg_generateby`;
-ALTER TABLE `fsn_merchreg` ADD COLUMN IF NOT EXISTS  `merchreg_isinsynprogress` tinyint(1) NOT NULL DEFAULT 0 AFTER `merchreg_generatedate`;
+ALTER TABLE `fsn_merchreg` ADD COLUMN IF NOT EXISTS  `interface_id` varchar(7)   AFTER `merchreg_generatedate`;
+ALTER TABLE `fsn_merchreg` ADD COLUMN IF NOT EXISTS  `merchreg_isinsynprogress` tinyint(1) NOT NULL DEFAULT 0 AFTER `interface_id`;
 
 
 ALTER TABLE `fsn_merchreg` MODIFY COLUMN IF EXISTS  `merchreg_date` date NOT NULL   AFTER `merchreg_id`;
@@ -65,7 +67,8 @@ ALTER TABLE `fsn_merchreg` MODIFY COLUMN IF EXISTS  `merchreg_commitdate` dateti
 ALTER TABLE `fsn_merchreg` MODIFY COLUMN IF EXISTS  `merchreg_isgenerate` tinyint(1) NOT NULL DEFAULT 0  AFTER `merchreg_commitdate`;
 ALTER TABLE `fsn_merchreg` MODIFY COLUMN IF EXISTS  `merchreg_generateby` varchar(14)    AFTER `merchreg_isgenerate`;
 ALTER TABLE `fsn_merchreg` MODIFY COLUMN IF EXISTS  `merchreg_generatedate` datetime    AFTER `merchreg_generateby`;
-ALTER TABLE `fsn_merchreg` MODIFY COLUMN IF EXISTS  `merchreg_isinsynprogress` tinyint(1) NOT NULL DEFAULT 0  AFTER `merchreg_generatedate`;
+ALTER TABLE `fsn_merchreg` MODIFY COLUMN IF EXISTS  `interface_id` varchar(7)    AFTER `merchreg_generatedate`;
+ALTER TABLE `fsn_merchreg` MODIFY COLUMN IF EXISTS  `merchreg_isinsynprogress` tinyint(1) NOT NULL DEFAULT 0  AFTER `interface_id`;
 
 
 
@@ -74,12 +77,14 @@ ALTER TABLE `fsn_merchreg` ADD KEY IF NOT EXISTS `partner_id` (`partner_id`);
 ALTER TABLE `fsn_merchreg` ADD KEY IF NOT EXISTS `merchsea_id` (`merchsea_id`);
 ALTER TABLE `fsn_merchreg` ADD KEY IF NOT EXISTS `unit_id` (`unit_id`);
 ALTER TABLE `fsn_merchreg` ADD KEY IF NOT EXISTS `dept_id` (`dept_id`);
+ALTER TABLE `fsn_merchreg` ADD KEY IF NOT EXISTS  `interface_id` (`interface_id`);
 
 ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_mst_curr` FOREIGN KEY IF NOT EXISTS  (`curr_id`) REFERENCES `mst_curr` (`curr_id`);
 ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_mst_partner` FOREIGN KEY IF NOT EXISTS  (`partner_id`) REFERENCES `mst_partner` (`partner_id`);
 ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_mst_merchsea` FOREIGN KEY IF NOT EXISTS  (`merchsea_id`) REFERENCES `mst_merchsea` (`merchsea_id`);
 ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_mst_unit` FOREIGN KEY IF NOT EXISTS  (`unit_id`) REFERENCES `mst_unit` (`unit_id`);
 ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_mst_dept` FOREIGN KEY IF NOT EXISTS  (`dept_id`) REFERENCES `mst_dept` (`dept_id`);
+ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_mst_interface` FOREIGN KEY IF NOT EXISTS (`interface_id`) REFERENCES `mst_interface` (`interface_id`);
 
 
 

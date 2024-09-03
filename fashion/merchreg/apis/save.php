@@ -87,6 +87,7 @@ $API = new class extends merchregBase {
 
 
 			if ($obj->merchreg_descr=='') { $obj->merchreg_descr = '--NULL--'; }
+			if ($obj->interface_id=='') { $obj->interface_id = '--NULL--'; }
 
 
 			unset($obj->merchreg_iscommit);
@@ -95,6 +96,7 @@ $API = new class extends merchregBase {
 			unset($obj->merchreg_isgenerate);
 			unset($obj->merchreg_generateby);
 			unset($obj->merchreg_generatedate);
+			unset($obj->interface_id);
 			unset($obj->merchreg_isinsynprogress);
 
 
@@ -186,7 +188,7 @@ $API = new class extends merchregBase {
 					'curr_rate' => 'A.`curr_rate`', 'partner_id' => 'A.`partner_id`', 'merchsea_id' => 'A.`merchsea_id`', 'unit_id' => 'A.`unit_id`',
 					'dept_id' => 'A.`dept_id`', 'merchreg_version' => 'A.`merchreg_version`', 'merchreg_iscommit' => 'A.`merchreg_iscommit`', 'merchreg_commitby' => 'A.`merchreg_commitby`',
 					'merchreg_commitdate' => 'A.`merchreg_commitdate`', 'merchreg_isgenerate' => 'A.`merchreg_isgenerate`', 'merchreg_generateby' => 'A.`merchreg_generateby`', 'merchreg_generatedate' => 'A.`merchreg_generatedate`',
-					'merchreg_isinsynprogress' => 'A.`merchreg_isinsynprogress`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`',
+					'interface_id' => 'A.`interface_id`', 'merchreg_isinsynprogress' => 'A.`merchreg_isinsynprogress`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`',
 					'_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`', '_modifydate' => 'A.`_modifydate`'
 				];
 				$sqlFromTable = "fsn_merchreg A";

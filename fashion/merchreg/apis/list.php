@@ -96,7 +96,7 @@ $API = new class extends merchregBase {
 				'curr_rate' => 'A.`curr_rate`', 'partner_id' => 'A.`partner_id`', 'merchsea_id' => 'A.`merchsea_id`', 'unit_id' => 'A.`unit_id`',
 				'dept_id' => 'A.`dept_id`', 'merchreg_version' => 'A.`merchreg_version`', 'merchreg_iscommit' => 'A.`merchreg_iscommit`', 'merchreg_commitby' => 'A.`merchreg_commitby`',
 				'merchreg_commitdate' => 'A.`merchreg_commitdate`', 'merchreg_isgenerate' => 'A.`merchreg_isgenerate`', 'merchreg_generateby' => 'A.`merchreg_generateby`', 'merchreg_generatedate' => 'A.`merchreg_generatedate`',
-				'merchreg_isinsynprogress' => 'A.`merchreg_isinsynprogress`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`',
+				'interface_id' => 'A.`interface_id`', 'merchreg_isinsynprogress' => 'A.`merchreg_isinsynprogress`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`',
 				'_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`', '_modifydate' => 'A.`_modifydate`'
 			];
 			$sqlFromTable = "fsn_merchreg A";
@@ -193,6 +193,7 @@ $API = new class extends merchregBase {
 					'dept_name' => \FGTA4\utils\SqlUtility::Lookup($record['dept_id'], $this->db, 'mst_dept', 'dept_id', 'dept_name'),
 					'merchreg_commitby' => \FGTA4\utils\SqlUtility::Lookup($record['merchreg_commitby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
 					'merchreg_generateby' => \FGTA4\utils\SqlUtility::Lookup($record['merchreg_generateby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
+					'interface_name' => \FGTA4\utils\SqlUtility::Lookup($record['interface_id'], $this->db, 'mst_interface', 'interface_id', 'interface_name'),
 					 
 				]);
 				*/
@@ -206,6 +207,7 @@ $API = new class extends merchregBase {
 				$this->addFields('dept_name', 'dept_id', $record, 'mst_dept', 'dept_name', 'dept_id');
 				$this->addFields('merchreg_commitby', 'merchreg_commitby', $record, $GLOBALS['MAIN_USERTABLE'], 'user_fullname', 'user_id');
 				$this->addFields('merchreg_generateby', 'merchreg_generateby', $record, $GLOBALS['MAIN_USERTABLE'], 'user_fullname', 'user_id');
+				$this->addFields('interface_name', 'interface_id', $record, 'mst_interface', 'interface_name', 'interface_id');
 					 
 
 

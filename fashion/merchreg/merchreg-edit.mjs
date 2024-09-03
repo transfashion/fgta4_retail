@@ -37,6 +37,7 @@ const obj = {
 	chk_merchreg_isgenerate: $('#pnl_edit-chk_merchreg_isgenerate'),
 	txt_merchreg_generateby: $('#pnl_edit-txt_merchreg_generateby'),
 	txt_merchreg_generatedate: $('#pnl_edit-txt_merchreg_generatedate'),
+	txt_interface_id: $('#pnl_edit-txt_interface_id'),
 	chk_merchreg_isinsynprogress: $('#pnl_edit-chk_merchreg_isinsynprogress')
 }
 
