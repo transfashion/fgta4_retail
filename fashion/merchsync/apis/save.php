@@ -87,6 +87,7 @@ $API = new class extends merchsyncBase {
 
 
 			if ($obj->merchsync_batch=='') { $obj->merchsync_batch = '--NULL--'; }
+			if ($obj->merchsync_result=='') { $obj->merchsync_result = '--NULL--'; }
 
 
 			unset($obj->merchsync_doc);
