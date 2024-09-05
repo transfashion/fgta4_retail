@@ -60,6 +60,17 @@ module.exports = {
 					})
 				},
 
+
+				itemclass_id: { 
+					text: 'ItemClass', type: dbtype.varchar(7), null: true, suppresslist: true,
+					options: { required: true, invalidMessage: 'ItemClass harus diisi' }, 
+					comp: comp.Combo({
+						table: 'mst_itemclass',
+						field_value: 'itemclass_id', field_display: 'itemclass_name',
+						api: 'ent/items/itemclass/list'
+					})
+				},
+
 				unit_id: { 
 					text: 'Unit', type: dbtype.varchar(10), null: false, suppresslist: true,
 					options: { required: true, invalidMessage: 'Unit harus diisi', disabled:true }, 

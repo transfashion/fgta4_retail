@@ -25,6 +25,7 @@ const obj = {
 	cbo_gender_id: $('#pnl_edit-cbo_gender_id'),
 	cbo_dept_id: $('#pnl_edit-cbo_dept_id'),
 	cbo_itemgroup_id: $('#pnl_edit-cbo_itemgroup_id'),
+	cbo_itemclass_id: $('#pnl_edit-cbo_itemclass_id'),
 	cbo_unit_id: $('#pnl_edit-cbo_unit_id')
 }
 
@@ -140,6 +141,20 @@ export async function init(opt) {
 				}
 			}
 		},
+
+	})				
+				
+	obj.cbo_itemclass_id.name = 'pnl_edit-cbo_itemclass_id'		
+	new fgta4slideselect(obj.cbo_itemclass_id, {
+		title: 'Pilih itemclass_id',
+		returnpage: this_page_id,
+		api: $ui.apis.load_itemclass_id,
+		fieldValue: 'itemclass_id',
+		fieldDisplay: 'itemclass_name',
+		fields: [
+			{mapping: 'itemclass_id', text: 'itemclass_id'},
+			{mapping: 'itemclass_name', text: 'itemclass_name'}
+		],
 
 	})				
 				
@@ -285,6 +300,7 @@ export function open(data, rowid, viewmode=true, fn_callback) {
 			.setValue(obj.cbo_gender_id, record.gender_id, record.gender_name)
 			.setValue(obj.cbo_dept_id, record.dept_id, record.dept_name)
 			.setValue(obj.cbo_itemgroup_id, record.itemgroup_id, record.itemgroup_name)
+			.setValue(obj.cbo_itemclass_id, record.itemclass_id, record.itemclass_name)
 			.setValue(obj.cbo_unit_id, record.unit_id, record.unit_name)
 			.setViewMode(viewmode)
 			.lock(false)
@@ -350,6 +366,8 @@ export function createnew() {
 		data.dept_name = '-- PILIH --'
 		data.itemgroup_id = '0'
 		data.itemgroup_name = '-- PILIH --'
+		data.itemclass_id = '0'
+		data.itemclass_name = '-- PILIH --'
 		data.unit_id = '0'
 		data.unit_name = '-- PILIH --'
 
