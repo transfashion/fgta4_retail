@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `fsn_merchctg` (
 	`gender_id` varchar(7)  , 
 	`dept_id` varchar(10) NOT NULL , 
 	`itemgroup_id` varchar(17)  , 
-	`itemclass_id` varchar(7)  , 
+	`itemclass_id` varchar(14)  , 
 	`unit_id` varchar(10) NOT NULL , 
 	`_createby` varchar(14) NOT NULL , 
 	`_createdate` datetime NOT NULL DEFAULT current_timestamp(), 
@@ -30,7 +30,7 @@ ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `merchctg_descr` varchar(25
 ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `gender_id` varchar(7)   AFTER `merchctg_descr`;
 ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `dept_id` varchar(10) NOT NULL  AFTER `gender_id`;
 ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `itemgroup_id` varchar(17)   AFTER `dept_id`;
-ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `itemclass_id` varchar(7)   AFTER `itemgroup_id`;
+ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `itemclass_id` varchar(14)   AFTER `itemgroup_id`;
 ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `unit_id` varchar(10) NOT NULL  AFTER `itemclass_id`;
 
 
@@ -40,7 +40,7 @@ ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `merchctg_descr` varchar(255
 ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `gender_id` varchar(7)    AFTER `merchctg_descr`;
 ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `dept_id` varchar(10) NOT NULL   AFTER `gender_id`;
 ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `itemgroup_id` varchar(17)    AFTER `dept_id`;
-ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `itemclass_id` varchar(7)    AFTER `itemgroup_id`;
+ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `itemclass_id` varchar(14)    AFTER `itemgroup_id`;
 ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `unit_id` varchar(10) NOT NULL   AFTER `itemclass_id`;
 
 

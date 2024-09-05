@@ -62,7 +62,7 @@ module.exports = {
 
 
 				itemclass_id: { 
-					text: 'ItemClass', type: dbtype.varchar(7), null: true, suppresslist: true,
+					text: 'ItemClass', type: dbtype.varchar(14), null: true, suppresslist: true,
 					options: { required: true, invalidMessage: 'ItemClass harus diisi' }, 
 					comp: comp.Combo({
 						table: 'mst_itemclass',
