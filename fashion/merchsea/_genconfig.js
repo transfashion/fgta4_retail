@@ -56,6 +56,7 @@ module.exports = {
 				merchsearef_name: {text:'Name', type: dbtype.varchar(30), null:false},	
 				merchsearef_code: {text:'Code', type: dbtype.varchar(30), null:false},			
 				merchsearef_otherdata: {text:'Data', type: dbtype.varchar(1000), null:true, suppresslist:true},	
+				merchsearef_notes: {text:'Notes', type: dbtype.varchar(255), null:true},
 				merchsea_id: {text:'Season', type: dbtype.varchar(14), null:false, hidden: true},
 			},
 			uniques: {

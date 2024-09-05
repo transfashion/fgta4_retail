@@ -78,7 +78,7 @@ $API = new class extends merchseaBase {
 
 			$sqlFieldList = [
 				'merchsearef_id' => 'A.`merchsearef_id`', 'interface_id' => 'A.`interface_id`', 'merchsearef_name' => 'A.`merchsearef_name`', 'merchsearef_code' => 'A.`merchsearef_code`',
-				'merchsearef_otherdata' => 'A.`merchsearef_otherdata`', 'merchsea_id' => 'A.`merchsea_id`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`',
+				'merchsearef_otherdata' => 'A.`merchsearef_otherdata`', 'merchsearef_notes' => 'A.`merchsearef_notes`', 'merchsea_id' => 'A.`merchsea_id`', '_createby' => 'A.`_createby`',
 				'_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`', '_modifydate' => 'A.`_modifydate`'
 			];
 			$sqlFromTable = "fsn_merchsearef A";

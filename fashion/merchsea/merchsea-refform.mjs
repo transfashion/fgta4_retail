@@ -24,6 +24,7 @@ const obj = {
 	txt_merchsearef_name: $('#pnl_editrefform-txt_merchsearef_name'),
 	txt_merchsearef_code: $('#pnl_editrefform-txt_merchsearef_code'),
 	txt_merchsearef_otherdata: $('#pnl_editrefform-txt_merchsearef_otherdata'),
+	txt_merchsearef_notes: $('#pnl_editrefform-txt_merchsearef_notes'),
 	txt_merchsea_id: $('#pnl_editrefform-txt_merchsea_id')
 }
 
