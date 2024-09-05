@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `fsn_merchsearef` (
 	`_createdate` datetime NOT NULL DEFAULT current_timestamp(), 
 	`_modifyby` varchar(14)  , 
 	`_modifydate` datetime  , 
-	UNIQUE KEY `merchsearef_pair` (`merchsea_id`, `interface_id`, `merchsearef_code`),
+	UNIQUE KEY `merchsearef_pair` (`interface_id`, `merchsearef_name`, `merchsearef_code`),
 	PRIMARY KEY (`merchsearef_id`)
 ) 
 ENGINE=InnoDB
@@ -90,7 +90,7 @@ ALTER TABLE `fsn_merchsearef` MODIFY COLUMN IF EXISTS  `merchsearef_notes` varch
 ALTER TABLE `fsn_merchsearef` MODIFY COLUMN IF EXISTS  `merchsea_id` varchar(14) NOT NULL   AFTER `merchsearef_notes`;
 
 
-ALTER TABLE `fsn_merchsearef` ADD CONSTRAINT `merchsearef_pair` UNIQUE IF NOT EXISTS  (`merchsea_id`, `interface_id`, `merchsearef_code`);
+ALTER TABLE `fsn_merchsearef` ADD CONSTRAINT `merchsearef_pair` UNIQUE IF NOT EXISTS  (`interface_id`, `merchsearef_name`, `merchsearef_code`);
 
 ALTER TABLE `fsn_merchsearef` ADD KEY IF NOT EXISTS `interface_id` (`interface_id`);
 ALTER TABLE `fsn_merchsearef` ADD KEY IF NOT EXISTS `merchsea_id` (`merchsea_id`);

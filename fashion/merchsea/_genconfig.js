@@ -60,7 +60,7 @@ module.exports = {
 				merchsea_id: {text:'Season', type: dbtype.varchar(14), null:false, hidden: true},
 			},
 			uniques: {
-				'merchsearef_pair': ['merchsea_id', 'interface_id', 'merchsearef_code']
+				'merchsearef_pair': ['interface_id', 'merchsearef_name', 'merchsearef_code']
 			},			
 		}
 
