@@ -21,7 +21,9 @@ const pnl_form = $('#pnl_editrefform-form')
 const obj = {
 	txt_merchsearef_id: $('#pnl_editrefform-txt_merchsearef_id'),
 	cbo_interface_id: $('#pnl_editrefform-cbo_interface_id'),
+	txt_merchsearef_name: $('#pnl_editrefform-txt_merchsearef_name'),
 	txt_merchsearef_code: $('#pnl_editrefform-txt_merchsearef_code'),
+	txt_merchsearef_otherdata: $('#pnl_editrefform-txt_merchsearef_otherdata'),
 	txt_merchsea_id: $('#pnl_editrefform-txt_merchsea_id')
 }
 

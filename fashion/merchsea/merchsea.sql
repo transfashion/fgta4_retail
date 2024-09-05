@@ -58,7 +58,9 @@ ALTER TABLE `fsn_merchsea` ADD CONSTRAINT `fk_fsn_merchsea_fsn_merchseagroup` FO
 CREATE TABLE IF NOT EXISTS `fsn_merchsearef` (
 	`merchsearef_id` varchar(14) NOT NULL , 
 	`interface_id` varchar(7) NOT NULL , 
+	`merchsearef_name` varchar(30) NOT NULL , 
 	`merchsearef_code` varchar(30) NOT NULL , 
+	`merchsearef_otherdata` varchar(1000)  , 
 	`merchsea_id` varchar(14) NOT NULL , 
 	`_createby` varchar(14) NOT NULL , 
 	`_createdate` datetime NOT NULL DEFAULT current_timestamp(), 
@@ -72,13 +74,17 @@ COMMENT='Kode referensi season untuk keperluan interfacing dengan system lain';
 
 
 ALTER TABLE `fsn_merchsearef` ADD COLUMN IF NOT EXISTS  `interface_id` varchar(7) NOT NULL  AFTER `merchsearef_id`;
-ALTER TABLE `fsn_merchsearef` ADD COLUMN IF NOT EXISTS  `merchsearef_code` varchar(30) NOT NULL  AFTER `interface_id`;
-ALTER TABLE `fsn_merchsearef` ADD COLUMN IF NOT EXISTS  `merchsea_id` varchar(14) NOT NULL  AFTER `merchsearef_code`;
+ALTER TABLE `fsn_merchsearef` ADD COLUMN IF NOT EXISTS  `merchsearef_name` varchar(30) NOT NULL  AFTER `interface_id`;
+ALTER TABLE `fsn_merchsearef` ADD COLUMN IF NOT EXISTS  `merchsearef_code` varchar(30) NOT NULL  AFTER `merchsearef_name`;
+ALTER TABLE `fsn_merchsearef` ADD COLUMN IF NOT EXISTS  `merchsearef_otherdata` varchar(1000)   AFTER `merchsearef_code`;
+ALTER TABLE `fsn_merchsearef` ADD COLUMN IF NOT EXISTS  `merchsea_id` varchar(14) NOT NULL  AFTER `merchsearef_otherdata`;
 
 
 ALTER TABLE `fsn_merchsearef` MODIFY COLUMN IF EXISTS  `interface_id` varchar(7) NOT NULL   AFTER `merchsearef_id`;
-ALTER TABLE `fsn_merchsearef` MODIFY COLUMN IF EXISTS  `merchsearef_code` varchar(30) NOT NULL   AFTER `interface_id`;
-ALTER TABLE `fsn_merchsearef` MODIFY COLUMN IF EXISTS  `merchsea_id` varchar(14) NOT NULL   AFTER `merchsearef_code`;
+ALTER TABLE `fsn_merchsearef` MODIFY COLUMN IF EXISTS  `merchsearef_name` varchar(30) NOT NULL   AFTER `interface_id`;
+ALTER TABLE `fsn_merchsearef` MODIFY COLUMN IF EXISTS  `merchsearef_code` varchar(30) NOT NULL   AFTER `merchsearef_name`;
+ALTER TABLE `fsn_merchsearef` MODIFY COLUMN IF EXISTS  `merchsearef_otherdata` varchar(1000)    AFTER `merchsearef_code`;
+ALTER TABLE `fsn_merchsearef` MODIFY COLUMN IF EXISTS  `merchsea_id` varchar(14) NOT NULL   AFTER `merchsearef_otherdata`;
 
 
 ALTER TABLE `fsn_merchsearef` ADD CONSTRAINT `merchsearef_pair` UNIQUE IF NOT EXISTS  (`merchsea_id`, `interface_id`, `merchsearef_code`);

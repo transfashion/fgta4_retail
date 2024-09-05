@@ -33,7 +33,7 @@ use \FGTA4\exceptions\WebException;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 02/09/2024
+ * tanggal 06/09/2024
  */
 $API = new class extends merchseaBase {
 	
@@ -67,7 +67,8 @@ $API = new class extends merchseaBase {
 			
 			// data yang akan di update dari table
 			$sqlUpdateField  = [
-					'merchsearef_id', 'interface_id', 'merchsearef_code', 'merchsea_id'
+					'merchsearef_id', 'interface_id', 'merchsearef_name', 'merchsearef_code',
+					'merchsearef_otherdata', 'merchsea_id'
 			];
 			if (method_exists(get_class($hnd), 'setUpdateField')) {
 				// setUpdateField(&$sqlUpdateField, $data, $options)
@@ -96,6 +97,7 @@ $API = new class extends merchseaBase {
 			$obj->interface_id = strtoupper($obj->interface_id);
 
 
+			if ($obj->merchsearef_otherdata=='') { $obj->merchsearef_otherdata = '--NULL--'; }
 
 
 
@@ -187,7 +189,8 @@ $API = new class extends merchseaBase {
 				}
 
 				$sqlFieldList = [
-					'merchsearef_id' => 'A.`merchsearef_id`', 'interface_id' => 'A.`interface_id`', 'merchsearef_code' => 'A.`merchsearef_code`', 'merchsea_id' => 'A.`merchsea_id`',
+					'merchsearef_id' => 'A.`merchsearef_id`', 'interface_id' => 'A.`interface_id`', 'merchsearef_name' => 'A.`merchsearef_name`', 'merchsearef_code' => 'A.`merchsearef_code`',
+					'merchsearef_otherdata' => 'A.`merchsearef_otherdata`', 'merchsea_id' => 'A.`merchsea_id`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`',
 					'_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`', '_modifydate' => 'A.`_modifydate`'
 				];
 				$sqlFromTable = "fsn_merchsearef A";
