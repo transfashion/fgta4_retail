@@ -81,7 +81,7 @@ ALTER TABLE `fsn_merchreg` ADD KEY IF NOT EXISTS  `interface_id` (`interface_id`
 
 ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_mst_curr` FOREIGN KEY IF NOT EXISTS  (`curr_id`) REFERENCES `mst_curr` (`curr_id`);
 ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_mst_partner` FOREIGN KEY IF NOT EXISTS  (`partner_id`) REFERENCES `mst_partner` (`partner_id`);
-ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_mst_merchsea` FOREIGN KEY IF NOT EXISTS  (`merchsea_id`) REFERENCES `mst_merchsea` (`merchsea_id`);
+ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_fsn_merchsea` FOREIGN KEY IF NOT EXISTS  (`merchsea_id`) REFERENCES `fsn_merchsea` (`merchsea_id`);
 ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_mst_unit` FOREIGN KEY IF NOT EXISTS  (`unit_id`) REFERENCES `mst_unit` (`unit_id`);
 ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_mst_dept` FOREIGN KEY IF NOT EXISTS  (`dept_id`) REFERENCES `mst_dept` (`dept_id`);
 ALTER TABLE `fsn_merchreg` ADD CONSTRAINT `fk_fsn_merchreg_mst_interface` FOREIGN KEY IF NOT EXISTS (`interface_id`) REFERENCES `mst_interface` (`interface_id`);

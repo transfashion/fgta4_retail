@@ -24,7 +24,7 @@ module.exports = {
 					comp: comp.Combo({
 						table: 'mst_curr',
 						field_value: 'curr_id', field_display: 'curr_name',
-						api: 'ent/general/curr/list'
+						api: 'ent/financial/curr/list'
 					})
 				},
 				curr_rate: { text: 'Rate', type: dbtype.decimal(12,0), null:false, default:0, suppresslist: true},
@@ -43,7 +43,7 @@ module.exports = {
 					text: 'Season', type: dbtype.varchar(10), null: true,  suppresslist: true,
 					options: { required: true, invalidMessage: 'Season harus diisi' }, 
 					comp: comp.Combo({
-						table: 'mst_merchsea',
+						table: 'fsn_merchsea',
 						field_value: 'merchsea_id', field_display: 'merchsea_name',
 						api: 'retail/fashion/merchsea/list'
 					})

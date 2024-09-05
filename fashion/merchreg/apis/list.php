@@ -28,7 +28,7 @@ use \FGTA4\exceptions\WebException;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 03/09/2024
+ * tanggal 05/09/2024
  */
 $API = new class extends merchregBase {
 
@@ -188,7 +188,7 @@ $API = new class extends merchregBase {
 				 	//'tambahan' => 'dta'
 					'curr_name' => \FGTA4\utils\SqlUtility::Lookup($record['curr_id'], $this->db, 'mst_curr', 'curr_id', 'curr_name'),
 					'partner_name' => \FGTA4\utils\SqlUtility::Lookup($record['partner_id'], $this->db, 'mst_partner', 'partner_id', 'partner_name'),
-					'merchsea_name' => \FGTA4\utils\SqlUtility::Lookup($record['merchsea_id'], $this->db, 'mst_merchsea', 'merchsea_id', 'merchsea_name'),
+					'merchsea_name' => \FGTA4\utils\SqlUtility::Lookup($record['merchsea_id'], $this->db, 'fsn_merchsea', 'merchsea_id', 'merchsea_name'),
 					'unit_name' => \FGTA4\utils\SqlUtility::Lookup($record['unit_id'], $this->db, 'mst_unit', 'unit_id', 'unit_name'),
 					'dept_name' => \FGTA4\utils\SqlUtility::Lookup($record['dept_id'], $this->db, 'mst_dept', 'dept_id', 'dept_name'),
 					'merchreg_commitby' => \FGTA4\utils\SqlUtility::Lookup($record['merchreg_commitby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
@@ -202,7 +202,7 @@ $API = new class extends merchregBase {
 				// lookup data id yang refer ke table lain
 				$this->addFields('curr_name', 'curr_id', $record, 'mst_curr', 'curr_name', 'curr_id');
 				$this->addFields('partner_name', 'partner_id', $record, 'mst_partner', 'partner_name', 'partner_id');
-				$this->addFields('merchsea_name', 'merchsea_id', $record, 'mst_merchsea', 'merchsea_name', 'merchsea_id');
+				$this->addFields('merchsea_name', 'merchsea_id', $record, 'fsn_merchsea', 'merchsea_name', 'merchsea_id');
 				$this->addFields('unit_name', 'unit_id', $record, 'mst_unit', 'unit_name', 'unit_id');
 				$this->addFields('dept_name', 'dept_id', $record, 'mst_dept', 'dept_name', 'dept_id');
 				$this->addFields('merchreg_commitby', 'merchreg_commitby', $record, $GLOBALS['MAIN_USERTABLE'], 'user_fullname', 'user_id');
