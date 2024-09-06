@@ -6,8 +6,11 @@ require_once __ROOT_DIR . '/core/webapi.php';
 require_once __ROOT_DIR . '/core/cliworker.php';	
 
 
+require_once dirname(__FILE__) . '/tbdatamap.php';	
+
 require_once dirname(__FILE__) . '/sync-base.php';	
-require_once dirname(__FILE__) . '/syncregister.php';	
+require_once dirname(__FILE__) . '/registertmp.php';	
+require_once dirname(__FILE__) . '/registersync.php';	
 
 
 
@@ -49,6 +52,8 @@ console::class(new class($args) extends cliworker {
 			$this->registerProcess($name, $pid, $username);
 
 
+			TbDataMap::$db = $this->db;
+
 			$cfg = [
 				'db' => $this->db,
 				'url' => 'http://ws.transfashion.id/crossroads/frontend',
@@ -56,17 +61,44 @@ console::class(new class($args) extends cliworker {
 
 			// $id = "1723082609"
 			
-			$reg = new SyncRegister($cfg);
+			$tmp = new RegisterTmp($cfg);
+			$reg = new RegisterSync($cfg);
 
 
 			
 			
-			$this->updateProcess(0, "syncing register 1723082609");
-			$reg->sync("1723082609");
+			$reg_id = "1723082609";
+			$this->updateProcess(0, "syncing register $reg_id");
+			// $tmp->copy($reg_id);
+			$reg->sync($reg_id);
+			// $tmp->clear($reg_id);
 
 
 			$this->updateProcess(100, "done.");
 			$this->commitProcess();
+
+
+
+
+
+			
+			// Untuk kode referensi
+			/*
+			$string = "dept_id:EAG@HO; nama:AIGNER-HO;";
+			$result = [];
+			preg_match_all('/([\w_]+):([^;]+)/', $string, $matches);
+			for ($i = 0; $i < count($matches[1]); $i++) {
+				$result[$matches[1][$i]] = $matches[2][$i];
+			}
+			print_r($result);
+			*/
+			
+			for ($i=0; $i<=30; $i++) {
+				echo uniqid();
+				echo "\n";
+				sleep(1);
+			}
+
 		} catch (\Exception $ex) {
 			$this->haltProcess($ex->getMessage());
 			echo "\r\n\x1b[31m"."ERROR"."\x1b[0m"."\r\n";

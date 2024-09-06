@@ -1,0 +1,18 @@
+<?php require_once dirname(__FILE__).'/merchitemctg-list.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchitemctg-edit.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchitemctg-picturegrid.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchitemctg-pictureform.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchitemctg-propgrid.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchitemctg-propform.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchitemctg-refgrid.phtml' ?>
+<?php require_once dirname(__FILE__).'/merchitemctg-refform.phtml' ?>
+
+
+
+<?php
+$customrecordstatus = __DIR__.'/merchitemctg-customrecordstatus.phtml'; 
+if (is_file($customrecordstatus)) {
+	include $customrecordstatus;
+} else { ?>
+
+<?php } ?>

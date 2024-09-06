@@ -1,0 +1,116 @@
+<div id="pnl_editchannelform">
+	<div class="fgta-page-title" style="display: flex; align-items: center ">
+		<div>Edit Channel</div>
+		<a id="pnl_editchannelform-btn_edit" href="javascript:void(0)" class="easyui-linkbutton" style="margin-left:10px;" data-options="plain:true,iconCls:'fgta-icon-edit'">edit</a>
+	</div>
+	<div id="pnl_editchannelform-title" style="margin-top: 0px; margin-bottom: 30px; font-weight: bold; font-size: 1.2em">XXXXXXX</div>
+
+
+	<form id="pnl_editchannelform-form">
+
+		<div class="form_row pnl_editchannelform_row txt_merchitemretailchannel_id" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">ID</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editchannelform-txt_merchitemretailchannel_id" class="easyui-textbox" mapping="merchitemretailchannel_id"  maxlength="14"  style="width: 400px" data-options="multiline:false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editchannelform_row cbo_retailchannel_id" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Prop Type</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editchannelform-cbo_retailchannel_id" class="easyui-combo" style="width: 400px" mapping="retailchannel_id" display="retailchannel_name" data-options="editable:false, valueField:'id', textField:'text' , required: true, invalidMessage: 'Channel harus diisi'"  validType="requiredcombo['pnl_editchannelform-cbo_retailchannel_id']" >
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editchannelform_row chk_merchitem_isnonactive" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editchannelform-chk_merchitem_isnonactive" class="easyui-checkbox c1" mapping="merchitem_isnonactive" data-options="label: 'Non Active', labelPosition: 'after', checked: false , labelWidth: '300px'">
+			</div>
+		</div>
+
+		<div class="form_row pnl_editchannelform_row txt_merchitem_price" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Current Price</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editchannelform-txt_merchitem_price" class="easyui-numberbox" mapping="merchitem_price" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editchannelform_row chk_merchitem_isdiscvalue" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editchannelform-chk_merchitem_isdiscvalue" class="easyui-checkbox c1" mapping="merchitem_isdiscvalue" data-options="label: 'Discount Using Value', labelPosition: 'after', checked: false , labelWidth: '300px'">
+			</div>
+		</div>
+
+		<div class="form_row pnl_editchannelform_row txt_merchitem_disc" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Disc (%)</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editchannelform-txt_merchitem_disc" class="easyui-numberbox" mapping="merchitem_disc" style="width: 400px; text-align:right" data-options="precision: 2, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editchannelform_row txt_merchitem_discval" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Disc Value</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editchannelform-txt_merchitem_discval" class="easyui-numberbox" mapping="merchitem_discval" style="width: 400px; text-align:right" data-options="precision: 2, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editchannelform_row txt_merchitem_pricenett" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Current Nett Price</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editchannelform-txt_merchitem_pricenett" class="easyui-numberbox" mapping="merchitem_pricenett" style="width: 400px; text-align:right" data-options="precision: 0, decimalSeparator:'.', groupSeparator:','  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_editchannelform_row txt_merchitem_id" style="display: none">
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Item</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_editchannelform-txt_merchitem_id" class="easyui-textbox" mapping="merchitem_id"  maxlength="30"  style="width: 400px" data-options="multiline:false  , disabled: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+	</form>
+
+
+	<div class="form_row" style="margin-top: 30px">
+		<div class="form_label_col"></div>
+		<div class="form_input_col" style="border: 0px solid black">
+			<div style="margin-bottom: 10px">
+				<input id="pnl_editchannelform-autoadd" type="checkbox"><label for="pnl_editchannelform-autoadd">Otomatis tambah baru setelah berhasil disimpan</label>
+			</div>
+			<div>
+				<a id="pnl_editchannelform-btn_save" class="easyui-linkbutton c1" style="width: 100px">Simpan</a>
+			</div>
+		</div>
+	</div>	
+
+
+
+	<div style="margin-top: 30px; margin-left:-5px; margin-right: -5px; background-color: #cccccc; height: 40px; display: flex; justify-content: space-between; padding: 5px 2px 2px 2px ">
+		<div>
+			<a id="pnl_editchannelform-btn_prev" class="easyui-linkbutton c8" style="width: 50px">Prev</a>
+			<a id="pnl_editchannelform-btn_next" class="easyui-linkbutton c8" style="width: 50px">Next</a>
+		</div>
+
+		<div>
+			<a id="pnl_editchannelform-btn_addnew" class="easyui-linkbutton c8" style="width: 100px">Tambah Baru</a>
+		</div>
+
+		<div>
+			<a id="pnl_editchannelform-btn_delete" class="easyui-linkbutton c5" style="width: 100px">Hapus</a>
+		</div>
+	</div>
+
+
+
+
+</div>	
