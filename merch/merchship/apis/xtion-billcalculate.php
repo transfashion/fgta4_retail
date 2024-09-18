@@ -124,7 +124,7 @@ $API = new class extends merchshipBase {
 			foreach ($rows as $row) {
 				$merchrvitem_id = $row['merchrvitem_id'];
 				$itemmodel_id = $row['itemmodel_id'];
-				$markup = $itemmodel_id=='FAMC' ? 0.15 : 0; 
+				$markup = $itemmodel_id=='FAMC' ? 0.20 : 0; 
 				$merchrvitem_value = (float)$row['merchrvitem_value'];
 				$merchrvitem_qty = (int)$row['merchrvitem_qty'];
 				$subtotal = $merchrvitem_qty * $merchrvitem_value;
