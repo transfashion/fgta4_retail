@@ -28,7 +28,7 @@ use \FGTA4\exceptions\WebException;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 04/09/2024
+ * tanggal 16/09/2024
  */
 $API = new class extends merchsyncBase {
 	
@@ -92,7 +92,8 @@ $API = new class extends merchsyncBase {
 
 			$sqlFieldList = [
 				'merchsync_id' => 'A.`merchsync_id`', 'merchsync_doc' => 'A.`merchsync_doc`', 'merchsync_type' => 'A.`merchsync_type`', 'merchsync_isprocessing' => 'A.`merchsync_isprocessing`',
-				'merchsync_batch' => 'A.`merchsync_batch`', 'merchsync_isfail' => 'A.`merchsync_isfail`', 'merchsync_result' => 'A.`merchsync_result`', '_createby' => 'A.`_createby`',
+				'merchsync_timeout' => 'A.`merchsync_timeout`', 'merchsync_batch' => 'A.`merchsync_batch`', 'merchsync_isfail' => 'A.`merchsync_isfail`', 'merchsync_iscompleted' => 'A.`merchsync_iscompleted`',
+				'merchsync_result' => 'A.`merchsync_result`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`',
 				'_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`', '_modifydate' => 'A.`_modifydate`'
 			];
 			$sqlFromTable = "fsn_merchsync A";

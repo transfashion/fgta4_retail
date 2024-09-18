@@ -22,8 +22,10 @@ const obj = {
 	txt_merchsync_doc: $('#pnl_edit-txt_merchsync_doc'),
 	txt_merchsync_type: $('#pnl_edit-txt_merchsync_type'),
 	chk_merchsync_isprocessing: $('#pnl_edit-chk_merchsync_isprocessing'),
+	txt_merchsync_timeout: $('#pnl_edit-txt_merchsync_timeout'),
 	txt_merchsync_batch: $('#pnl_edit-txt_merchsync_batch'),
 	chk_merchsync_isfail: $('#pnl_edit-chk_merchsync_isfail'),
+	chk_merchsync_iscompleted: $('#pnl_edit-chk_merchsync_iscompleted'),
 	txt_merchsync_result: $('#pnl_edit-txt_merchsync_result')
 }
 
@@ -256,6 +258,7 @@ export function createnew() {
 		// set nilai-nilai default untuk form
 		data.merchsync_isprocessing = '0'
 		data.merchsync_isfail = '0'
+		data.merchsync_iscompleted = '0'
 
 
 		if (typeof hnd.form_newdata == 'function') {

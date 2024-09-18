@@ -16,8 +16,10 @@ module.exports = {
 				merchsync_doc: {text:'Document', type: dbtype.varchar(90), null:false, unset:true},
 				merchsync_type: {text:'Type', type: dbtype.varchar(30), null:false, unset:true},
 				merchsync_isprocessing: {text:'Processing', type: dbtype.boolean, unset:true, null:false, default:0},
+				merchsync_timeout: {text:'TimeOut', type: dbtype.datetime, suppresslist: true, unset:true, comp:comp.Textbox(), options:{disabled:true}},
 				merchsync_batch: {text:'Batch', type: dbtype.varchar(30), null:true, unset:true},
 				merchsync_isfail: {text:'Fail', type: dbtype.boolean, unset:true, null:false, default:0},
+				merchsync_iscompleted: {text:'Completed', type: dbtype.boolean, unset:true, null:false, default:0},
 				merchsync_result: {text:'Result', type: dbtype.varchar(255), null:true, unset:true}
 			},
 			uniques : {},
