@@ -17,6 +17,15 @@ module.exports = {
 	// approval_xtion: "xtion-approve-merge",
 	// doc_id: 'ORDERIN',	
 
+
+	variance: {
+		"view" : {title:"Promo AB (View)"},
+		"entry" : {
+			title:"Promo AB (Entry)", 
+			data: {}
+		}
+	},
+
 	persistent: {
 		'mst_promoab': {
 			comment: 'Daftar Promo',

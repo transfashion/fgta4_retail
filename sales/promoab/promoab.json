@@ -3,8 +3,11 @@
 	
 	
 	"variance" : {
-
+		"view" : {"title":"Promo AB (View)"},
+		"entry" : {"title":"Promo AB (Entry)","data":{}}
 	},
+
+
 	"allowanonymous" : false,
 	"allowedgroups" : ["public"],
 	"apis" : {
