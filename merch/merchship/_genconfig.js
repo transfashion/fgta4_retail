@@ -117,7 +117,7 @@ module.exports = {
 					comp: comp.Combo({
 						table: 'mst_curr', 
 						field_value: 'curr_id', field_display: 'curr_name', 
-						api: 'ent/general/curr/list-with-currentrate',
+						api: 'ent/financial/curr/list-with-currentrate',
 						onDataLoadingHandler: false,
 						onDataLoadedHandler: false,
 						onSelectingHandler: false,
