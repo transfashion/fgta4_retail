@@ -66,10 +66,10 @@ console::class(new class($args) extends cliworker {
 
 			$this->updateProcess(1, "Starting.");
 			
-			$region_id = '00900';
+			$region_id = '04210';
 			$data =  $this->getDataFromUrl($cfg['url'] . '/getheinv.php?region_id='. $region_id);
 
-			print_r($data);
+			$this->CopyToTemp($data);
 
 
 			//sleep(2);
@@ -111,5 +111,30 @@ console::class(new class($args) extends cliworker {
 			throw $ex;
 		}
 	}
+
+	function CopyToTemp(array $data) : void {
+		// print_r($data);
+		try {
+			$obj = new \stdClass;
+			$obj->heinv_id = '';
+			$obj->heinv_barcode = '';
+
+			$tablename = 'tmp_heinv';
+			$cmd = \FGTA4\utils\SqlUtility::CreateSQLInsert($tablename, $obj);
+			$stmt = $this->db->prepare($cmd->sql);
+			$params = $cmd->params;
+
+
+
+			print_r($params);
+
+
+
+		} catch (\Exception $ex) {
+			throw $ex;
+		}
+	
+	}
+
 
 });	
