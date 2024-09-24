@@ -92,6 +92,25 @@ class promoab_headerHandler extends WebAPI  {
 		$sortData['promoabrule_dtstart'] = 'DESC';
 	}
 
+
+	public function DataListLooping(array &$record) : void {
+		$promoabrule_dtstart = $record['promoabrule_dtstart'];
+		$promoabrule_dtend = $record['promoabrule_dtend'];
+
+		$dtactive = strtotime($promoabrule_dtstart);
+		$dtexpired = strtotime($promoabrule_dtend);
+
+		$now = strtotime(date('Y-m-d'));
+		if ($now >= $dtactive && $now <= $dtexpired) {
+			$record['promoab_status'] = 'active';
+		} else if ($now > $dtexpired) {
+			$record['promoab_status'] = 'expired';
+		} else {
+			$record['promoab_status'] = 'pending';
+		}
+
+	}
+
 }		
 		
 		

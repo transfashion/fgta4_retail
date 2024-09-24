@@ -5,3 +5,10 @@
 .group-hidden {
 	display: none !important;	
 }
+
+.circle {
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;	
+	opacity: .7;
+}
