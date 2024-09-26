@@ -80,24 +80,15 @@ console::class(new class($args) extends cliworker {
 			'TR-UNPROP' => ['instance'=>$syncTR, 'method'=>'UnProp'],
 			'TR-UNSEND' => ['instance'=>$syncTR, 'method'=>'UnSend'],
 		];
-
-
 		
 		try {		
 			echo "Registering long process\r\n";
 			$this->registerProcess($name, $pid, $username);
 
 
-			
-
-
-
-
 			$this->updateProcess(0, "Syncing start");
 			$this->removeQueCompleted();
 			$this->resetQueTimeout();
-
-
 			
 
 			$batch_id = uniqid();
@@ -145,43 +136,8 @@ console::class(new class($args) extends cliworker {
 				sleep(1);
 			}
 
-
-			// $id = "1723082609"
-			
-			//$tmp = new RegisterTmp($cfg);
-			// $reg = new RegisterSync($cfg);
-
-			//$reg_id = "1723082609";
-			//$this->updateProcess(0, "syncing register $reg_id");
-			// $tmp->copy($reg_id);
-			//$reg->sync($reg_id);
-			// $tmp->clear($reg_id);
-
-
 			$this->updateProcess(100, "done.");
 			$this->commitProcess();
-
-
-
-
-
-			
-			// Untuk kode referensi
-			/*
-			$string = "dept_id:EAG@HO; nama:AIGNER-HO;";
-			$result = [];
-			preg_match_all('/([\w_]+):([^;]+)/', $string, $matches);
-			for ($i = 0; $i < count($matches[1]); $i++) {
-				$result[$matches[1][$i]] = $matches[2][$i];
-			}
-			print_r($result);
-			*/
-			
-			// for ($i=0; $i<=30; $i++) {
-			// 	echo uniqid();
-			// 	echo "\n";
-			// 	sleep(1);
-			// }
 
 		} catch (\Exception $ex) {
 			$this->haltProcess($ex->getMessage());

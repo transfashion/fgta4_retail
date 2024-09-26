@@ -33,7 +33,7 @@ do
 done
 
 opt="$input_var_n $input_var_p $input_var_u $input_var_d $input_var_l"
-command="php $clipath retail/fashion/merchsync/getheinv $opt"
+command="php $clipath retail/fashion/merchsync/try-getheinv $opt"
 
 echo "\$ $command"
 $command

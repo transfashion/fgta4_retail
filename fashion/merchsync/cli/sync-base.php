@@ -1,8 +1,19 @@
 <?php namespace FGTA4;
 
-class SyncBase {
+
+require_once __ROOT_DIR . '/core/sqlutil.php';
+require_once __ROOT_DIR . '/core/webapi.php';	
+require_once __ROOT_DIR . '/core/cliworker.php';	
 
 
+class SyncBase extends cliworker {
+
+	protected $db;
+
+
+	function __construct($args) {
+		parent::__construct($args);
+	}
 
 	protected function getDataFromUrl(string $endpoint) : array {
 		try {
