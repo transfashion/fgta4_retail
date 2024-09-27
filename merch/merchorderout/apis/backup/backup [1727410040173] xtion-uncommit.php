@@ -4,6 +4,7 @@ if (!defined('FGTA4')) {
 	die('Forbiden');
 }
 
+
 require_once __ROOT_DIR.'/core/sqlutil.php';
 require_once __ROOT_DIR.'/core/debug.php';
 
@@ -19,35 +20,32 @@ use \FGTA4\StandartApproval;
 
 
 
-
 /**
- * retail/merch/merchrv/apis/xtion-commit.php
+ * retail/merch/merchorderout/apis/xtion-uncommit.php
  *
- * =======
- * Commit
- * =======
- * Commit dokumen, menandakan dokumen yang selesai dsunting
- * dan telah siap untuk diproses lebih lanjut
- * Pada status tercommit, dokumen akan menjadi readonly. 
+ * ========
+ * UnCommit
+ * ========
+ * UnCommit dokumen, mengembalikan status dokumen ke draft 
  *
  * Agung Nugroho <agung@fgta.net> http://www.fgta.net
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 27/09/2024
+ * tanggal 01/11/2023
  */
-$API = new class extends merchrvBase {
+$API = new class extends merchorderoutBase {
 
 	public function execute($id, $options) {
-		$event = 'commit';
-		$tablename = 'trn_merchrv';
-		$primarykey = 'merchrv_id';
+		$event = 'uncommit';
+		$tablename = 'trn_merchorderout';
+		$primarykey = 'merchorderout_id';
 		$userdata = $this->auth->session_get_user();
 
-		$handlerclassname = "\\FGTA4\\apis\\merchrv_headerHandler";
+		$handlerclassname = "\\FGTA4\\apis\\merchorderout_headerHandler";
 		$hnd = null;
 		if (class_exists($handlerclassname)) {
-			$hnd = new merchrv_headerHandler($options);
+			$hnd = new merchorderout_headerHandler($options);
 			$hnd->caller = &$this;
 			$hnd->db = &$this->db;
 			$hnd->auth = $this->auth;
@@ -57,7 +55,6 @@ $API = new class extends merchrvBase {
 			$hnd = new \stdClass;
 		}
 
-
 		try {
 			$currentdata = (object)[
 				'header' => $this->get_header_row($id),
@@ -66,46 +63,45 @@ $API = new class extends merchrvBase {
 
 			if (method_exists(get_class($hnd), 'XtionActionExecuting')) {
 				// XtionActionExecuting(string $id, $action, object &$currentdata) : void
-				$hnd->XtionActionExecuting($id, 'commit', $currentdata);
+				$hnd->XtionActionExecuting($id, 'uncommit', $currentdata);
 			}
+
 
 			$this->db->setAttribute(\PDO::ATTR_AUTOCOMMIT,0);
 			$this->db->beginTransaction();
-
+			
 			try {
 
-				if (method_exists(get_class($hnd), 'XtionCommitting')) {
-					// XtionCommitting(string $id, object &$currentdata) : void
-					$hnd->XtionCommitting($id, $currentdata);
+				if (method_exists(get_class($hnd), 'XtionUnCommitting')) {
+					// XtionUnCommitting(string $id, object &$currentdata) : void
+					$hnd->XtionUnCommitting($id, $currentdata);
 				}
 
 	
-				$this->save_and_set_commit_flag($id, $currentdata);
-				if (method_exists(get_class($hnd), 'XtionCommitted')) {
-					// XtionCommitted(string $id) : void
-					$hnd->XtionCommitted($id);
+				$this->save_and_set_uncommit_flag($id, $currentdata);
+				if (method_exists(get_class($hnd), 'XtionUnCommitted')) {
+					// XtionUnCommitted(string $id) : void
+					$hnd->XtionUnCommitted($id);
 				}
-				
+
 				$record = []; $row = $this->get_header_row($id);
 				foreach ($row as $key => $value) { $record[$key] = $value; }
 				$dataresponse = array_merge($record, [
 					//  untuk lookup atau modify response ditaruh disini
-					'merchrv_date' => date("d/m/Y", strtotime($record['merchrv_date'])),
 					'unit_name' => \FGTA4\utils\SqlUtility::Lookup($record['unit_id'], $this->db, 'mst_unit', 'unit_id', 'unit_name'),
-					'merchorderout_descr' => \FGTA4\utils\SqlUtility::Lookup($record['merchorderout_id'], $this->db, 'trn_merchorderout', 'merchorderout_id', 'merchorderout_descr'),
-					'merchship_descr' => \FGTA4\utils\SqlUtility::Lookup($record['merchship_id'], $this->db, 'trn_merchship', 'merchship_id', 'merchship_descr'),
+					'merchorderout_date' => date("d/m/Y", strtotime($record['merchorderout_date'])),
+					'dept_name' => \FGTA4\utils\SqlUtility::Lookup($record['dept_id'], $this->db, 'mst_dept', 'dept_id', 'dept_name'),
 					'principal_partner_name' => \FGTA4\utils\SqlUtility::Lookup($record['principal_partner_id'], $this->db, 'mst_partner', 'partner_id', 'partner_name'),
 					'merchsea_name' => \FGTA4\utils\SqlUtility::Lookup($record['merchsea_id'], $this->db, 'mst_merchsea', 'merchsea_id', 'merchsea_name'),
 					'curr_name' => \FGTA4\utils\SqlUtility::Lookup($record['curr_id'], $this->db, 'mst_curr', 'curr_id', 'curr_name'),
-					'dept_name' => \FGTA4\utils\SqlUtility::Lookup($record['dept_id'], $this->db, 'mst_dept', 'dept_id', 'dept_name'),
-					'merchrv_commitby' => \FGTA4\utils\SqlUtility::Lookup($record['merchrv_commitby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
-					'merchrv_postby' => \FGTA4\utils\SqlUtility::Lookup($record['merchrv_postby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
+					'merchorderout_commitby' => \FGTA4\utils\SqlUtility::Lookup($record['merchorderout_commitby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
 
 					'_createby' => \FGTA4\utils\SqlUtility::Lookup($record['_createby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
 					'_modifyby' => \FGTA4\utils\SqlUtility::Lookup($record['_modifyby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
 				]);
 
-				\FGTA4\utils\SqlUtility::WriteLog($this->db, $this->reqinfo->modulefullname, $tablename, $id, 'COMMIT', $userdata->username, (object)[]);
+
+				\FGTA4\utils\SqlUtility::WriteLog($this->db, $this->reqinfo->modulefullname, $tablename, $id, 'UNCOMMIT', $userdata->username, (object)[]);
 
 				if (method_exists(get_class($hnd), 'DataOpen')) {
 					//  DataOpen(array &$record) : void 
@@ -118,7 +114,6 @@ $API = new class extends merchrvBase {
 					'version' => $currentdata->header->{$this->main_field_version},
 					'dataresponse' => (object) $dataresponse
 				];
-
 				
 			} catch (\Exception $ex) {
 				$this->db->rollBack();
@@ -127,7 +122,6 @@ $API = new class extends merchrvBase {
 				$this->db->setAttribute(\PDO::ATTR_AUTOCOMMIT,1);
 			}
 
-
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
@@ -135,23 +129,24 @@ $API = new class extends merchrvBase {
 
 
 
-	public function save_and_set_commit_flag($id, $currentdata) {
+	public function save_and_set_uncommit_flag($id, $currentdata) {
+		$currentdata->header->{$this->main_field_version}++;
 		try {
 			$sql = " 
 				update $this->main_tablename
 				set 
-				$this->field_iscommit = 1,
-				$this->field_commitby = :username,
-				$this->field_commitdate = :date
+				$this->field_iscommit = 0,
+				$this->field_commitby = null,
+				$this->field_commitdate = null,
+				$this->main_field_version = :version
 				where
 				$this->main_primarykey = :id
 			";
 
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute([
-				":id" => $id,
-				":username" => $currentdata->user->username,
-				":date" => date("Y-m-d H:i:s")
+				":id" => $currentdata->header->{$this->main_primarykey},
+				":version" => $currentdata->header->{$this->main_field_version}
 			]);
 
 		} catch (\Exception $ex) {

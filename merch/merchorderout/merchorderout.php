@@ -15,8 +15,8 @@ if (is_file(__DIR__ .'/merchorderout.php-handler.php')) {
  * 
  * digenerate dengan FGTA4 generator versi 2 
  * Agung Nugroho <agung@fgta.net> http://www.fgta.net (Tangerang, 26 Maret 2021)
- * awal dibuat tanggal 27/07/2023
- * terakhir di generate tanggal 01/11/2023
+ * awal dibuat tanggal 02/09/2024
+ * terakhir di generate tanggal 27/09/2024
  */
 $MODULE = new class extends WebModule {
 

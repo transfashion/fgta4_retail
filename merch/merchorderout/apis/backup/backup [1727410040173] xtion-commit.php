@@ -21,7 +21,7 @@ use \FGTA4\StandartApproval;
 
 
 /**
- * retail/merch/merchrv/apis/xtion-commit.php
+ * retail/merch/merchorderout/apis/xtion-commit.php
  *
  * =======
  * Commit
@@ -34,20 +34,20 @@ use \FGTA4\StandartApproval;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 27/09/2024
+ * tanggal 01/11/2023
  */
-$API = new class extends merchrvBase {
+$API = new class extends merchorderoutBase {
 
 	public function execute($id, $options) {
 		$event = 'commit';
-		$tablename = 'trn_merchrv';
-		$primarykey = 'merchrv_id';
+		$tablename = 'trn_merchorderout';
+		$primarykey = 'merchorderout_id';
 		$userdata = $this->auth->session_get_user();
 
-		$handlerclassname = "\\FGTA4\\apis\\merchrv_headerHandler";
+		$handlerclassname = "\\FGTA4\\apis\\merchorderout_headerHandler";
 		$hnd = null;
 		if (class_exists($handlerclassname)) {
-			$hnd = new merchrv_headerHandler($options);
+			$hnd = new merchorderout_headerHandler($options);
 			$hnd->caller = &$this;
 			$hnd->db = &$this->db;
 			$hnd->auth = $this->auth;
@@ -90,16 +90,13 @@ $API = new class extends merchrvBase {
 				foreach ($row as $key => $value) { $record[$key] = $value; }
 				$dataresponse = array_merge($record, [
 					//  untuk lookup atau modify response ditaruh disini
-					'merchrv_date' => date("d/m/Y", strtotime($record['merchrv_date'])),
 					'unit_name' => \FGTA4\utils\SqlUtility::Lookup($record['unit_id'], $this->db, 'mst_unit', 'unit_id', 'unit_name'),
-					'merchorderout_descr' => \FGTA4\utils\SqlUtility::Lookup($record['merchorderout_id'], $this->db, 'trn_merchorderout', 'merchorderout_id', 'merchorderout_descr'),
-					'merchship_descr' => \FGTA4\utils\SqlUtility::Lookup($record['merchship_id'], $this->db, 'trn_merchship', 'merchship_id', 'merchship_descr'),
+					'merchorderout_date' => date("d/m/Y", strtotime($record['merchorderout_date'])),
+					'dept_name' => \FGTA4\utils\SqlUtility::Lookup($record['dept_id'], $this->db, 'mst_dept', 'dept_id', 'dept_name'),
 					'principal_partner_name' => \FGTA4\utils\SqlUtility::Lookup($record['principal_partner_id'], $this->db, 'mst_partner', 'partner_id', 'partner_name'),
 					'merchsea_name' => \FGTA4\utils\SqlUtility::Lookup($record['merchsea_id'], $this->db, 'mst_merchsea', 'merchsea_id', 'merchsea_name'),
 					'curr_name' => \FGTA4\utils\SqlUtility::Lookup($record['curr_id'], $this->db, 'mst_curr', 'curr_id', 'curr_name'),
-					'dept_name' => \FGTA4\utils\SqlUtility::Lookup($record['dept_id'], $this->db, 'mst_dept', 'dept_id', 'dept_name'),
-					'merchrv_commitby' => \FGTA4\utils\SqlUtility::Lookup($record['merchrv_commitby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
-					'merchrv_postby' => \FGTA4\utils\SqlUtility::Lookup($record['merchrv_postby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
+					'merchorderout_commitby' => \FGTA4\utils\SqlUtility::Lookup($record['merchorderout_commitby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
 
 					'_createby' => \FGTA4\utils\SqlUtility::Lookup($record['_createby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
 					'_modifyby' => \FGTA4\utils\SqlUtility::Lookup($record['_modifyby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),

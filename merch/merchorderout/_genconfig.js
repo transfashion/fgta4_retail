@@ -118,7 +118,9 @@ module.exports = {
 				merchorderout_commitby: {text:'CommitBy', type: dbtype.varchar(14), suppresslist: true, unset:true, options:{disabled:true}, hidden: true, lookup:'user'},
 				merchorderout_commitdate: {text:'CommitDate', type: dbtype.datetime, suppresslist: true, unset:true, comp:comp.Textbox(), options:{disabled:true}, hidden: true},	
 
-			}
+			},
+			defaultsearch: ['merchorderout_id', 'merchorderout_descr'],
+
 		},
 
 		

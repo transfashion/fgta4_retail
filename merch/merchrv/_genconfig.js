@@ -135,7 +135,8 @@ module.exports = {
 				merchrv_postby: {text:'PostBy', type: dbtype.varchar(14), suppresslist: true, unset:true, options:{disabled:true}, hidden: true, lookup:'user'},
 				merchrv_postdate: {text:'PostDate', type: dbtype.datetime, suppresslist: true, unset:true, comp:comp.Textbox(), options:{disabled:true}, hidden: true},	
 
-			}
+			},
+			defaultsearch: ['merchrv_id', 'merchrv_descr'],
 		},
 
 		'trn_merchrvitem' : {

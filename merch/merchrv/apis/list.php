@@ -28,7 +28,7 @@ use \FGTA4\exceptions\WebException;
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 18/10/2023
+ * tanggal 27/09/2024
  */
 $API = new class extends merchrvBase {
 
@@ -61,7 +61,7 @@ $API = new class extends merchrvBase {
 			}
 
 			$criteriaValues = [
-				"search" => " A.merchrv_id LIKE CONCAT('%', :search, '%') "
+				"search" => " A.merchrv_id LIKE CONCAT('%', :search, '%') OR A.merchrv_descr LIKE CONCAT('%', :search, '%') "
 			];
 
 			if (method_exists(get_class($hnd), 'buildListCriteriaValues')) {
