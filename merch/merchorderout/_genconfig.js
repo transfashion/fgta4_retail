@@ -60,7 +60,7 @@ module.exports = {
 						title: 'Pilih Owner Departemen',
 						table: 'mst_dept', 
 						field_value: 'dept_id', field_display: 'dept_name', field_display_name: 'dept_name', 
-						api: 'ent/organisation/dept/list-foritem',
+						api: 'ent/organisation/dept/list',
 						onDataLoadingHandler: false,
 						onDataLoadedHandler: false,
 						onSelectingHandler: false,
@@ -96,7 +96,7 @@ module.exports = {
 					comp: comp.Combo({
 						table: 'mst_curr', 
 						field_value: 'curr_id', field_display: 'curr_name', 
-						api: 'ent/general/curr/list-with-currentrate',
+						api: 'ent/financial/curr/list-with-currentrate',
 						onDataLoadingHandler: false,
 						onDataLoadedHandler: false,
 						onSelectingHandler: false,
@@ -154,7 +154,7 @@ module.exports = {
 					comp: comp.Combo({
 						table: 'mst_curr', 
 						field_value: 'curr_id', field_display: 'curr_name', 
-						api: 'ent/general/curr/list-with-currentrate'
+						api: 'ent/financial/curr/list-with-currentrate'
 					})
 				},
 				curr_rate: { text: 'Rate', type: dbtype.decimal(12,0), null:false, default:0, suppresslist: true},
