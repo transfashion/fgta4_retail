@@ -61,7 +61,7 @@ $API = new class extends merchshipBase {
 			}
 
 			$criteriaValues = [
-				"search" => " A.merchship_id LIKE CONCAT('%', :search, '%') "
+				"search" => " A.merchship_id LIKE CONCAT('%', :search, '%') OR A.merchship_descr LIKE CONCAT('%', :search, '%') "
 			];
 
 			if (method_exists(get_class($hnd), 'buildListCriteriaValues')) {

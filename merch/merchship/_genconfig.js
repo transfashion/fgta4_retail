@@ -184,7 +184,9 @@ module.exports = {
 					// section: section.End(),
 					text:'CostingDate', type: dbtype.datetime, suppresslist: true, unset:true, comp:comp.Textbox(), options:{disabled:true}, hidden: true},	
 
-			}
+			},
+			defaultsearch: ['merchship_id', 'merchship_descr'],
+			
 		},
 		
 
