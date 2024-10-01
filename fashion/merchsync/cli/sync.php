@@ -8,7 +8,7 @@ require_once __ROOT_DIR . '/core/cliworker.php';
 
 require_once dirname(__FILE__) . '/tbdatamap.php';	
 
-require_once dirname(__FILE__) . '/sync-base.php';	
+require_once dirname(__FILE__) . '/sync--base.php';	
 
 // require_once dirname(__FILE__) . '/sync-price.php';	
 // require_once dirname(__FILE__) . '/registertmp.php';	
@@ -321,7 +321,7 @@ console::class(new class($args) extends cliworker {
 		}
 	}
 
-	
+
 	function setResult(string $merchsync_id, int $isfail, string $msg) : void {
 		try {
 			$sql = "
