@@ -10,7 +10,8 @@ require_once dirname(__FILE__) . '/tbdatamap.php';
 
 require_once dirname(__FILE__) . '/sync--base.php';	
 
-// require_once dirname(__FILE__) . '/sync-price.php';	
+require_once dirname(__FILE__) . '/sync-sales.php';	
+require_once dirname(__FILE__) . '/sync-register.php';	
 // require_once dirname(__FILE__) . '/registertmp.php';	
 // require_once dirname(__FILE__) . '/registersync.php';	
 
@@ -26,8 +27,11 @@ class SCENARIO {
 
 
 console::class(new class($args) extends cliworker {
+	const _DELAY_BETWEEN_LOOP = 10; // seconds
+	
 	private array $params;
 	private bool $isDevMode = true;
+	private object $rptdb;
 
 
 	function __construct($args) {
@@ -52,22 +56,28 @@ console::class(new class($args) extends cliworker {
 		TbDataMap::$db = $this->db;
 
 
+		
+
 		$cfg = [
-			'db' => $this->db,
 			'url' => 'http://ws.transfashion.id/crossroads/frontend',
 		];
 
 
 		
+		$syncSales = new SyncSales($cfg);
+		$syncReg = new SyncRegister($cfg);
+
 		$syncAJ = new \stdClass;
 		$syncPricing = new \stdClass;
 		$syncRV = new \stdClass;
-		$syncSales = new \stdClass;
 		$syncTR = new \stdClass;
-		$syncReg = new \stdClass;
+		
 		$syncDO = new \stdClass;
 
 		$progs = [
+			'SL' => ['instance'=>$syncSales, 'method'=>'Sync', 'skip'=>false],
+			'REG' => ['instance'=>$syncReg, 'method'=>'Sync', 'skip'=>false],
+
 			'AJ-POSTALL' => ['instance'=>$syncAJ, 'method'=>'PostAll', 'skip'=>true],
 			'PRC' => ['instance'=>$syncPricing, 'method'=>'Sync', 'skip'=>true],
 			'RV-POST' => ['instance'=>$syncRV, 'method'=>'Post', 'skip'=>true],
@@ -76,14 +86,13 @@ console::class(new class($args) extends cliworker {
 			'RV-UNPOST' => ['instance'=>$syncRV, 'method'=>'UnPost', 'skip'=>true],
 			'RV-UNSEND' => ['instance'=>$syncRV, 'method'=>'UnSend', 'skip'=>true],
 			'RV-UNRECV' => ['instance'=>$syncRV, 'method'=>'UnRecv', 'skip'=>true],
-			'SL' => ['instance'=>$syncSales, 'method'=>'Sync', 'skip'=>true],
 			'TR-PROP' => ['instance'=>$syncTR, 'method'=>'Prop', 'skip'=>true],
 			'TR-RECV' => ['instance'=>$syncTR, 'method'=>'Recv', 'skip'=>true],
 			'TR-SEND' => ['instance'=>$syncTR, 'method'=>'Send', 'skip'=>true],
 			'TR-UNPROP' => ['instance'=>$syncTR, 'method'=>'UnProp', 'skip'=>true],
 			'TR-UNSEND' => ['instance'=>$syncTR, 'method'=>'UnSend', 'skip'=>true],
 			'DO-POSTALL'  => ['instance'=>$syncDO, 'method'=>'PostAll', 'skip'=>true],
-			'REG' => ['instance'=>$syncReg, 'method'=>'Sync', 'skip'=>true],
+			
 		];
 		
 		try {		
@@ -148,7 +157,13 @@ console::class(new class($args) extends cliworker {
 				// ambil lagi queue untuk diproses pada loop berikutnya
 				$batch_id = uniqid();
 				$txcount = $this->createSyncBatch($batch_id, 10);
-				sleep(1);
+
+
+				if (self::_DELAY_BETWEEN_LOOP > 0) {
+					sleep(self::_DELAY_BETWEEN_LOOP);
+				}
+				
+
 			}
 
 			$this->updateProcess(100, "done.");
@@ -244,7 +259,7 @@ console::class(new class($args) extends cliworker {
 				select *
 				from fsn_merchsync 
 				where  
-				merchsync_isfail=1 or merchsync_batch is null
+				(merchsync_isfail=1 or merchsync_batch is null) and merchsync_type like 'REG%' 
 				order by _createby asc limit $maxtx
 			";
 			$stmt = $this->db->prepare($sql);
@@ -269,7 +284,7 @@ console::class(new class($args) extends cliworker {
 	function getQueues(string $batch_id) : array {
 		try {
 			$sql = "
-				select * from fsn_merchsync where merchsync_batch = :batch
+				select * from fsn_merchsync where merchsync_batch = :batch order by _createby asc
 			";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute([':batch' => $batch_id]);
@@ -336,7 +351,7 @@ console::class(new class($args) extends cliworker {
 			$stmt->execute([
 				':merchsync_id' => $merchsync_id,
 				':isfail' => $isfail,
-				':msg' => $msg
+				':msg' => substr($msg, 0, 255), // $msg
 			]);
 		} catch (\Exception $ex) {
 			throw $ex;
