@@ -11,7 +11,11 @@ require_once dirname(__FILE__) . '/tbdatamap.php';
 require_once dirname(__FILE__) . '/sync--base.php';	
 
 require_once dirname(__FILE__) . '/sync-sales.php';	
-require_once dirname(__FILE__) . '/sync-register.php';	
+require_once dirname(__FILE__) . '/sync-register.php';
+require_once dirname(__FILE__) . '/sync-do.php';	
+require_once dirname(__FILE__) . '/sync-aj.php';	
+require_once dirname(__FILE__) . '/sync-tr.php';	
+
 // require_once dirname(__FILE__) . '/registertmp.php';	
 // require_once dirname(__FILE__) . '/registersync.php';	
 
@@ -66,32 +70,40 @@ console::class(new class($args) extends cliworker {
 		
 		$syncSales = new SyncSales($cfg);
 		$syncReg = new SyncRegister($cfg);
+		$syncDO = new SyncDO($cfg);
+		$syncAJ = new SyncAJ($cfg);
+		$syncTR = new SyncTR($cfg);
 
-		$syncAJ = new \stdClass;
 		$syncPricing = new \stdClass;
 		$syncRV = new \stdClass;
-		$syncTR = new \stdClass;
 		
-		$syncDO = new \stdClass;
+		
+		
 
 		$progs = [
 			'SL' => ['instance'=>$syncSales, 'method'=>'Sync', 'skip'=>false],
+
 			'REG' => ['instance'=>$syncReg, 'method'=>'Sync', 'skip'=>false],
 
-			'AJ-POSTALL' => ['instance'=>$syncAJ, 'method'=>'PostAll', 'skip'=>true],
-			'PRC' => ['instance'=>$syncPricing, 'method'=>'Sync', 'skip'=>true],
-			'RV-POST' => ['instance'=>$syncRV, 'method'=>'Post', 'skip'=>true],
-			'RV-RECV' => ['instance'=>$syncRV, 'method'=>'Recv', 'skip'=>true],
+			'DO-POSTALL'  => ['instance'=>$syncDO, 'method'=>'PostAll', 'skip'=>false],
+
+			'AJ-POSTALL' => ['instance'=>$syncAJ, 'method'=>'PostAll', 'skip'=>false],
+
+			'TR-PROP' => ['instance'=>$syncTR, 'method'=>'Prop', 'skip'=>false],
+			'TR-SEND' => ['instance'=>$syncTR, 'method'=>'Send', 'skip'=>false],
+			'TR-RECV' => ['instance'=>$syncTR, 'method'=>'Recv', 'skip'=>false],
+			'TR-UNPROP' => ['instance'=>$syncTR, 'method'=>'UnProp', 'skip'=>false],
+			'TR-UNSEND' => ['instance'=>$syncTR, 'method'=>'UnSend', 'skip'=>false],
+			'TR-UNRECV' => ['instance'=>$syncTR, 'method'=>'UnRecv', 'skip'=>false],
+			
 			'RV-SEND' => ['instance'=>$syncRV, 'method'=>'Send', 'skip'=>true],
-			'RV-UNPOST' => ['instance'=>$syncRV, 'method'=>'UnPost', 'skip'=>true],
+			'RV-RECV' => ['instance'=>$syncRV, 'method'=>'Recv', 'skip'=>true],
+			'RV-POST' => ['instance'=>$syncRV, 'method'=>'Post', 'skip'=>true],
 			'RV-UNSEND' => ['instance'=>$syncRV, 'method'=>'UnSend', 'skip'=>true],
 			'RV-UNRECV' => ['instance'=>$syncRV, 'method'=>'UnRecv', 'skip'=>true],
-			'TR-PROP' => ['instance'=>$syncTR, 'method'=>'Prop', 'skip'=>true],
-			'TR-RECV' => ['instance'=>$syncTR, 'method'=>'Recv', 'skip'=>true],
-			'TR-SEND' => ['instance'=>$syncTR, 'method'=>'Send', 'skip'=>true],
-			'TR-UNPROP' => ['instance'=>$syncTR, 'method'=>'UnProp', 'skip'=>true],
-			'TR-UNSEND' => ['instance'=>$syncTR, 'method'=>'UnSend', 'skip'=>true],
-			'DO-POSTALL'  => ['instance'=>$syncDO, 'method'=>'PostAll', 'skip'=>true],
+			'RV-UNPOST' => ['instance'=>$syncRV, 'method'=>'UnPost', 'skip'=>true],
+			
+			'PRC' => ['instance'=>$syncPricing, 'method'=>'Sync', 'skip'=>true],
 			
 		];
 		
@@ -259,7 +271,7 @@ console::class(new class($args) extends cliworker {
 				select *
 				from fsn_merchsync 
 				where  
-				(merchsync_isfail=1 or merchsync_batch is null) and merchsync_type like 'REG%' 
+				(merchsync_isfail=1 or merchsync_batch is null) and merchsync_type like 'TR%' 
 				order by _createby asc limit $maxtx
 			";
 			$stmt = $this->db->prepare($sql);
