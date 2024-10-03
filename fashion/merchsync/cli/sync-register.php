@@ -42,8 +42,6 @@ class SyncRegister extends syncBase {
 			$this->copyToTempRegHeader($data['header']);
 			$this->copyToTempRegItems($data['items']);
 
-			
-			throw new \Exception('INot fully implemented');
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
