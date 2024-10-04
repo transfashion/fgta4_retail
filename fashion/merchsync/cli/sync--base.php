@@ -39,6 +39,14 @@ class SyncBase extends cliworker {
 			curl_close($ch);	
 
 			$res = json_decode($respond, true);
+			if (json_last_error()!=JSON_ERROR_NONE) {
+				throw new \Exception(json_last_error_msg(), json_last_error());
+			}
+
+			if (!array_key_exists('code', $res)) {
+				throw new \Exception('code is not exist in json response', 9);
+			}
+
 			if ($res['code']!=0) {
 				throw new \Exception($res['message'], $res['code']);
 			}

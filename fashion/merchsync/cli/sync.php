@@ -31,11 +31,14 @@ class SCENARIO {
 
 
 console::class(new class($args) extends cliworker {
-	const _DELAY_BETWEEN_LOOP = 10; // seconds
+	const _DELAY_BETWEEN_LOOP = 1; // seconds
 	
 	private array $params;
 	private bool $isDevMode = true;
 	private object $rptdb;
+
+
+	private $stmt_get_fail_number;
 
 
 	function __construct($args) {
@@ -225,6 +228,8 @@ console::class(new class($args) extends cliworker {
 		}
 	}
 
+
+
 	
 	function resetSkipped() : void {
 		$this->updateProcess(0, "Reset Skipped Queue");
@@ -271,7 +276,7 @@ console::class(new class($args) extends cliworker {
 				select *
 				from fsn_merchsync 
 				where  
-				(merchsync_isfail=1 or merchsync_batch is null) and merchsync_type like 'TR%' 
+				(merchsync_isfail<3 or merchsync_batch is null) and merchsync_doc like 'TR%' 
 				order by _createby asc limit $maxtx
 			";
 			$stmt = $this->db->prepare($sql);
@@ -313,7 +318,7 @@ console::class(new class($args) extends cliworker {
 				update fsn_merchsync
 				set 
 					merchsync_isprocessing = :isprocessing,
-					merchsync_timeout = now() + INTERVAL 45 minute
+					merchsync_timeout = now() + INTERVAL 10 minute
 				where
 					merchsync_id = :merchsync_id
 			";
@@ -351,6 +356,20 @@ console::class(new class($args) extends cliworker {
 
 	function setResult(string $merchsync_id, int $isfail, string $msg) : void {
 		try {
+			
+			$fail_attempt = 0;
+			if ($isfail == 1) {
+				$fail_attempt = 1;
+				if ($this->stmt_get_fail_number==null) {
+					$sqlgetfail = "select merchsync_isfail from fsn_merchsync where merchsync_id = :merchsync_id";
+					$this->stmt_get_fail_number = $this->db->prepare($sqlgetfail);
+				}
+				$this->stmt_get_fail_number->execute([':merchsync_id' => $merchsync_id]);
+				$row = $this->stmt_get_fail_number->fetch();
+				$fail_attempt = $row['merchsync_isfail'] + 1;
+			}
+
+
 			$sql = "
 				update fsn_merchsync
 				set 
@@ -362,7 +381,7 @@ console::class(new class($args) extends cliworker {
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute([
 				':merchsync_id' => $merchsync_id,
-				':isfail' => $isfail,
+				':isfail' => $fail_attempt,
 				':msg' => substr($msg, 0, 255), // $msg
 			]);
 		} catch (\Exception $ex) {
@@ -388,5 +407,8 @@ console::class(new class($args) extends cliworker {
 			throw $ex;
 		}
 	}
+
+
+
 
 });	

@@ -16,7 +16,8 @@ class SyncTR extends syncBase {
 	private $head_param_upd_keys;
 	private $detil_param_upd_keys;
 
-
+	private $stmt_head_cek;
+	private $stmt_detil_cek;
 
 	private $stmt_head_send;
 	private $stmt_detil_send;
@@ -62,7 +63,7 @@ class SyncTR extends syncBase {
 			$this->copyToTempHemovingHeader($data['header']);
 			$this->copyToTempHemovingDetil($data['items']);
 
-			throw new \Exception("$currentSyncType: not all unimplemented");
+			//throw new \Exception("$currentSyncType: not all unimplemented");
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
@@ -80,8 +81,9 @@ class SyncTR extends syncBase {
 
 			$this->updateSendTempHemovingHeader($data['header']);
 			$this->updateSendTempHemovingDetil($data['items']);
+			$this->updateInventorySend($id);
 
-			throw new \Exception("$currentSyncType: not all unimplemented");
+			//throw new \Exception("$currentSyncType: not all unimplemented");
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
@@ -99,8 +101,9 @@ class SyncTR extends syncBase {
 
 			$this->updateRecvTempHemovingHeader($data['header']);
 			$this->updateRecvTempHemovingDetil($data['items']);
+			$this->updateInventoryRecv($id);
 
-			throw new \Exception("$currentSyncType: not all unimplemented");
+			//throw new \Exception("$currentSyncType: not all unimplemented");
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
@@ -118,8 +121,9 @@ class SyncTR extends syncBase {
 			$data = $this->GetTRData($id);
 
 			$this->updateUnRecvTempHemovingHeader($data['header']);
+			$this->updateInventoryUnRecv($id);
 
-			throw new \Exception("$currentSyncType: not all unimplemented");
+			//throw new \Exception("$currentSyncType: not all unimplemented");
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
@@ -136,8 +140,9 @@ class SyncTR extends syncBase {
 			$data = $this->GetTRData($id);
 
 			$this->updateUnSendTempHemovingHeader($data['header']);
+			$this->updateInventoryUnSend($id);
 			
-			throw new \Exception("$currentSyncType: not all unimplemented");
+			//throw new \Exception("$currentSyncType: not all unimplemented");
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
@@ -155,12 +160,15 @@ class SyncTR extends syncBase {
 
 			$hemoving_id = $data['header']['hemoving_id'];
 			$this->deleteHemovingData($hemoving_id);
+			$this->updateInventoryUnProp($id);
 			
-			throw new \Exception("$currentSyncType: not all unimplemented");
+			// throw new \Exception("$currentSyncType: not all unimplemented");
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
 	}
+
+
 
 	public function GetTRData(string $id) : array {
 		try {
@@ -398,7 +406,9 @@ class SyncTR extends syncBase {
 		try {
 
 			$hemoving_id = $row['hemoving_id'];
-			$this->isHemovingHeaderExists($hemoving_id); // function belum dibuat
+			if (!$this->isHemovingHeaderExists($hemoving_id)) {
+				throw new \Exception("HEADER NOT FOUND ".$hemoving_id);
+			}
 
 			if ($this->stmt_head_upd==null) {
 				$obj = new \stdClass;
@@ -448,7 +458,10 @@ class SyncTR extends syncBase {
 
 				$hemoving_id = $row['hemoving_id'];
 				$hemovingdetil_line = $row['hemovingdetil_line'];
-				$this->isHemovingDetilExists($hemoving_id, $hemovingdetil_line); // function belum dibuat
+
+				if (!$this->isHemovingDetilExists($hemoving_id, $hemovingdetil_line)) {
+					throw new \Exception("DETIL NOT FOUND ".$hemoving_id.":".$hemovingdetil_line);
+				}
 
 				if ($this->stmt_detil_upd==null) {
 					$obj = new \stdClass;
@@ -531,7 +544,6 @@ class SyncTR extends syncBase {
 		}
 	}
 
-
 	function updateSendTempHemovingHeader(array $row) : void {
 		try {
 			$this->updateTempHemovingHeader($row);
@@ -582,6 +594,94 @@ class SyncTR extends syncBase {
 		}
 	}
 
+
+	function isHemovingHeaderExists(string $hemoving_id) : bool {
+		try {
+			if ($this->stmt_head_cek==null) {
+				$sqlcek = "select * from tmp_hemoving where hemoving_id = :hemoving_id";
+				$this->stmt_head_cek = $this->rptdb->prepare($sqlcek);
+			}
+
+			$this->stmt_head_cek->execute([
+				':hemoving_id' => $hemoving_id
+			]);
+
+			$row = $this->stmt_head_cek->fetch();
+			if ($row==null) {
+				return false;
+			}
+
+			return true;
+		} catch (\Exception $ex) {
+			throw $ex;
+		}
+	}
+
+
+	function isHemovingDetilExists(string $hemoving_id, int $hemovingdetil_line) : bool {
+		try {
+			if ($this->stmt_detil_cek==null) {
+				$sqlcek = "select * from tmp_hemovingdetil where hemoving_id = :hemoving_id and hemovingdetil_line = :hemovingdetil_line";
+				$this->stmt_detil_cek = $this->rptdb->prepare($sqlcek);
+			}
+
+			$this->stmt_detil_cek->execute([
+				':hemoving_id' => $hemoving_id,
+				':hemovingdetil_line' => $hemovingdetil_line
+			]);
+
+			$row = $this->stmt_detil_cek->fetch();
+			if ($row==null) {
+				return false;
+			}
+
+			return true;
+		} catch (\Exception $ex) {
+			throw $ex;
+		}
+	}
+	
+
+
+	function updateInventorySend(string $id) : void {
+		try {
+
+		} catch (\Exception $ex) {
+			throw new \Exception("INV SEND:".$ex->getMessage()); 
+		}
+	}
+
+	function updateInventoryRecv(string $id) : void {
+		try {
+
+		} catch (\Exception $ex) {
+			throw new \Exception("INV RECV:".$ex->getMessage()); 
+		}
+	}
+
+	function updateInventoryUnRecv(string $id) : void {
+		try {
+
+		} catch (\Exception $ex) {
+			throw new \Exception("INV UNRECV:".$ex->getMessage()); 
+		}
+	}
+
+	function updateInventoryUnSend(string $id) : void {
+		try {
+
+		} catch (\Exception $ex) {
+			throw new \Exception("INV UNSEND:".$ex->getMessage()); 
+		}
+	}
+
+	function updateInventoryUnProp(string $id) : void {
+		try {
+
+		} catch (\Exception $ex) {
+			throw new \Exception("INV UNPROP:".$ex->getMessage()); 
+		}	
+	}
 
 
 }
