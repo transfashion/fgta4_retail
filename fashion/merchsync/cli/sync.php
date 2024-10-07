@@ -105,9 +105,9 @@ console::class(new class($args) extends cliworker {
 			'RV-UNSEND' => ['instance'=>$syncRV, 'method'=>'UnSend', 'skip'=>true],
 			'RV-UNRECV' => ['instance'=>$syncRV, 'method'=>'UnRecv', 'skip'=>true],
 			'RV-UNPOST' => ['instance'=>$syncRV, 'method'=>'UnPost', 'skip'=>true],
-			
+
 			'PRC' => ['instance'=>$syncPricing, 'method'=>'Sync', 'skip'=>true],
-			
+
 		];
 		
 		try {		
@@ -276,7 +276,7 @@ console::class(new class($args) extends cliworker {
 				select *
 				from fsn_merchsync 
 				where  
-				(merchsync_isfail<3 or merchsync_batch is null) and merchsync_doc like 'TR%' 
+				(merchsync_isfail<3 or merchsync_batch is null) and merchsync_type = 'RV-SEND' 
 				order by _createby asc limit $maxtx
 			";
 			$stmt = $this->db->prepare($sql);
