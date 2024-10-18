@@ -7,22 +7,23 @@ if (!defined('FGTA4')) {
 require_once __ROOT_DIR.'/core/sqlutil.php';
 require_once __DIR__ . '/xapi.base.php';
 
-if (is_file(__DIR__ .'/data-header-handler.php')) {
-	require_once __DIR__ .'/data-header-handler.php';
+if (is_file(__DIR__ .'/data-ref-handler.php')) {
+	require_once __DIR__ .'/data-ref-handler.php';
 }
 
 
 use \FGTA4\exceptions\WebException;
 
 
+
 /**
- * retail/fashion/merchctg/apis/open.php
+ * retail/fashion/merchctg/apis/ref-open.php
  *
- * ====
- * Open
- * ====
+ * ==========
+ * Detil-Open
+ * ==========
  * Menampilkan satu baris data/record sesuai PrimaryKey,
- * dari tabel header merchctg (fsn_merchctg)
+ * dari tabel ref merchctg (fsn_merchctgref)
  *
  * Agung Nugroho <agung@fgta.net> http://www.fgta.net
  * Tangerang, 26 Maret 2021
@@ -31,17 +32,17 @@ use \FGTA4\exceptions\WebException;
  * tanggal 18/10/2024
  */
 $API = new class extends merchctgBase {
-	
+
 	public function execute($options) {
 		$event = 'on-open';
-		$tablename = 'fsn_merchctg';
-		$primarykey = 'merchctg_id';
+		$tablename = 'fsn_merchctgref';
+		$primarykey = 'merchctgref_id';
 		$userdata = $this->auth->session_get_user();
 
-		$handlerclassname = "\\FGTA4\\apis\\merchctg_headerHandler";
+		$handlerclassname = "\\FGTA4\\apis\\merchctg_refHandler";
 		$hnd = null;
 		if (class_exists($handlerclassname)) {
-			$hnd = new merchctg_headerHandler($options);
+			$hnd = new merchctg_refHandler($options);
 			$hnd->caller = &$this;
 			$hnd->db = $this->db;
 			$hnd->auth = $this->auth;
@@ -53,23 +54,15 @@ $API = new class extends merchctgBase {
 
 		try {
 
-			// cek apakah user boleh mengeksekusi API ini
-			if (!$this->RequestIsAllowedFor($this->reqinfo, "open", $userdata->groups)) {
-				throw new \Exception('your group authority is not allowed to do this action.');
-			}
-
 			if (method_exists(get_class($hnd), 'init')) {
 				// init(object &$options) : void
 				$hnd->init($options);
 			}
 
-			if (method_exists(get_class($hnd), 'PreCheckOpen')) {
-				// PreCheckOpen($data, &$key, &$options)
-				$hnd->PreCheckOpen($data, $key, $options);
-			}
+			$result = new \stdClass; 
 
 			$criteriaValues = [
-				"merchctg_id" => " merchctg_id = :merchctg_id "
+				"merchctgref_id" => " merchctgref_id = :merchctgref_id "
 			];
 			if (method_exists(get_class($hnd), 'buildOpenCriteriaValues')) {
 				// buildOpenCriteriaValues(object $options, array &$criteriaValues) : void
@@ -82,21 +75,13 @@ $API = new class extends merchctgBase {
 				// prepareOpenData(object $options, $criteriaValues) : void
 				$hnd->prepareOpenData($options, $criteriaValues);
 			}
-			
-
-			if (method_exists(get_class($hnd), 'prepareOpenData')) {
-				// prepareOpenData(object $options, $criteriaValues) : void
-				$hnd->prepareOpenData($options, $criteriaValues);
-			}
-
 
 			$sqlFieldList = [
-				'merchctg_id' => 'A.`merchctg_id`', 'merchctg_name' => 'A.`merchctg_name`', 'merchctg_nameshort' => 'A.`merchctg_nameshort`', 'merchctg_descr' => 'A.`merchctg_descr`',
-				'gender_id' => 'A.`gender_id`', 'dept_id' => 'A.`dept_id`', 'itemgroup_id' => 'A.`itemgroup_id`', 'itemclass_id' => 'A.`itemclass_id`',
-				'unit_id' => 'A.`unit_id`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`',
+				'merchctgref_id' => 'A.`merchctgref_id`', 'interface_id' => 'A.`interface_id`', 'merchctgref_name' => 'A.`merchctgref_name`', 'merchctgref_code' => 'A.`merchctgref_code`',
+				'merchctgref_otherdata' => 'A.`merchctgref_otherdata`', 'merchctgref_notes' => 'A.`merchctgref_notes`', 'merchctg_id' => 'A.`merchctg_id`', '_createby' => 'A.`_createby`',
 				'_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`', '_modifydate' => 'A.`_modifydate`'
 			];
-			$sqlFromTable = "fsn_merchctg A";
+			$sqlFromTable = "fsn_merchctgref A";
 			$sqlWhere = $where->sql;
 
 			if (method_exists(get_class($hnd), 'SqlQueryOpenBuilder')) {
@@ -105,7 +90,8 @@ $API = new class extends merchctgBase {
 			}
 			$sqlFields = \FGTA4\utils\SqlUtility::generateSqlSelectFieldList($sqlFieldList);
 
-			
+
+
 			$sqlData = "
 				select 
 				$sqlFields 
@@ -123,8 +109,6 @@ $API = new class extends merchctgBase {
 				$record[$key] = $value;
 			}
 
-
-
 			$result->record = array_merge($record, [
 				
 				// // jikalau ingin menambah atau edit field di result record, dapat dilakukan sesuai contoh sbb: 
@@ -132,25 +116,23 @@ $API = new class extends merchctgBase {
 				//'tanggal' => date("d/m/Y", strtotime($record['tanggal'])),
 				//'gendername' => $record['gender']
 				
-				'gender_name' => \FGTA4\utils\SqlUtility::Lookup($record['gender_id'], $this->db, 'mst_gender', 'gender_id', 'gender_name'),
-				'dept_name' => \FGTA4\utils\SqlUtility::Lookup($record['dept_id'], $this->db, 'mst_dept', 'dept_id', 'dept_name'),
-				'itemgroup_name' => \FGTA4\utils\SqlUtility::Lookup($record['itemgroup_id'], $this->db, 'mst_itemgroup', 'itemgroup_id', 'itemgroup_name'),
-				'itemclass_name' => \FGTA4\utils\SqlUtility::Lookup($record['itemclass_id'], $this->db, 'mst_itemclass', 'itemclass_id', 'itemclass_name'),
-				'unit_name' => \FGTA4\utils\SqlUtility::Lookup($record['unit_id'], $this->db, 'mst_unit', 'unit_id', 'unit_name'),
+				'interface_name' => \FGTA4\utils\SqlUtility::Lookup($record['interface_id'], $this->db, 'mst_interface', 'interface_id', 'interface_name'),
 
-
+/*{__LOOKUPUSERMERGE__}*/
 				'_createby' => \FGTA4\utils\SqlUtility::Lookup($record['_createby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
 				'_modifyby' => \FGTA4\utils\SqlUtility::Lookup($record['_modifyby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
 
 			]);
 
 
-			
+	
+
 
 			if (method_exists(get_class($hnd), 'DataOpen')) {
 				//  DataOpen(array &$record) : void 
 				$hnd->DataOpen($result->record);
 			}
+
 
 			return $result;
 		} catch (\Exception $ex) {

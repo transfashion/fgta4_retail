@@ -7,21 +7,20 @@ if (!defined('FGTA4')) {
 require_once __ROOT_DIR.'/core/sqlutil.php';
 require_once __DIR__ . '/xapi.base.php';
 
-if (is_file(__DIR__ .'/data-header-handler.php')) {
-	require_once __DIR__ .'/data-header-handler.php';
+if (is_file(__DIR__ .'/data-ref-handler.php')) {
+	require_once __DIR__ .'/data-ref-handler.php';
 }
-
-
 
 use \FGTA4\exceptions\WebException;
 
+
 /**
- * retail/fashion/merchctg/apis/list.php
+ * retail/fashion/merchctg/apis/ref-list.php
  *
- * ========
- * DataList
- * ========
- * Menampilkan data-data pada tabel header merchctg (fsn_merchctg)
+ * ==============
+ * Detil-DataList
+ * ==============
+ * Menampilkan data-data pada tabel ref merchctg (fsn_merchctgref)
  * sesuai dengan parameter yang dikirimkan melalui variable $option->criteria
  *
  * Agung Nugroho <agung@fgta.net> http://www.fgta.net
@@ -33,13 +32,12 @@ use \FGTA4\exceptions\WebException;
 $API = new class extends merchctgBase {
 
 	public function execute($options) {
-
 		$userdata = $this->auth->session_get_user();
-
-		$handlerclassname = "\\FGTA4\\apis\\merchctg_headerHandler";
+		
+		$handlerclassname = "\\FGTA4\\apis\\merchctg_refHandler";
 		if (class_exists($handlerclassname)) {
-			$hnd = new merchctg_headerHandler($options);
-			$hnd->caller = &$this;
+			$hnd = new merchctg_refHandler($options);
+			$hnd->caller = $this;
 			$hnd->db = $this->db;
 			$hnd->auth = $this->auth;
 			$hnd->reqinfo = $this->reqinfo;
@@ -49,11 +47,6 @@ $API = new class extends merchctgBase {
 
 
 		try {
-		
-			// cek apakah user boleh mengeksekusi API ini
-			if (!$this->RequestIsAllowedFor($this->reqinfo, "list", $userdata->groups)) {
-				throw new \Exception('your group authority is not allowed to do this action.');
-			}
 
 			if (method_exists(get_class($hnd), 'init')) {
 				// init(object &$options) : void
@@ -61,9 +54,8 @@ $API = new class extends merchctgBase {
 			}
 
 			$criteriaValues = [
-				"search" => " A.merchctg_id LIKE CONCAT('%', :search, '%') OR A.merchctg_name LIKE CONCAT('%', :search, '%') "
+				"id" => " A.merchctg_id = :id"
 			];
-
 			if (method_exists(get_class($hnd), 'buildListCriteriaValues')) {
 				// ** buildListCriteriaValues(object &$options, array &$criteriaValues) : void
 				//    apabila akan modifikasi parameter2 untuk query
@@ -88,16 +80,14 @@ $API = new class extends merchctgBase {
 				//    untuk membuat query komplex dapat dibuat disini	
 				$hnd->prepareListData($options, $criteriaValues);
 			}
-
-
+			
 			/* Data Query Configuration */
 			$sqlFieldList = [
-				'merchctg_id' => 'A.`merchctg_id`', 'merchctg_name' => 'A.`merchctg_name`', 'merchctg_nameshort' => 'A.`merchctg_nameshort`', 'merchctg_descr' => 'A.`merchctg_descr`',
-				'gender_id' => 'A.`gender_id`', 'dept_id' => 'A.`dept_id`', 'itemgroup_id' => 'A.`itemgroup_id`', 'itemclass_id' => 'A.`itemclass_id`',
-				'unit_id' => 'A.`unit_id`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`',
+				'merchctgref_id' => 'A.`merchctgref_id`', 'interface_id' => 'A.`interface_id`', 'merchctgref_name' => 'A.`merchctgref_name`', 'merchctgref_code' => 'A.`merchctgref_code`',
+				'merchctgref_otherdata' => 'A.`merchctgref_otherdata`', 'merchctgref_notes' => 'A.`merchctgref_notes`', 'merchctg_id' => 'A.`merchctg_id`', '_createby' => 'A.`_createby`',
 				'_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`', '_modifydate' => 'A.`_modifydate`'
 			];
-			$sqlFromTable = "fsn_merchctg A";
+			$sqlFromTable = "fsn_merchctgref A";
 			$sqlWhere = $where->sql;
 			$sqlLimit = "LIMIT $maxrow OFFSET $offset";
 
@@ -108,7 +98,7 @@ $API = new class extends merchctgBase {
 				//    apabila akan memodifikasi nilai parameter
 				$hnd->SqlQueryListBuilder($sqlFieldList, $sqlFromTable, $sqlWhere, $where->params);
 			}
-			
+
 			// filter select columns
 			if (!property_exists($options, 'selectFields')) {
 				$options->selectFields = [];
@@ -120,7 +110,7 @@ $API = new class extends merchctgBase {
 			/* Sort Configuration */
 			if (!property_exists($options, 'sortData')) {
 				$options->sortData = [];
-			}
+			}			
 			if (!is_array($options->sortData)) {
 				if (is_object($options->sortData)) {
 					$options->sortData = (array)$options->sortData;
@@ -128,8 +118,6 @@ $API = new class extends merchctgBase {
 					$options->sortData = [];
 				}
 			}
-
-		
 
 
 			if (method_exists(get_class($hnd), 'sortListOrder')) {
@@ -153,6 +141,7 @@ $API = new class extends merchctgBase {
 				$sqlLimit
 			";
 
+
 			/* Execute Query: Count */
 			$stmt = $this->db->prepare($sqlCount );
 			$stmt->execute($where->params);
@@ -163,13 +152,13 @@ $API = new class extends merchctgBase {
 			$stmt = $this->db->prepare($sqlData);
 			$stmt->execute($where->params);
 			$rows  = $stmt->fetchall(\PDO::FETCH_ASSOC);
-
+		
 
 			$handleloop = false;
 			if (method_exists(get_class($hnd), 'DataListLooping')) {
 				$handleloop = true;
 			}
-
+			
 			/* Proces result */
 			$records = [];
 			foreach ($rows as $row) {
@@ -178,28 +167,19 @@ $API = new class extends merchctgBase {
 					$record[$key] = $value;
 				}
 
-
 				/*
 				$record = array_merge($record, [
 					// // jikalau ingin menambah atau edit field di result record, dapat dilakukan sesuai contoh sbb: 
 					//'tanggal' => date("d/m/y", strtotime($record['tanggal'])),
 				 	//'tambahan' => 'dta'
-					'gender_name' => \FGTA4\utils\SqlUtility::Lookup($record['gender_id'], $this->db, 'mst_gender', 'gender_id', 'gender_name'),
-					'dept_name' => \FGTA4\utils\SqlUtility::Lookup($record['dept_id'], $this->db, 'mst_dept', 'dept_id', 'dept_name'),
-					'itemgroup_name' => \FGTA4\utils\SqlUtility::Lookup($record['itemgroup_id'], $this->db, 'mst_itemgroup', 'itemgroup_id', 'itemgroup_name'),
-					'itemclass_name' => \FGTA4\utils\SqlUtility::Lookup($record['itemclass_id'], $this->db, 'mst_itemclass', 'itemclass_id', 'itemclass_name'),
-					'unit_name' => \FGTA4\utils\SqlUtility::Lookup($record['unit_id'], $this->db, 'mst_unit', 'unit_id', 'unit_name'),
+					'interface_name' => \FGTA4\utils\SqlUtility::Lookup($record['interface_id'], $this->db, 'mst_interface', 'interface_id', 'interface_name'),
 					 
 				]);
 				*/
 
 
 				// lookup data id yang refer ke table lain
-				$this->addFields('gender_name', 'gender_id', $record, 'mst_gender', 'gender_name', 'gender_id');
-				$this->addFields('dept_name', 'dept_id', $record, 'mst_dept', 'dept_name', 'dept_id');
-				$this->addFields('itemgroup_name', 'itemgroup_id', $record, 'mst_itemgroup', 'itemgroup_name', 'itemgroup_id');
-				$this->addFields('itemclass_name', 'itemclass_id', $record, 'mst_itemclass', 'itemclass_name', 'itemclass_id');
-				$this->addFields('unit_name', 'unit_id', $record, 'mst_unit', 'unit_name', 'unit_id');
+				$this->addFields('interface_name', 'interface_id', $record, 'mst_interface', 'interface_name', 'interface_id');
 					 
 
 
@@ -212,19 +192,25 @@ $API = new class extends merchctgBase {
 				array_push($records, $record);
 			}
 
-			/* modify and finalize records */
-			if (method_exists(get_class($hnd), 'DataListFinal')) {
-				// ** DataListFinal(array &$records) : void
-				//    finalisasi data list
-				$hnd->DataListFinal($records);
-			}
+
+
 
 			// kembalikan hasilnya
 			$result = new \stdClass; 
 			$result->total = $total;
 			$result->offset = $offset + $maxrow;
 			$result->maxrow = $maxrow;
+
+
+			/* modify and finalize records */
+			if (method_exists(get_class($hnd), 'DataListFinal')) {
+				// ** DataListFinal(array &$records, object &$result) : void
+				//    finalisasi data list
+				$hnd->DataListFinal($records, $result);
+			}
+
 			$result->records = $records;
+
 			return $result;
 		} catch (\Exception $ex) {
 			throw $ex;
