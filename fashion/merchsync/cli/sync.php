@@ -15,6 +15,7 @@ require_once dirname(__FILE__) . '/sync-register.php';
 require_once dirname(__FILE__) . '/sync-do.php';	
 require_once dirname(__FILE__) . '/sync-aj.php';	
 require_once dirname(__FILE__) . '/sync-tr.php';	
+require_once dirname(__FILE__) . '/sync-rv.php';	
 
 // require_once dirname(__FILE__) . '/registertmp.php';	
 // require_once dirname(__FILE__) . '/registersync.php';	
@@ -76,9 +77,11 @@ console::class(new class($args) extends cliworker {
 		$syncDO = new SyncDO($cfg);
 		$syncAJ = new SyncAJ($cfg);
 		$syncTR = new SyncTR($cfg);
+		$syncRV = new SyncRV($cfg);
 
 		$syncPricing = new \stdClass;
-		$syncRV = new \stdClass;
+		$syncClosing = new \stdClass;
+		
 		
 		
 		
@@ -99,14 +102,17 @@ console::class(new class($args) extends cliworker {
 			'TR-UNSEND' => ['instance'=>$syncTR, 'method'=>'UnSend', 'skip'=>false],
 			'TR-UNRECV' => ['instance'=>$syncTR, 'method'=>'UnRecv', 'skip'=>false],
 			
-			'RV-SEND' => ['instance'=>$syncRV, 'method'=>'Send', 'skip'=>true],
-			'RV-RECV' => ['instance'=>$syncRV, 'method'=>'Recv', 'skip'=>true],
-			'RV-POST' => ['instance'=>$syncRV, 'method'=>'Post', 'skip'=>true],
-			'RV-UNSEND' => ['instance'=>$syncRV, 'method'=>'UnSend', 'skip'=>true],
-			'RV-UNRECV' => ['instance'=>$syncRV, 'method'=>'UnRecv', 'skip'=>true],
-			'RV-UNPOST' => ['instance'=>$syncRV, 'method'=>'UnPost', 'skip'=>true],
+			'RV-SEND' => ['instance'=>$syncRV, 'method'=>'Send', 'skip'=>false],
+			'RV-RECV' => ['instance'=>$syncRV, 'method'=>'Recv', 'skip'=>false],
+			'RV-POST' => ['instance'=>$syncRV, 'method'=>'Post', 'skip'=>false],
+			'RV-UNSEND' => ['instance'=>$syncRV, 'method'=>'UnSend', 'skip'=>false],
+			'RV-UNRECV' => ['instance'=>$syncRV, 'method'=>'UnRecv', 'skip'=>false],
+			'RV-UNPOST' => ['instance'=>$syncRV, 'method'=>'UnPost', 'skip'=>false],
 
 			'PRC' => ['instance'=>$syncPricing, 'method'=>'Sync', 'skip'=>true],
+
+			'INV-CLOsE' => ['instance'=>$syncClosing, 'method'=>'Close', 'skip'=>true],
+			'INV-OPEN' => ['instance'=>$syncClosing, 'method'=>'Open', 'skip'=>true],
 
 		];
 		
@@ -276,7 +282,7 @@ console::class(new class($args) extends cliworker {
 				select *
 				from fsn_merchsync 
 				where  
-				(merchsync_isfail<3 or merchsync_batch is null) and merchsync_type = 'RV-SEND' 
+				(merchsync_isfail<3 or merchsync_batch is null) and merchsync_type LIKE 'RV%' 
 				order by _createby asc limit $maxtx
 			";
 			$stmt = $this->db->prepare($sql);

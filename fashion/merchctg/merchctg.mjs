@@ -6,11 +6,15 @@ import * as settings from './merchctg.settings.mjs'
 import * as apis from './merchctg.apis.mjs'
 import * as pList from './merchctg-list.mjs'
 import * as pEdit from './merchctg-edit.mjs'
+import * as pEditRefgrid from './merchctg-refgrid.mjs'
+import * as pEditRefform from './merchctg-refform.mjs'
 
 
 
 const pnl_list = $('#pnl_list')
 const pnl_edit = $('#pnl_edit')
+const pnl_editrefgrid = $('#pnl_editrefgrid')
+const pnl_editrefform = $('#pnl_editrefform')
 
 
 
@@ -41,7 +45,8 @@ export async function init(opt) {
 		.initPages([
 			{panel: pnl_list, handler: pList},
 			{panel: pnl_edit, handler: pEdit},
-			
+			{panel: pnl_editrefgrid, handler: pEditRefgrid},
+			{panel: pnl_editrefform, handler: pEditRefform}			
 		], opt)
 
 	$ui.setPages(pages)

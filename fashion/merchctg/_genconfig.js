@@ -93,6 +93,35 @@ module.exports = {
 			}
 		},
 
+		'fsn_merchctgref' : {
+			comment: 'Kode referensi kategori untuk keperluan interfacing dengan system lain',
+			primarykeys: ['merchctgref_id'],		
+			data: {
+				merchctgref_id: {text:'ID', type: dbtype.varchar(14), null:false, suppresslist: true},
+				interface_id: { 
+					text: 'Interface', type: dbtype.varchar(7), uppercase: true, null: false, 
+					options: { required: true, invalidMessage: 'Interface harus diisi' }, 
+					comp: comp.Combo({
+						table: 'mst_interface', 
+						field_value: 'interface_id', field_display: 'interface_name', field_display_name: 'interface_name', 
+						api: 'ent/general/interface/list'})				
+				
+				},
+				merchctgref_name: {text:'Name', type: dbtype.varchar(30), null:false},	
+				merchctgref_code: {text:'Code', type: dbtype.varchar(30), null:false},			
+				merchctgref_otherdata: {
+					text:'Data', type: dbtype.varchar(1000), null:true, suppresslist:true,
+					tips: 'pisahkan code dan nilai dengan semicolon (;) <b>contoh:</b> code1:nilai1; code2:nilai2; code3:nilai3',
+					tipstype: 'visible'
+				},	
+				merchctgref_notes: {text:'Notes', type: dbtype.varchar(255), null:true},
+				merchctg_id: {text:'Season', type: dbtype.varchar(14), null:false, hidden: true},
+			},
+			uniques: {
+				'merchctgref_pair': ['interface_id', 'merchctgref_name', 'merchctgref_code']
+			},			
+		}
+
 	},
 
 
@@ -100,6 +129,7 @@ module.exports = {
 		title: 'Category',
 		header: 'fsn_merchctg',
 		detils: {
+			'ref' : {title: 'Referensi', table:'fsn_merchctgref', form: true, headerview:'merchctg_name', editorHandler: true, listHandler: true},
 		}
 	}
 

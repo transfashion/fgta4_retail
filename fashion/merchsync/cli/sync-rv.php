@@ -9,6 +9,27 @@ class SyncRV extends syncBase {
 	private $stmt_detil_del;
 	private $stmt_detil_ins;
 
+	private $stmt_head_upd;
+	private $stmt_detil_upd;
+
+	private $head_param_upd_keys;
+	private $detil_param_upd_keys;
+
+	private $stmt_head_cek;
+	private $stmt_detil_cek;
+
+	private $stmt_head_send;
+	private $stmt_detil_send;
+
+	private $stmt_head_recv;
+	private $stmt_detil_recv;
+
+	private $head_param_send_keys;
+	private $detil_param_send_keys;
+
+	private $head_param_recv_keys;
+	private $detil_param_recv_keys;
+
 
 	function __construct(array $cfg) {
 		parent::__construct($cfg);
@@ -19,22 +40,26 @@ class SyncRV extends syncBase {
 	}	
 
 
-
 	public function Send(string $merchsync_id, string $merchsync_doc, string $merchsync_type ) : void {
 		$currentSyncType = 'RV-SEND';
-		
+
 		try {
+			// ambil data dari URL
 			$id = $merchsync_doc;
 			if ($merchsync_type!=$currentSyncType) {
 				throw new \Exception("Type Sync $merchsync_type tidak sesuai dengan $currentSyncType"); 
 			}
-			$data = $this->GetTRData($id);
+			$data = $this->GetRVData($id);
 
-			$this->updateSendTempHemovingHeader($data['header']);
-			$this->updateSendTempHemovingDetil($data['items']);
-			$this->updateInventorySend($id);
+			// struktur
+			// array $data['header']
+			// array $data['items']
+			$hemoving_id = $data['header']['hemoving_id'];
+			$this->deleteHemovingData($hemoving_id);
+			$this->copyToTempHemovingHeader($data['header']);
+			$this->copyToTempHemovingDetil($data['items']);
 
-			throw new \Exception("$currentSyncType: not all unimplemented");
+			// throw new \Exception("$currentSyncType: not all unimplemented");
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
@@ -48,18 +73,37 @@ class SyncRV extends syncBase {
 			if ($merchsync_type!=$currentSyncType) {
 				throw new \Exception("Type Sync $merchsync_type tidak sesuai dengan $currentSyncType"); 
 			}
-			$data = $this->GetTRData($id);
+			$data = $this->GetRVData($id);
 
 			$this->updateRecvTempHemovingHeader($data['header']);
 			$this->updateRecvTempHemovingDetil($data['items']);
 			$this->updateInventoryRecv($id);
 
-			throw new \Exception("$currentSyncType: not all unimplemented");
+			// throw new \Exception("$currentSyncType: not all unimplemented");
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
 	}
 
+	public function Post(string $merchsync_id, string $merchsync_doc, string $merchsync_type ) : void {
+		$currentSyncType = 'RV-POST';
+		
+		try {
+			$id = $merchsync_doc;
+			if ($merchsync_type!=$currentSyncType) {
+				throw new \Exception("Type Sync $merchsync_type tidak sesuai dengan $currentSyncType"); 
+			}
+			$data = $this->GetRVData($id);
+
+			$this->updateRecvTempHemovingHeader($data['header']);
+			$this->updateRecvTempHemovingDetil($data['items']);
+			$this->updateRVPost($id);
+
+			// throw new \Exception("$currentSyncType: not all unimplemented");
+		} catch (\Exception $ex) {
+			throw $ex;
+		}
+	}
 
 	public function UnRecv(string $merchsync_id, string $merchsync_doc, string $merchsync_type ) : void {
 		$currentSyncType = 'RV-UNRECV';
@@ -69,31 +113,52 @@ class SyncRV extends syncBase {
 			if ($merchsync_type!=$currentSyncType) {
 				throw new \Exception("Type Sync $merchsync_type tidak sesuai dengan $currentSyncType"); 
 			}
-			$data = $this->GetTRData($id);
+			$data = $this->GetRVData($id);
 
 			$this->updateUnRecvTempHemovingHeader($data['header']);
 			$this->updateInventoryUnRecv($id);
 
-			throw new \Exception("$currentSyncType: not all unimplemented");
+			// throw new \Exception("$currentSyncType: not all unimplemented");
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
 	}
 
 	public function UnSend(string $merchsync_id, string $merchsync_doc, string $merchsync_type ) : void {
-		$currentSyncType = 'TR-UNSEND';
+		$currentSyncType = 'RV-UNSEND';
 
 		try {
 			$id = $merchsync_doc;
 			if ($merchsync_type!=$currentSyncType) {
 				throw new \Exception("Type Sync $merchsync_type tidak sesuai dengan $currentSyncType"); 
 			}
-			$data = $this->GetTRData($id);
+			$data = $this->GetRVData($id);
 
-			$this->updateUnSendTempHemovingHeader($data['header']);
+			$hemoving_id = $data['header']['hemoving_id'];
+			$this->deleteHemovingData($hemoving_id);
 			$this->updateInventoryUnSend($id);
 			
-			throw new \Exception("$currentSyncType: not all unimplemented");
+			// throw new \Exception("$currentSyncType: not all unimplemented");
+		} catch (\Exception $ex) {
+			throw $ex;
+		}
+	}
+
+	public function UnPost(string $merchsync_id, string $merchsync_doc, string $merchsync_type ) : void {
+		$currentSyncType = 'RV-UNPOST';
+
+		try {
+			$id = $merchsync_doc;
+			if ($merchsync_type!=$currentSyncType) {
+				throw new \Exception("Type Sync $merchsync_type tidak sesuai dengan $currentSyncType"); 
+			}
+			$data = $this->GetRVData($id);
+
+			$hemoving_id = $data['header']['hemoving_id'];
+			$this->updateRecvTempHemovingHeader($data['header']);
+			$this->updateRVUnPost($id);
+
+			// throw new \Exception("$currentSyncType: not all unimplemented");
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
@@ -481,7 +546,7 @@ class SyncRV extends syncBase {
 		try {
 			$this->updateTempHemovingHeader($row);
 		} catch (\Exception $ex) {
-			throw new \Exception("TR-SEND Header: ".$ex->getMessage());
+			throw new \Exception("RV-SEND Header: ".$ex->getMessage());
 		}
 	}
 
@@ -489,7 +554,7 @@ class SyncRV extends syncBase {
 		try {
 			$this->updateTempHemovingDetil($rows);	
 		} catch (\Exception $ex) {
-			throw new \Exception("TR-SEND Detil: ".$ex->getMessage());
+			throw new \Exception("RV-SEND Detil: ".$ex->getMessage());
 		}
 	}
 
@@ -497,7 +562,7 @@ class SyncRV extends syncBase {
 		try {
 			$this->updateTempHemovingHeader($row);
 		} catch (\Exception $ex) {
-			throw new \Exception("TR-RECV Header: ".$ex->getMessage());
+			throw new \Exception("RV-RECV Header: ".$ex->getMessage());
 		}
 	}
 
@@ -505,7 +570,7 @@ class SyncRV extends syncBase {
 		try {
 			$this->updateTempHemovingDetil($rows);	
 		} catch (\Exception $ex) {
-			throw new \Exception("TR-RECV Detil: ".$ex->getMessage());
+			throw new \Exception("RV-RECV Detil: ".$ex->getMessage());
 		}
 	}
 	
@@ -514,7 +579,7 @@ class SyncRV extends syncBase {
 		try {
 			$this->updateTempHemovingHeader($row);
 		} catch (\Exception $ex) {
-			throw new \Exception("TR-UNSEND Header: ".$ex->getMessage());
+			throw new \Exception("RV-UNSEND Header: ".$ex->getMessage());
 		}
 	}
 
@@ -523,7 +588,7 @@ class SyncRV extends syncBase {
 		try {
 			$this->updateTempHemovingHeader($row);
 		} catch (\Exception $ex) {
-			throw new \Exception("TR-UNRECV Header: ".$ex->getMessage());
+			throw new \Exception("RV-UNRECV Header: ".$ex->getMessage());
 		}
 	}
 
@@ -608,5 +673,21 @@ class SyncRV extends syncBase {
 		}
 	}
 
+	function updateRVPost(string $id) : void {
+		try {
+
+		} catch (\Exception $ex) {
+			throw new \Exception("INV RECV:".$ex->getMessage()); 
+		}
+	}
+
+
+	function updateRVUnPost(string $id) : void {
+		try {
+
+		} catch (\Exception $ex) {
+			throw new \Exception("INV UNSEND:".$ex->getMessage()); 
+		}
+	}
 
 }
