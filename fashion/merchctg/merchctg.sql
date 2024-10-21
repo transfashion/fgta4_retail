@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `fsn_merchctg` (
 	`merchctg_id` varchar(30) NOT NULL , 
 	`merchctg_name` varchar(90) NOT NULL , 
 	`merchctg_nameshort` varchar(90)  , 
-	`merchctg_descr` varchar(255) NOT NULL , 
+	`merchctg_descr` varchar(255), 
 	`gender_id` varchar(7)  , 
 	`dept_id` varchar(10) NOT NULL , 
 	`itemgroup_id` varchar(17)  , 
