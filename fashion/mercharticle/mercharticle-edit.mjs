@@ -2,7 +2,7 @@ var this_page_id;
 var this_page_options;
 
 
-import * as hnd from  './merchitem-edit-hnd.mjs'
+import * as hnd from  './mercharticle-edit-hnd.mjs'
 
 const txt_caption = $('#pnl_edit-caption')
 
@@ -18,35 +18,31 @@ const btn_delete = $('#pnl_edit-btn_delete')
 
 const pnl_form = $('#pnl_edit-form')
 const obj = {
-	txt_merchitem_id: $('#pnl_edit-txt_merchitem_id'),
-	txt_merchitem_art: $('#pnl_edit-txt_merchitem_art'),
-	txt_merchitem_mat: $('#pnl_edit-txt_merchitem_mat'),
-	txt_merchitem_col: $('#pnl_edit-txt_merchitem_col'),
-	txt_merchitem_size: $('#pnl_edit-txt_merchitem_size'),
-	txt_merchitem_combo: $('#pnl_edit-txt_merchitem_combo'),
-	txt_merchitem_name: $('#pnl_edit-txt_merchitem_name'),
-	txt_merchitem_descr: $('#pnl_edit-txt_merchitem_descr'),
-	txt_merchitem_colnum: $('#pnl_edit-txt_merchitem_colnum'),
-	chk_merchitem_isdisabled: $('#pnl_edit-chk_merchitem_isdisabled'),
-	txt_merchitem_pcpline: $('#pnl_edit-txt_merchitem_pcpline'),
-	txt_merchitem_pcpgroup: $('#pnl_edit-txt_merchitem_pcpgroup'),
-	txt_merchitem_pcpcategory: $('#pnl_edit-txt_merchitem_pcpcategory'),
-	txt_merchitem_colorcode: $('#pnl_edit-txt_merchitem_colorcode'),
-	txt_merchitem_colordescr: $('#pnl_edit-txt_merchitem_colordescr'),
-	txt_merchitem_gender: $('#pnl_edit-txt_merchitem_gender'),
-	txt_merchitem_fit: $('#pnl_edit-txt_merchitem_fit'),
-	txt_merchitem_hscodeship: $('#pnl_edit-txt_merchitem_hscodeship'),
-	txt_merchitem_hscodeina: $('#pnl_edit-txt_merchitem_hscodeina'),
-	txt_merchitem_gtype: $('#pnl_edit-txt_merchitem_gtype'),
-	txt_merchitem_labelname: $('#pnl_edit-txt_merchitem_labelname'),
-	txt_merchitem_labelproduct: $('#pnl_edit-txt_merchitem_labelproduct'),
-	txt_merchitem_bahan: $('#pnl_edit-txt_merchitem_bahan'),
-	txt_merchitem_pemeliharaan: $('#pnl_edit-txt_merchitem_pemeliharaan'),
-	txt_merchitem_logo: $('#pnl_edit-txt_merchitem_logo'),
-	txt_merchitem_dibuatdi: $('#pnl_edit-txt_merchitem_dibuatdi'),
-	txt_merchitemctg_id: $('#pnl_edit-txt_merchitemctg_id'),
+	txt_mercharticle_id: $('#pnl_edit-txt_mercharticle_id'),
+	txt_mercharticle_art: $('#pnl_edit-txt_mercharticle_art'),
+	txt_mercharticle_mat: $('#pnl_edit-txt_mercharticle_mat'),
+	txt_mercharticle_col: $('#pnl_edit-txt_mercharticle_col'),
+	txt_mercharticle_name: $('#pnl_edit-txt_mercharticle_name'),
+	txt_mercharticle_descr: $('#pnl_edit-txt_mercharticle_descr'),
+	chk_mercharticle_isdisabled: $('#pnl_edit-chk_mercharticle_isdisabled'),
+	txt_mercharticle_pcpline: $('#pnl_edit-txt_mercharticle_pcpline'),
+	txt_mercharticle_pcpgroup: $('#pnl_edit-txt_mercharticle_pcpgroup'),
+	txt_mercharticle_pcpcategory: $('#pnl_edit-txt_mercharticle_pcpcategory'),
+	txt_mercharticle_gender: $('#pnl_edit-txt_mercharticle_gender'),
+	txt_mercharticle_fit: $('#pnl_edit-txt_mercharticle_fit'),
+	txt_mercharticle_hscodeship: $('#pnl_edit-txt_mercharticle_hscodeship'),
+	txt_mercharticle_hscodeina: $('#pnl_edit-txt_mercharticle_hscodeina'),
+	txt_mercharticle_gtype: $('#pnl_edit-txt_mercharticle_gtype'),
+	txt_mercharticle_labelname: $('#pnl_edit-txt_mercharticle_labelname'),
+	txt_mercharticle_labelproduct: $('#pnl_edit-txt_mercharticle_labelproduct'),
+	txt_mercharticle_bahan: $('#pnl_edit-txt_mercharticle_bahan'),
+	txt_mercharticle_pemeliharaan: $('#pnl_edit-txt_mercharticle_pemeliharaan'),
+	txt_mercharticle_logo: $('#pnl_edit-txt_mercharticle_logo'),
+	txt_mercharticle_dibuatdi: $('#pnl_edit-txt_mercharticle_dibuatdi'),
+	txt_merchctg_id: $('#pnl_edit-txt_merchctg_id'),
 	txt_merchsea_id: $('#pnl_edit-txt_merchsea_id'),
 	txt_unit_id: $('#pnl_edit-txt_unit_id'),
+	txt_brand_id: $('#pnl_edit-txt_brand_id'),
 	txt_dept_id: $('#pnl_edit-txt_dept_id')
 }
 
@@ -65,9 +61,9 @@ export async function init(opt) {
 
 
 	form = new global.fgta4form(pnl_form, {
-		primary: obj.txt_merchitem_id,
+		primary: obj.txt_mercharticle_id,
 		autoid: true,
-		logview: 'fsn_merchitem',
+		logview: 'fsn_mercharticle',
 		btn_edit: disableedit==true? $('<a>edit</a>') : btn_edit,
 		btn_save: disableedit==true? $('<a>save</a>') : btn_save,
 		btn_delete: disableedit==true? $('<a>delete</a>') : btn_delete,		
@@ -277,7 +273,7 @@ export function createnew() {
 		form.rowid = null
 
 		// set nilai-nilai default untuk form
-		data.merchitem_isdisabled = '0'
+		data.mercharticle_isdisabled = '0'
 
 
 		if (typeof hnd.form_newdata == 'function') {
@@ -296,6 +292,7 @@ export function createnew() {
 			$ui.getPages().show('pnl_list')
 		}
 
+		$ui.getPages().ITEMS['pnl_edititemgrid'].handler.createnew(data, options)
 
 
 	})
@@ -398,7 +395,7 @@ function form_viewmodechanged(viewmode) {
 }
 
 function form_idsetup(options) {
-	var objid = obj.txt_merchitem_id
+	var objid = obj.txt_mercharticle_id
 	switch (options.action) {
 		case 'fill' :
 			objid.textbox('disable') 

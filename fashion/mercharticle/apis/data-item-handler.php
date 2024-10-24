@@ -6,7 +6,7 @@ if (!defined('FGTA4')) {
 
 
 
-class merchitem_headerHandler extends WebAPI  {
+class mercharticle_itemHandler extends WebAPI  {
 
 }		
 		
