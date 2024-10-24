@@ -1,0 +1,26 @@
+create table tmp_heinvregister (
+	heinvregister_id varchar(30),
+	heinvregister_date date,
+	heinvregister_descr varchar(255),
+	heinvregister_issizing tinyint,
+	heinvregister_isposted tinyint,
+	heinvregister_isgenerated tinyint,
+	heinvregister_isseasonupdate tinyint,
+	heinvregister_createby varchar(30),
+	heinvregister_createdate datetime,
+	heinvregister_modifyby varchar(30),
+	heinvregister_modifydate datetime,
+	heinvregister_postby varchar(30),
+	heinvregister_postdate datetime,
+	heinvregister_generateby varchar(30),
+	heinvregister_generatedate datetime,
+	region_id varchar(30),
+	branch_id varchar(30),
+	season_id varchar(15),
+	rekanan_id varchar(30),
+	currency_id varchar(10),
+	rowid varchar(50),
+	heinvregister_type varchar(1),
+	primary key(heinvregister_id)
+) ENGINE=MyISAM COMMENT='Table Temporary Register Item untuk diproses lebih lanjut';
+

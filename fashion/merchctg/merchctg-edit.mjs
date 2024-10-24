@@ -136,7 +136,7 @@ export async function init(opt) {
 		OnSelecting: (value, display, record, args) => {
 			// args.Cancel=true; // apabila ingin membatalkan pilihan			
 			if (value!=args.PreviousValue ) {
-				if (typeof hnd.cbo_itemgroup_id_selecting === 'function') {
+				if (typeof hnd.cbo_itemgroup_id_selected === 'function') {
 					hnd.cbo_itemgroup_id_selecting(value, display, record, args);
 				}
 			}
@@ -387,6 +387,7 @@ export function createnew() {
 			$ui.getPages().show('pnl_list')
 		}
 
+		$ui.getPages().ITEMS['pnl_editrefgrid'].handler.createnew(data, options)
 
 
 	})

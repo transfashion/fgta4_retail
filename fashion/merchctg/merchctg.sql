@@ -1,6 +1,7 @@
 -- SET FOREIGN_KEY_CHECKS=0;
 
 -- drop table if exists `fsn_merchctg`;
+-- drop table if exists `fsn_merchctgref`;
 
 
 CREATE TABLE IF NOT EXISTS `fsn_merchctg` (
@@ -57,6 +58,53 @@ ALTER TABLE `fsn_merchctg` ADD CONSTRAINT `fk_fsn_merchctg_mst_dept` FOREIGN KEY
 ALTER TABLE `fsn_merchctg` ADD CONSTRAINT `fk_fsn_merchctg_mst_itemgroup` FOREIGN KEY IF NOT EXISTS  (`itemgroup_id`) REFERENCES `mst_itemgroup` (`itemgroup_id`);
 ALTER TABLE `fsn_merchctg` ADD CONSTRAINT `fk_fsn_merchctg_mst_itemclass` FOREIGN KEY IF NOT EXISTS  (`itemclass_id`) REFERENCES `mst_itemclass` (`itemclass_id`);
 ALTER TABLE `fsn_merchctg` ADD CONSTRAINT `fk_fsn_merchctg_mst_unit` FOREIGN KEY IF NOT EXISTS  (`unit_id`) REFERENCES `mst_unit` (`unit_id`);
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS `fsn_merchctgref` (
+	`merchctgref_id` varchar(14) NOT NULL , 
+	`interface_id` varchar(7) NOT NULL , 
+	`merchctgref_name` varchar(30) NOT NULL , 
+	`merchctgref_code` varchar(30) NOT NULL , 
+	`merchctgref_otherdata` varchar(1000)  , 
+	`merchctgref_notes` varchar(255)  , 
+	`merchctg_id` varchar(14) NOT NULL , 
+	`_createby` varchar(14) NOT NULL , 
+	`_createdate` datetime NOT NULL DEFAULT current_timestamp(), 
+	`_modifyby` varchar(14)  , 
+	`_modifydate` datetime  , 
+	UNIQUE KEY `merchctgref_pair` (`interface_id`, `merchctgref_name`, `merchctgref_code`),
+	PRIMARY KEY (`merchctgref_id`)
+) 
+ENGINE=InnoDB
+COMMENT='Kode referensi kategori untuk keperluan interfacing dengan system lain';
+
+
+ALTER TABLE `fsn_merchctgref` ADD COLUMN IF NOT EXISTS  `interface_id` varchar(7) NOT NULL  AFTER `merchctgref_id`;
+ALTER TABLE `fsn_merchctgref` ADD COLUMN IF NOT EXISTS  `merchctgref_name` varchar(30) NOT NULL  AFTER `interface_id`;
+ALTER TABLE `fsn_merchctgref` ADD COLUMN IF NOT EXISTS  `merchctgref_code` varchar(30) NOT NULL  AFTER `merchctgref_name`;
+ALTER TABLE `fsn_merchctgref` ADD COLUMN IF NOT EXISTS  `merchctgref_otherdata` varchar(1000)   AFTER `merchctgref_code`;
+ALTER TABLE `fsn_merchctgref` ADD COLUMN IF NOT EXISTS  `merchctgref_notes` varchar(255)   AFTER `merchctgref_otherdata`;
+ALTER TABLE `fsn_merchctgref` ADD COLUMN IF NOT EXISTS  `merchctg_id` varchar(14) NOT NULL  AFTER `merchctgref_notes`;
+
+
+ALTER TABLE `fsn_merchctgref` MODIFY COLUMN IF EXISTS  `interface_id` varchar(7) NOT NULL   AFTER `merchctgref_id`;
+ALTER TABLE `fsn_merchctgref` MODIFY COLUMN IF EXISTS  `merchctgref_name` varchar(30) NOT NULL   AFTER `interface_id`;
+ALTER TABLE `fsn_merchctgref` MODIFY COLUMN IF EXISTS  `merchctgref_code` varchar(30) NOT NULL   AFTER `merchctgref_name`;
+ALTER TABLE `fsn_merchctgref` MODIFY COLUMN IF EXISTS  `merchctgref_otherdata` varchar(1000)    AFTER `merchctgref_code`;
+ALTER TABLE `fsn_merchctgref` MODIFY COLUMN IF EXISTS  `merchctgref_notes` varchar(255)    AFTER `merchctgref_otherdata`;
+ALTER TABLE `fsn_merchctgref` MODIFY COLUMN IF EXISTS  `merchctg_id` varchar(14) NOT NULL   AFTER `merchctgref_notes`;
+
+
+ALTER TABLE `fsn_merchctgref` ADD CONSTRAINT `merchctgref_pair` UNIQUE IF NOT EXISTS  (`interface_id`, `merchctgref_name`, `merchctgref_code`);
+
+ALTER TABLE `fsn_merchctgref` ADD KEY IF NOT EXISTS `interface_id` (`interface_id`);
+ALTER TABLE `fsn_merchctgref` ADD KEY IF NOT EXISTS `merchctg_id` (`merchctg_id`);
+
+ALTER TABLE `fsn_merchctgref` ADD CONSTRAINT `fk_fsn_merchctgref_mst_interface` FOREIGN KEY IF NOT EXISTS  (`interface_id`) REFERENCES `mst_interface` (`interface_id`);
+ALTER TABLE `fsn_merchctgref` ADD CONSTRAINT `fk_fsn_merchctgref_fsn_merchctg` FOREIGN KEY IF NOT EXISTS (`merchctg_id`) REFERENCES `fsn_merchctg` (`merchctg_id`);
 
 
 

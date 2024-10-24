@@ -5,7 +5,7 @@ require_once __ROOT_DIR . '/core/sqlutil.php';
 require_once __ROOT_DIR . '/core/webapi.php';	
 require_once __ROOT_DIR . '/core/cliworker.php';	
 
-require_once dirname(__FILE__) . '/sync-base.php';	
+require_once dirname(__FILE__) . '/sync--base.php';	
 
 
 use  \FGTA4\utils\SqlUtility;
@@ -51,10 +51,15 @@ console::class(new class($args) extends syncBase {
 
 			$this->updateProcess(1, "Starting.");
 			
-			$id = 'SL05.143.24.09010012';
+			$id = 'SL05.342.24.06010103';
 			$data =  $this->getDataFromUrl($cfg['url'] . '/getsales.php?id='. $id);
 
-			print_r($data);
+			// print_r($data);
+
+			$head = $data['payments'][0];
+			foreach ($head as $key => $value) {
+				echo $key . "\r\n";
+			}
 
 
 			$this->updateProcess(100, "done.");

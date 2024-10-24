@@ -5,27 +5,29 @@ if (!defined('FGTA4')) {
 }
 
 require_once __ROOT_DIR.'/core/sqlutil.php';
-// require_once __ROOT_DIR . "/core/sequencer.php";
 require_once __DIR__ . '/xapi.base.php';
+//require_once __ROOT_DIR . "/core/sequencer.php";
 
-if (is_file(__DIR__ .'/data-header-handler.php')) {
-	require_once __DIR__ .'/data-header-handler.php';
+
+if (is_file(__DIR__ .'/data-ref-handler.php')) {
+	require_once __DIR__ .'/data-ref-handler.php';
 }
 
 
+
 use \FGTA4\exceptions\WebException;
-// use \FGTA4\utils\Sequencer;
+//use \FGTA4\utils\Sequencer;
 
 
 
 /**
- * retail/fashion/merchctg/apis/save.php
+ * retail/fashion/merchctg/apis/ref-save.php
  *
- * ====
- * Save
- * ====
+ * ==========
+ * Detil-Save
+ * ==========
  * Menampilkan satu baris data/record sesuai PrimaryKey,
- * dari tabel header merchctg (fsn_merchctg)
+ * dari tabel ref merchctg (fsn_merchctgref)
  *
  * Agung Nugroho <agung@fgta.net> http://www.fgta.net
  * Tangerang, 26 Maret 2021
@@ -37,16 +39,16 @@ $API = new class extends merchctgBase {
 	
 	public function execute($data, $options) {
 		$event = 'on-save';
-		$tablename = 'fsn_merchctg';
-		$primarykey = 'merchctg_id';
+		$tablename = 'fsn_merchctgref';
+		$primarykey = 'merchctgref_id';
 		$autoid = $options->autoid;
 		$datastate = $data->_state;
+
 		$userdata = $this->auth->session_get_user();
 
-		$handlerclassname = "\\FGTA4\\apis\\merchctg_headerHandler";
-		$hnd = null;
+		$handlerclassname = "\\FGTA4\\apis\\merchctg_refHandler";
 		if (class_exists($handlerclassname)) {
-			$hnd = new merchctg_headerHandler($options);
+			$hnd = new merchctg_refHandler($data, $options);
 			$hnd->caller = &$this;
 			$hnd->db = &$this->db;
 			$hnd->auth = $this->auth;
@@ -57,34 +59,46 @@ $API = new class extends merchctgBase {
 		}
 
 		try {
-
-			// cek apakah user boleh mengeksekusi API ini
-			if (!$this->RequestIsAllowedFor($this->reqinfo, "save", $userdata->groups)) {
-				throw new \Exception('your group authority is not allowed to do this action.');
-			}
-
+			
 			if (method_exists(get_class($hnd), 'init')) {
 				// init(object &$options) : void
 				$hnd->init($options);
 			}
+			
+			// data yang akan di update dari table
+			$sqlUpdateField  = [
+					'merchctgref_id', 'interface_id', 'merchctgref_name', 'merchctgref_code',
+					'merchctgref_otherdata', 'merchctgref_notes', 'merchctg_id'
+			];
+			if (method_exists(get_class($hnd), 'setUpdateField')) {
+				// setUpdateField(&$sqlUpdateField, $data, $options)
+				$hnd->setUpdateField($sqlUpdateField, $data, $options);
+			}
+
+
 
 			$result = new \stdClass; 
 			
 			$key = new \stdClass;
 			$obj = new \stdClass;
-			foreach ($data as $fieldname => $value) {
-				if ($fieldname=='_state') { continue; }
+			foreach ($sqlUpdateField as $fieldname) {
 				if ($fieldname==$primarykey) {
 					$key->{$fieldname} = $value;
 				}
-				$obj->{$fieldname} = $value;
+				if (property_exists($data, $fieldname)) {
+					$obj->{$fieldname} = $data->{$fieldname};
+				}
 			}
+
 
 			// apabila ada tanggal, ubah ke format sql sbb:
 			// $obj->tanggal = (\DateTime::createFromFormat('d/m/Y',$obj->tanggal))->format('Y-m-d');
 
-			$obj->merchctg_id = strtoupper($obj->merchctg_id);
-			$obj->merchctg_name = strtoupper($obj->merchctg_name);
+			$obj->interface_id = strtoupper($obj->interface_id);
+
+
+			if ($obj->merchctgref_otherdata=='') { $obj->merchctgref_otherdata = '--NULL--'; }
+			if ($obj->merchctgref_notes=='') { $obj->merchctgref_notes = '--NULL--'; }
 
 
 
@@ -103,7 +117,7 @@ $API = new class extends merchctgBase {
 			} else {
 				$obj->_modifyby = $userdata->username;
 				$obj->_modifydate = date("Y-m-d H:i:s");	
-		
+
 				if (method_exists(get_class($hnd), 'PreCheckUpdate')) {
 					// PreCheckUpdate($data, &$obj, &$key, &$options)
 					$hnd->PreCheckUpdate($data, $obj, $key, $options);
@@ -112,7 +126,7 @@ $API = new class extends merchctgBase {
 
 			//handle data sebelum sebelum save
 			if (method_exists(get_class($hnd), 'DataSaving')) {
-				// ** DataSaving(object &$obj, object &$key)
+				// ** DataSaving(object &$obj, object &$key) : void
 				$hnd->DataSaving($obj, $key);
 			}
 
@@ -127,39 +141,40 @@ $API = new class extends merchctgBase {
 					if ($autoid) {
 						$obj->{$primarykey} = $this->NewId($hnd, $obj);
 					}
-					
-					// handle data sebelum pada saat pembuatan SQL Insert
-					if (method_exists(get_class($hnd), 'RowInserting')) {
-						// ** RowInserting(object &$obj)
-						$hnd->RowInserting($obj);
-					}
 					$cmd = \FGTA4\utils\SqlUtility::CreateSQLInsert($tablename, $obj);
 				} else {
 					$action = 'MODIFY';
-
-					// handle data sebelum pada saat pembuatan SQL Update
-					if (method_exists(get_class($hnd), 'RowUpdating')) {
-						// ** RowUpdating(object &$obj, object &$key))
-						$hnd->RowUpdating($obj, $key);
-					}
 					$cmd = \FGTA4\utils\SqlUtility::CreateSQLUpdate($tablename, $obj, $key);
 				}
-	
+
 				$stmt = $this->db->prepare($cmd->sql);
 				$stmt->execute($cmd->params);
 
+				
+				// Update user & timestamp di header
+				$header_table = 'fsn_merchctg';
+				$header_primarykey = 'merchctg_id';
+				$detil_primarykey = 'merchctg_id';
+				$sqlrec = "update $header_table set _modifyby = :user_id, _modifydate=NOW() where $header_primarykey = :$header_primarykey";
+				$stmt = $this->db->prepare($sqlrec);
+				$stmt->execute([
+					":user_id" => $userdata->username,
+					":$header_primarykey" => $obj->{$detil_primarykey}
+				]);
+
 				\FGTA4\utils\SqlUtility::WriteLog($this->db, $this->reqinfo->modulefullname, $tablename, $obj->{$primarykey}, $action, $userdata->username, (object)[]);
+				\FGTA4\utils\SqlUtility::WriteLog($this->db, $this->reqinfo->modulefullname, $header_table, $obj->{$detil_primarykey}, $action . "_DETIL", $userdata->username, (object)[]);
 
 
 
 
 				// result
 				$options->criteria = [
-					"merchctg_id" => $obj->merchctg_id
+					"merchctgref_id" => $obj->merchctgref_id
 				];
 
 				$criteriaValues = [
-					"merchctg_id" => " merchctg_id = :merchctg_id "
+					"merchctgref_id" => " merchctgref_id = :merchctgref_id "
 				];
 				if (method_exists(get_class($hnd), 'buildOpenCriteriaValues')) {
 					// buildOpenCriteriaValues(object $options, array &$criteriaValues) : void
@@ -175,14 +190,14 @@ $API = new class extends merchctgBase {
 				}
 
 				$sqlFieldList = [
-					'merchctg_id' => 'A.`merchctg_id`', 'merchctg_name' => 'A.`merchctg_name`', 'merchctg_nameshort' => 'A.`merchctg_nameshort`', 'merchctg_descr' => 'A.`merchctg_descr`',
-					'gender_id' => 'A.`gender_id`', 'dept_id' => 'A.`dept_id`', 'itemgroup_id' => 'A.`itemgroup_id`', 'itemclass_id' => 'A.`itemclass_id`',
-					'unit_id' => 'A.`unit_id`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`',
+					'merchctgref_id' => 'A.`merchctgref_id`', 'interface_id' => 'A.`interface_id`', 'merchctgref_name' => 'A.`merchctgref_name`', 'merchctgref_code' => 'A.`merchctgref_code`',
+					'merchctgref_otherdata' => 'A.`merchctgref_otherdata`', 'merchctgref_notes' => 'A.`merchctgref_notes`', 'merchctg_id' => 'A.`merchctg_id`', '_createby' => 'A.`_createby`',
 					'_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`', '_modifydate' => 'A.`_modifydate`'
 				];
-				$sqlFromTable = "fsn_merchctg A";
+				$sqlFromTable = "fsn_merchctgref A";
 				$sqlWhere = $where->sql;
-					
+
+
 				if (method_exists(get_class($hnd), 'SqlQueryOpenBuilder')) {
 					// SqlQueryOpenBuilder(array &$sqlFieldList, string &$sqlFromTable, string &$sqlWhere, array &$params) : void
 					$hnd->SqlQueryOpenBuilder($sqlFieldList, $sqlFromTable, $sqlWhere, $where->params);
@@ -209,11 +224,7 @@ $API = new class extends merchctgBase {
 
 				$dataresponse = array_merge($record, [
 					//  untuk lookup atau modify response ditaruh disini
-					'gender_name' => \FGTA4\utils\SqlUtility::Lookup($record['gender_id'], $this->db, 'mst_gender', 'gender_id', 'gender_name'),
-					'dept_name' => \FGTA4\utils\SqlUtility::Lookup($record['dept_id'], $this->db, 'mst_dept', 'dept_id', 'dept_name'),
-					'itemgroup_name' => \FGTA4\utils\SqlUtility::Lookup($record['itemgroup_id'], $this->db, 'mst_itemgroup', 'itemgroup_id', 'itemgroup_name'),
-					'itemclass_name' => \FGTA4\utils\SqlUtility::Lookup($record['itemclass_id'], $this->db, 'mst_itemclass', 'itemclass_id', 'itemclass_name'),
-					'unit_name' => \FGTA4\utils\SqlUtility::Lookup($record['unit_id'], $this->db, 'mst_unit', 'unit_id', 'unit_name'),
+					'interface_name' => \FGTA4\utils\SqlUtility::Lookup($record['interface_id'], $this->db, 'mst_interface', 'interface_id', 'interface_name'),
 
 					'_createby' => \FGTA4\utils\SqlUtility::Lookup($record['_createby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
 					'_modifyby' => \FGTA4\utils\SqlUtility::Lookup($record['_modifyby'], $this->db, $GLOBALS['MAIN_USERTABLE'], 'user_id', 'user_fullname'),
@@ -224,7 +235,7 @@ $API = new class extends merchctgBase {
 					$hnd->DataOpen($dataresponse);
 				}
 
-				$result->username = $userdata->username;
+
 				$result->dataresponse = (object) $dataresponse;
 				if (method_exists(get_class($hnd), 'DataSavedSuccess')) {
 					// DataSavedSuccess(object &$result) : void
@@ -232,27 +243,27 @@ $API = new class extends merchctgBase {
 				}
 
 				$this->db->commit();
-				return $result;
-
+				return $result;				
+				
 			} catch (\Exception $ex) {
 				$this->db->rollBack();
 				throw $ex;
 			} finally {
 				$this->db->setAttribute(\PDO::ATTR_AUTOCOMMIT,1);
 			}
-
+			
 		} catch (\Exception $ex) {
 			throw $ex;
 		}
 	}
 
-	public function NewId(object $hnd, object $obj) : string {
+	public function NewId($hnd, $obj) {
 		// dipanggil hanya saat $autoid == true;
 
 		$id = null;
 		$handled = false;
 		if (method_exists(get_class($hnd), 'CreateNewId')) {
-			// CreateNewId(object $obj) : string 
+			// CreateNewId(object $obj) : string
 			$id = $hnd->CreateNewId($obj);
 			$handled = true;
 		}

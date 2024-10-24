@@ -8,9 +8,14 @@ require_once __ROOT_DIR . '/core/cliworker.php';
 
 require_once dirname(__FILE__) . '/tbdatamap.php';	
 
-require_once dirname(__FILE__) . '/sync-base.php';	
-require_once dirname(__FILE__) . '/sync-price.php';	
+require_once dirname(__FILE__) . '/sync--base.php';	
 
+require_once dirname(__FILE__) . '/sync-sales.php';	
+require_once dirname(__FILE__) . '/sync-register.php';
+require_once dirname(__FILE__) . '/sync-do.php';	
+require_once dirname(__FILE__) . '/sync-aj.php';	
+require_once dirname(__FILE__) . '/sync-tr.php';	
+require_once dirname(__FILE__) . '/sync-rv.php';	
 
 // require_once dirname(__FILE__) . '/registertmp.php';	
 // require_once dirname(__FILE__) . '/registersync.php';	
@@ -27,8 +32,14 @@ class SCENARIO {
 
 
 console::class(new class($args) extends cliworker {
+	const _DELAY_BETWEEN_LOOP = 1; // seconds
+	
 	private array $params;
 	private bool $isDevMode = true;
+	private object $rptdb;
+
+
+	private $stmt_get_fail_number;
 
 
 	function __construct($args) {
@@ -53,32 +64,56 @@ console::class(new class($args) extends cliworker {
 		TbDataMap::$db = $this->db;
 
 
+		
+
 		$cfg = [
-			'db' => $this->db,
 			'url' => 'http://ws.transfashion.id/crossroads/frontend',
 		];
 
 
 		
-		$syncAJ = new \stdClass;
-		$syncPricing = new SyncPrice($cfg);
-		$syncRV = new \stdClass;
-		$syncSales = new \stdClass;
-		$syncTR = new \stdClass;
+		$syncSales = new SyncSales($cfg);
+		$syncReg = new SyncRegister($cfg);
+		$syncDO = new SyncDO($cfg);
+		$syncAJ = new SyncAJ($cfg);
+		$syncTR = new SyncTR($cfg);
+		$syncRV = new SyncRV($cfg);
+
+		$syncPricing = new \stdClass;
+		$syncClosing = new \stdClass;
+		
+		
+		
+		
 
 		$progs = [
-			'AJ-POSTALL' => ['instance'=>$syncAJ, 'method'=>'PostAll'],
-			'PRC' => ['instance'=>$syncPricing, 'method'=>'Sync'],
-			'RV-POST' => ['instance'=>$syncRV, 'method'=>'Post'],
-			'RV-RECV' => ['instance'=>$syncRV, 'method'=>'Recv'],
-			'RV-SEND' => ['instance'=>$syncRV, 'method'=>'Send'],
-			'RV-UNPOST' => ['instance'=>$syncRV, 'method'=>'UnPost'],
-			'SL' => ['instance'=>$syncSales, 'method'=>'Sync'],
-			'TR-PROP' => ['instance'=>$syncTR, 'method'=>'Prop'],
-			'TR-RECV' => ['instance'=>$syncTR, 'method'=>'Recv'],
-			'TR-SEND' => ['instance'=>$syncTR, 'method'=>'Send'],
-			'TR-UNPROP' => ['instance'=>$syncTR, 'method'=>'UnProp'],
-			'TR-UNSEND' => ['instance'=>$syncTR, 'method'=>'UnSend'],
+			'SL' => ['instance'=>$syncSales, 'method'=>'Sync', 'skip'=>false],
+
+			'REG' => ['instance'=>$syncReg, 'method'=>'Sync', 'skip'=>false],
+
+			'DO-POSTALL'  => ['instance'=>$syncDO, 'method'=>'PostAll', 'skip'=>false],
+
+			'AJ-POSTALL' => ['instance'=>$syncAJ, 'method'=>'PostAll', 'skip'=>false],
+
+			'TR-PROP' => ['instance'=>$syncTR, 'method'=>'Prop', 'skip'=>false],
+			'TR-SEND' => ['instance'=>$syncTR, 'method'=>'Send', 'skip'=>false],
+			'TR-RECV' => ['instance'=>$syncTR, 'method'=>'Recv', 'skip'=>false],
+			'TR-UNPROP' => ['instance'=>$syncTR, 'method'=>'UnProp', 'skip'=>false],
+			'TR-UNSEND' => ['instance'=>$syncTR, 'method'=>'UnSend', 'skip'=>false],
+			'TR-UNRECV' => ['instance'=>$syncTR, 'method'=>'UnRecv', 'skip'=>false],
+			
+			'RV-SEND' => ['instance'=>$syncRV, 'method'=>'Send', 'skip'=>false],
+			'RV-RECV' => ['instance'=>$syncRV, 'method'=>'Recv', 'skip'=>false],
+			'RV-POST' => ['instance'=>$syncRV, 'method'=>'Post', 'skip'=>false],
+			'RV-UNSEND' => ['instance'=>$syncRV, 'method'=>'UnSend', 'skip'=>false],
+			'RV-UNRECV' => ['instance'=>$syncRV, 'method'=>'UnRecv', 'skip'=>false],
+			'RV-UNPOST' => ['instance'=>$syncRV, 'method'=>'UnPost', 'skip'=>false],
+
+			'PRC' => ['instance'=>$syncPricing, 'method'=>'Sync', 'skip'=>true],
+
+			'INV-CLOsE' => ['instance'=>$syncClosing, 'method'=>'Close', 'skip'=>true],
+			'INV-OPEN' => ['instance'=>$syncClosing, 'method'=>'Open', 'skip'=>true],
+
 		];
 		
 		try {		
@@ -89,8 +124,9 @@ console::class(new class($args) extends cliworker {
 			$this->updateProcess(0, "Syncing start");
 			$this->removeQueCompleted();
 			$this->resetQueTimeout();
+			$this->resetSkipped();
 			
-
+			
 			$batch_id = uniqid();
 			$txcount = $this->createSyncBatch($batch_id, 10);
 			while ($txcount>0) {
@@ -100,17 +136,26 @@ console::class(new class($args) extends cliworker {
 					$merchsync_id = $row['merchsync_id'];
 					$merchsync_doc = $row['merchsync_doc'];
 					$merchsync_type = $row['merchsync_type'];
-					$this->updateProcess(0, "Syncing $merchsync_id $merchsync_type $merchsync_doc");
-					$this->setProcessingFlag($merchsync_id, 1);
+
+					$prog = $progs[$merchsync_type];
+					$instance = $prog['instance'];
+					$methodname = $prog['method'];
+					$skip = $prog['skip'];
+
+					if ($skip) {
+						$this->setSkipped($merchsync_id);
+						$this->updateProcess(0, "Syncing $merchsync_id $merchsync_type $merchsync_doc ...SKIP");
+						continue;
+					} else {
+						$this->updateProcess(0, "Syncing $merchsync_id $merchsync_type $merchsync_doc");
+						$this->setProcessingFlag($merchsync_id, 1);
+					}
+				
 				
 					if (!array_key_exists($merchsync_type, $progs)) {
 						throw new \Exception("Sync untuk '$merchsync_type' belum didefinisikan");
 					}
-					
-					
-					$prog = $progs[$merchsync_type];
-					$instance = $prog['instance'];
-					$methodname = $prog['method'];
+
 					if (!method_exists($instance, $methodname)) {
 						$msg = "Method '$methodname' belum didefinisikan untuk '$merchsync_type'";
 						$this->setResult($merchsync_id, 1, $msg);
@@ -133,7 +178,13 @@ console::class(new class($args) extends cliworker {
 				// ambil lagi queue untuk diproses pada loop berikutnya
 				$batch_id = uniqid();
 				$txcount = $this->createSyncBatch($batch_id, 10);
-				sleep(1);
+
+
+				if (self::_DELAY_BETWEEN_LOOP > 0) {
+					sleep(self::_DELAY_BETWEEN_LOOP);
+				}
+				
+
 			}
 
 			$this->updateProcess(100, "done.");
@@ -184,8 +235,33 @@ console::class(new class($args) extends cliworker {
 	}
 
 
+
+	
+	function resetSkipped() : void {
+		$this->updateProcess(0, "Reset Skipped Queue");
+		/*
+		reset merchsync_batch dan isprocessing queue yang telah timeout
+		*/
+
+		try {
+			$sql = "
+				update fsn_merchsync
+				set 
+				merchsync_timeout=null,
+				merchsync_batch=null,
+				merchsync_result=null
+				where
+				    merchsync_result='SKIP'
+				or (merchsync_isprocessing=0 and merchsync_batch is not null and merchsync_iscompleted=0)
+			";
+			$this->db->exec($sql);
+		} catch (\Exception $ex) {
+			throw $ex;
+		}
+	}
+
 	function createSyncBatch(string $batch_id, int $maxtx) : int {
-		$this->updateProcess(0, "Get UnProcessed Queue");
+		$this->updateProcess(0, "Get UnProcessed Queue ...");
 
 		/*
 		ambil transaksi sejumlah $maxtx yang belum di synkronisasi, 
@@ -206,7 +282,7 @@ console::class(new class($args) extends cliworker {
 				select *
 				from fsn_merchsync 
 				where  
-				merchsync_isfail=1 or merchsync_batch is null
+				(merchsync_isfail<3 or merchsync_batch is null) and merchsync_type LIKE 'RV%' 
 				order by _createby asc limit $maxtx
 			";
 			$stmt = $this->db->prepare($sql);
@@ -231,7 +307,7 @@ console::class(new class($args) extends cliworker {
 	function getQueues(string $batch_id) : array {
 		try {
 			$sql = "
-				select * from fsn_merchsync where merchsync_batch = :batch
+				select * from fsn_merchsync where merchsync_batch = :batch order by _createby asc
 			";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute([':batch' => $batch_id]);
@@ -248,7 +324,7 @@ console::class(new class($args) extends cliworker {
 				update fsn_merchsync
 				set 
 					merchsync_isprocessing = :isprocessing,
-					merchsync_timeout = now() + INTERVAL 5 minute
+					merchsync_timeout = now() + INTERVAL 10 minute
 				where
 					merchsync_id = :merchsync_id
 			";
@@ -262,8 +338,44 @@ console::class(new class($args) extends cliworker {
 		}
 	}
 
+
+	function setSkipped(string $merchsync_id) : void {
+		try {
+			$sql = "
+				update fsn_merchsync
+				set 
+					merchsync_isprocessing = 0,
+					merchsync_timeout = now(),
+					merchsync_result = 'SKIP'
+				where
+					merchsync_id = :merchsync_id
+			";
+			$stmt = $this->db->prepare($sql);
+			$stmt->execute([
+				':merchsync_id' => $merchsync_id
+			]);
+		} catch (\Exception $ex) {
+			throw $ex;
+		}
+	}
+
+
 	function setResult(string $merchsync_id, int $isfail, string $msg) : void {
 		try {
+			
+			$fail_attempt = 0;
+			if ($isfail == 1) {
+				$fail_attempt = 1;
+				if ($this->stmt_get_fail_number==null) {
+					$sqlgetfail = "select merchsync_isfail from fsn_merchsync where merchsync_id = :merchsync_id";
+					$this->stmt_get_fail_number = $this->db->prepare($sqlgetfail);
+				}
+				$this->stmt_get_fail_number->execute([':merchsync_id' => $merchsync_id]);
+				$row = $this->stmt_get_fail_number->fetch();
+				$fail_attempt = $row['merchsync_isfail'] + 1;
+			}
+
+
 			$sql = "
 				update fsn_merchsync
 				set 
@@ -275,8 +387,8 @@ console::class(new class($args) extends cliworker {
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute([
 				':merchsync_id' => $merchsync_id,
-				':isfail' => $isfail,
-				':msg' => $msg
+				':isfail' => $fail_attempt,
+				':msg' => substr($msg, 0, 255), // $msg
 			]);
 		} catch (\Exception $ex) {
 			throw $ex;
@@ -301,5 +413,8 @@ console::class(new class($args) extends cliworker {
 			throw $ex;
 		}
 	}
+
+
+
 
 });	

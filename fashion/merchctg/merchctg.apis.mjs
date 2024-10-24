@@ -15,5 +15,6 @@ export const load_dept_id = 'ent/organisation/dept/list-byuser'
 export const load_itemgroup_id = 'ent/items/itemgroup/list-bydept'
 export const load_itemclass_id = 'ent/items/itemclass/list'
 export const load_unit_id = 'ent/organisation/unit/list'
+export const load_interface_id = 'ent/general/interface/list'
 
 
