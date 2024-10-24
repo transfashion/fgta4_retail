@@ -16,29 +16,29 @@ if (is_file(__DIR__ .'/data-header-handler.php')) {
 use \FGTA4\exceptions\WebException;
 
 /**
- * retail/fashion/merchitem/apis/list.php
+ * retail/fashion/mercharticle/apis/list.php
  *
  * ========
  * DataList
  * ========
- * Menampilkan data-data pada tabel header merchitem (fsn_merchitem)
+ * Menampilkan data-data pada tabel header mercharticle (fsn_mercharticle)
  * sesuai dengan parameter yang dikirimkan melalui variable $option->criteria
  *
  * Agung Nugroho <agung@fgta.net> http://www.fgta.net
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 03/09/2024
+ * tanggal 24/10/2024
  */
-$API = new class extends merchitemBase {
+$API = new class extends mercharticleBase {
 
 	public function execute($options) {
 
 		$userdata = $this->auth->session_get_user();
 
-		$handlerclassname = "\\FGTA4\\apis\\merchitem_headerHandler";
+		$handlerclassname = "\\FGTA4\\apis\\mercharticle_headerHandler";
 		if (class_exists($handlerclassname)) {
-			$hnd = new merchitem_headerHandler($options);
+			$hnd = new mercharticle_headerHandler($options);
 			$hnd->caller = &$this;
 			$hnd->db = $this->db;
 			$hnd->auth = $this->auth;
@@ -61,7 +61,7 @@ $API = new class extends merchitemBase {
 			}
 
 			$criteriaValues = [
-				"search" => " A.merchitem_id LIKE CONCAT('%', :search, '%') "
+				"search" => " A.mercharticle_id LIKE CONCAT('%', :search, '%') "
 			];
 
 			if (method_exists(get_class($hnd), 'buildListCriteriaValues')) {
@@ -92,17 +92,16 @@ $API = new class extends merchitemBase {
 
 			/* Data Query Configuration */
 			$sqlFieldList = [
-				'merchitem_id' => 'A.`merchitem_id`', 'merchitem_art' => 'A.`merchitem_art`', 'merchitem_mat' => 'A.`merchitem_mat`', 'merchitem_col' => 'A.`merchitem_col`',
-				'merchitem_size' => 'A.`merchitem_size`', 'merchitem_combo' => 'A.`merchitem_combo`', 'merchitem_name' => 'A.`merchitem_name`', 'merchitem_descr' => 'A.`merchitem_descr`',
-				'merchitem_colnum' => 'A.`merchitem_colnum`', 'merchitem_isdisabled' => 'A.`merchitem_isdisabled`', 'merchitem_pcpline' => 'A.`merchitem_pcpline`', 'merchitem_pcpgroup' => 'A.`merchitem_pcpgroup`',
-				'merchitem_pcpcategory' => 'A.`merchitem_pcpcategory`', 'merchitem_colorcode' => 'A.`merchitem_colorcode`', 'merchitem_colordescr' => 'A.`merchitem_colordescr`', 'merchitem_gender' => 'A.`merchitem_gender`',
-				'merchitem_fit' => 'A.`merchitem_fit`', 'merchitem_hscodeship' => 'A.`merchitem_hscodeship`', 'merchitem_hscodeina' => 'A.`merchitem_hscodeina`', 'merchitem_gtype' => 'A.`merchitem_gtype`',
-				'merchitem_labelname' => 'A.`merchitem_labelname`', 'merchitem_labelproduct' => 'A.`merchitem_labelproduct`', 'merchitem_bahan' => 'A.`merchitem_bahan`', 'merchitem_pemeliharaan' => 'A.`merchitem_pemeliharaan`',
-				'merchitem_logo' => 'A.`merchitem_logo`', 'merchitem_dibuatdi' => 'A.`merchitem_dibuatdi`', 'merchitemctg_id' => 'A.`merchitemctg_id`', 'merchsea_id' => 'A.`merchsea_id`',
-				'unit_id' => 'A.`unit_id`', 'dept_id' => 'A.`dept_id`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`',
+				'mercharticle_id' => 'A.`mercharticle_id`', 'mercharticle_art' => 'A.`mercharticle_art`', 'mercharticle_mat' => 'A.`mercharticle_mat`', 'mercharticle_col' => 'A.`mercharticle_col`',
+				'mercharticle_name' => 'A.`mercharticle_name`', 'mercharticle_descr' => 'A.`mercharticle_descr`', 'mercharticle_isdisabled' => 'A.`mercharticle_isdisabled`', 'mercharticle_pcpline' => 'A.`mercharticle_pcpline`',
+				'mercharticle_pcpgroup' => 'A.`mercharticle_pcpgroup`', 'mercharticle_pcpcategory' => 'A.`mercharticle_pcpcategory`', 'mercharticle_gender' => 'A.`mercharticle_gender`', 'mercharticle_fit' => 'A.`mercharticle_fit`',
+				'mercharticle_hscodeship' => 'A.`mercharticle_hscodeship`', 'mercharticle_hscodeina' => 'A.`mercharticle_hscodeina`', 'mercharticle_gtype' => 'A.`mercharticle_gtype`', 'mercharticle_labelname' => 'A.`mercharticle_labelname`',
+				'mercharticle_labelproduct' => 'A.`mercharticle_labelproduct`', 'mercharticle_bahan' => 'A.`mercharticle_bahan`', 'mercharticle_pemeliharaan' => 'A.`mercharticle_pemeliharaan`', 'mercharticle_logo' => 'A.`mercharticle_logo`',
+				'mercharticle_dibuatdi' => 'A.`mercharticle_dibuatdi`', 'merchctg_id' => 'A.`merchctg_id`', 'merchsea_id' => 'A.`merchsea_id`', 'unit_id' => 'A.`unit_id`',
+				'brand_id' => 'A.`brand_id`', 'dept_id' => 'A.`dept_id`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`',
 				'_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`', '_modifydate' => 'A.`_modifydate`'
 			];
-			$sqlFromTable = "fsn_merchitem A";
+			$sqlFromTable = "fsn_mercharticle A";
 			$sqlWhere = $where->sql;
 			$sqlLimit = "LIMIT $maxrow OFFSET $offset";
 
@@ -189,10 +188,11 @@ $API = new class extends merchitemBase {
 					// // jikalau ingin menambah atau edit field di result record, dapat dilakukan sesuai contoh sbb: 
 					//'tanggal' => date("d/m/y", strtotime($record['tanggal'])),
 				 	//'tambahan' => 'dta'
-					'itemstock_name' => \FGTA4\utils\SqlUtility::Lookup($record['merchitem_id'], $this->db, 'mst_itemstock', 'itemstock_id', 'itemstock_name'),
-					'merchitemctg_name' => \FGTA4\utils\SqlUtility::Lookup($record['merchitemctg_id'], $this->db, 'mst_merchitemctg', 'merchitemctg_id', 'merchitemctg_name'),
-					'merchsea_name' => \FGTA4\utils\SqlUtility::Lookup($record['merchsea_id'], $this->db, 'mst_merchsea', 'merchsea_id', 'merchsea_name'),
+					'itemstock_name' => \FGTA4\utils\SqlUtility::Lookup($record['mercharticle_id'], $this->db, 'mst_itemstock', 'itemstock_id', 'itemstock_name'),
+					'merchctg_name' => \FGTA4\utils\SqlUtility::Lookup($record['merchctg_id'], $this->db, 'fsn_merchctg', 'merchctg_id', 'merchctg_name'),
+					'merchsea_name' => \FGTA4\utils\SqlUtility::Lookup($record['merchsea_id'], $this->db, 'fsn_merchsea', 'merchsea_id', 'merchsea_name'),
 					'unit_name' => \FGTA4\utils\SqlUtility::Lookup($record['unit_id'], $this->db, 'mst_unit', 'unit_id', 'unit_name'),
+					'brand_name' => \FGTA4\utils\SqlUtility::Lookup($record['brand_id'], $this->db, 'mst_brand', 'brand_id', 'brand_name'),
 					'dept_name' => \FGTA4\utils\SqlUtility::Lookup($record['dept_id'], $this->db, 'mst_dept', 'dept_id', 'dept_name'),
 					 
 				]);
@@ -200,10 +200,11 @@ $API = new class extends merchitemBase {
 
 
 				// lookup data id yang refer ke table lain
-				$this->addFields('itemstock_name', 'merchitem_id', $record, 'mst_itemstock', 'itemstock_name', 'itemstock_id');
-				$this->addFields('merchitemctg_name', 'merchitemctg_id', $record, 'mst_merchitemctg', 'merchitemctg_name', 'merchitemctg_id');
-				$this->addFields('merchsea_name', 'merchsea_id', $record, 'mst_merchsea', 'merchsea_name', 'merchsea_id');
+				$this->addFields('itemstock_name', 'mercharticle_id', $record, 'mst_itemstock', 'itemstock_name', 'itemstock_id');
+				$this->addFields('merchctg_name', 'merchctg_id', $record, 'fsn_merchctg', 'merchctg_name', 'merchctg_id');
+				$this->addFields('merchsea_name', 'merchsea_id', $record, 'fsn_merchsea', 'merchsea_name', 'merchsea_id');
 				$this->addFields('unit_name', 'unit_id', $record, 'mst_unit', 'unit_name', 'unit_id');
+				$this->addFields('brand_name', 'brand_id', $record, 'mst_brand', 'brand_name', 'brand_id');
 				$this->addFields('dept_name', 'dept_id', $record, 'mst_dept', 'dept_name', 'dept_id');
 					 
 

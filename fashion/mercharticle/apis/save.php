@@ -19,34 +19,34 @@ use \FGTA4\exceptions\WebException;
 
 
 /**
- * retail/fashion/merchitem/apis/save.php
+ * retail/fashion/mercharticle/apis/save.php
  *
  * ====
  * Save
  * ====
  * Menampilkan satu baris data/record sesuai PrimaryKey,
- * dari tabel header merchitem (fsn_merchitem)
+ * dari tabel header mercharticle (fsn_mercharticle)
  *
  * Agung Nugroho <agung@fgta.net> http://www.fgta.net
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 03/09/2024
+ * tanggal 24/10/2024
  */
-$API = new class extends merchitemBase {
+$API = new class extends mercharticleBase {
 	
 	public function execute($data, $options) {
 		$event = 'on-save';
-		$tablename = 'fsn_merchitem';
-		$primarykey = 'merchitem_id';
+		$tablename = 'fsn_mercharticle';
+		$primarykey = 'mercharticle_id';
 		$autoid = $options->autoid;
 		$datastate = $data->_state;
 		$userdata = $this->auth->session_get_user();
 
-		$handlerclassname = "\\FGTA4\\apis\\merchitem_headerHandler";
+		$handlerclassname = "\\FGTA4\\apis\\mercharticle_headerHandler";
 		$hnd = null;
 		if (class_exists($handlerclassname)) {
-			$hnd = new merchitem_headerHandler($options);
+			$hnd = new mercharticle_headerHandler($options);
 			$hnd->caller = &$this;
 			$hnd->db = &$this->db;
 			$hnd->auth = $this->auth;
@@ -85,30 +85,25 @@ $API = new class extends merchitemBase {
 
 
 
-			if ($obj->merchitem_art=='') { $obj->merchitem_art = '--NULL--'; }
-			if ($obj->merchitem_mat=='') { $obj->merchitem_mat = '--NULL--'; }
-			if ($obj->merchitem_col=='') { $obj->merchitem_col = '--NULL--'; }
-			if ($obj->merchitem_size=='') { $obj->merchitem_size = '--NULL--'; }
-			if ($obj->merchitem_combo=='') { $obj->merchitem_combo = '--NULL--'; }
-			if ($obj->merchitem_name=='') { $obj->merchitem_name = '--NULL--'; }
-			if ($obj->merchitem_descr=='') { $obj->merchitem_descr = '--NULL--'; }
-			if ($obj->merchitem_colnum=='') { $obj->merchitem_colnum = '--NULL--'; }
-			if ($obj->merchitem_pcpline=='') { $obj->merchitem_pcpline = '--NULL--'; }
-			if ($obj->merchitem_pcpgroup=='') { $obj->merchitem_pcpgroup = '--NULL--'; }
-			if ($obj->merchitem_pcpcategory=='') { $obj->merchitem_pcpcategory = '--NULL--'; }
-			if ($obj->merchitem_colorcode=='') { $obj->merchitem_colorcode = '--NULL--'; }
-			if ($obj->merchitem_colordescr=='') { $obj->merchitem_colordescr = '--NULL--'; }
-			if ($obj->merchitem_gender=='') { $obj->merchitem_gender = '--NULL--'; }
-			if ($obj->merchitem_fit=='') { $obj->merchitem_fit = '--NULL--'; }
-			if ($obj->merchitem_hscodeship=='') { $obj->merchitem_hscodeship = '--NULL--'; }
-			if ($obj->merchitem_hscodeina=='') { $obj->merchitem_hscodeina = '--NULL--'; }
-			if ($obj->merchitem_gtype=='') { $obj->merchitem_gtype = '--NULL--'; }
-			if ($obj->merchitem_labelname=='') { $obj->merchitem_labelname = '--NULL--'; }
-			if ($obj->merchitem_labelproduct=='') { $obj->merchitem_labelproduct = '--NULL--'; }
-			if ($obj->merchitem_bahan=='') { $obj->merchitem_bahan = '--NULL--'; }
-			if ($obj->merchitem_pemeliharaan=='') { $obj->merchitem_pemeliharaan = '--NULL--'; }
-			if ($obj->merchitem_logo=='') { $obj->merchitem_logo = '--NULL--'; }
-			if ($obj->merchitem_dibuatdi=='') { $obj->merchitem_dibuatdi = '--NULL--'; }
+			if ($obj->mercharticle_art=='') { $obj->mercharticle_art = '--NULL--'; }
+			if ($obj->mercharticle_mat=='') { $obj->mercharticle_mat = '--NULL--'; }
+			if ($obj->mercharticle_col=='') { $obj->mercharticle_col = '--NULL--'; }
+			if ($obj->mercharticle_name=='') { $obj->mercharticle_name = '--NULL--'; }
+			if ($obj->mercharticle_descr=='') { $obj->mercharticle_descr = '--NULL--'; }
+			if ($obj->mercharticle_pcpline=='') { $obj->mercharticle_pcpline = '--NULL--'; }
+			if ($obj->mercharticle_pcpgroup=='') { $obj->mercharticle_pcpgroup = '--NULL--'; }
+			if ($obj->mercharticle_pcpcategory=='') { $obj->mercharticle_pcpcategory = '--NULL--'; }
+			if ($obj->mercharticle_gender=='') { $obj->mercharticle_gender = '--NULL--'; }
+			if ($obj->mercharticle_fit=='') { $obj->mercharticle_fit = '--NULL--'; }
+			if ($obj->mercharticle_hscodeship=='') { $obj->mercharticle_hscodeship = '--NULL--'; }
+			if ($obj->mercharticle_hscodeina=='') { $obj->mercharticle_hscodeina = '--NULL--'; }
+			if ($obj->mercharticle_gtype=='') { $obj->mercharticle_gtype = '--NULL--'; }
+			if ($obj->mercharticle_labelname=='') { $obj->mercharticle_labelname = '--NULL--'; }
+			if ($obj->mercharticle_labelproduct=='') { $obj->mercharticle_labelproduct = '--NULL--'; }
+			if ($obj->mercharticle_bahan=='') { $obj->mercharticle_bahan = '--NULL--'; }
+			if ($obj->mercharticle_pemeliharaan=='') { $obj->mercharticle_pemeliharaan = '--NULL--'; }
+			if ($obj->mercharticle_logo=='') { $obj->mercharticle_logo = '--NULL--'; }
+			if ($obj->mercharticle_dibuatdi=='') { $obj->mercharticle_dibuatdi = '--NULL--'; }
 
 
 
@@ -177,11 +172,11 @@ $API = new class extends merchitemBase {
 
 				// result
 				$options->criteria = [
-					"merchitem_id" => $obj->merchitem_id
+					"mercharticle_id" => $obj->mercharticle_id
 				];
 
 				$criteriaValues = [
-					"merchitem_id" => " merchitem_id = :merchitem_id "
+					"mercharticle_id" => " mercharticle_id = :mercharticle_id "
 				];
 				if (method_exists(get_class($hnd), 'buildOpenCriteriaValues')) {
 					// buildOpenCriteriaValues(object $options, array &$criteriaValues) : void
@@ -197,17 +192,16 @@ $API = new class extends merchitemBase {
 				}
 
 				$sqlFieldList = [
-					'merchitem_id' => 'A.`merchitem_id`', 'merchitem_art' => 'A.`merchitem_art`', 'merchitem_mat' => 'A.`merchitem_mat`', 'merchitem_col' => 'A.`merchitem_col`',
-					'merchitem_size' => 'A.`merchitem_size`', 'merchitem_combo' => 'A.`merchitem_combo`', 'merchitem_name' => 'A.`merchitem_name`', 'merchitem_descr' => 'A.`merchitem_descr`',
-					'merchitem_colnum' => 'A.`merchitem_colnum`', 'merchitem_isdisabled' => 'A.`merchitem_isdisabled`', 'merchitem_pcpline' => 'A.`merchitem_pcpline`', 'merchitem_pcpgroup' => 'A.`merchitem_pcpgroup`',
-					'merchitem_pcpcategory' => 'A.`merchitem_pcpcategory`', 'merchitem_colorcode' => 'A.`merchitem_colorcode`', 'merchitem_colordescr' => 'A.`merchitem_colordescr`', 'merchitem_gender' => 'A.`merchitem_gender`',
-					'merchitem_fit' => 'A.`merchitem_fit`', 'merchitem_hscodeship' => 'A.`merchitem_hscodeship`', 'merchitem_hscodeina' => 'A.`merchitem_hscodeina`', 'merchitem_gtype' => 'A.`merchitem_gtype`',
-					'merchitem_labelname' => 'A.`merchitem_labelname`', 'merchitem_labelproduct' => 'A.`merchitem_labelproduct`', 'merchitem_bahan' => 'A.`merchitem_bahan`', 'merchitem_pemeliharaan' => 'A.`merchitem_pemeliharaan`',
-					'merchitem_logo' => 'A.`merchitem_logo`', 'merchitem_dibuatdi' => 'A.`merchitem_dibuatdi`', 'merchitemctg_id' => 'A.`merchitemctg_id`', 'merchsea_id' => 'A.`merchsea_id`',
-					'unit_id' => 'A.`unit_id`', 'dept_id' => 'A.`dept_id`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`',
+					'mercharticle_id' => 'A.`mercharticle_id`', 'mercharticle_art' => 'A.`mercharticle_art`', 'mercharticle_mat' => 'A.`mercharticle_mat`', 'mercharticle_col' => 'A.`mercharticle_col`',
+					'mercharticle_name' => 'A.`mercharticle_name`', 'mercharticle_descr' => 'A.`mercharticle_descr`', 'mercharticle_isdisabled' => 'A.`mercharticle_isdisabled`', 'mercharticle_pcpline' => 'A.`mercharticle_pcpline`',
+					'mercharticle_pcpgroup' => 'A.`mercharticle_pcpgroup`', 'mercharticle_pcpcategory' => 'A.`mercharticle_pcpcategory`', 'mercharticle_gender' => 'A.`mercharticle_gender`', 'mercharticle_fit' => 'A.`mercharticle_fit`',
+					'mercharticle_hscodeship' => 'A.`mercharticle_hscodeship`', 'mercharticle_hscodeina' => 'A.`mercharticle_hscodeina`', 'mercharticle_gtype' => 'A.`mercharticle_gtype`', 'mercharticle_labelname' => 'A.`mercharticle_labelname`',
+					'mercharticle_labelproduct' => 'A.`mercharticle_labelproduct`', 'mercharticle_bahan' => 'A.`mercharticle_bahan`', 'mercharticle_pemeliharaan' => 'A.`mercharticle_pemeliharaan`', 'mercharticle_logo' => 'A.`mercharticle_logo`',
+					'mercharticle_dibuatdi' => 'A.`mercharticle_dibuatdi`', 'merchctg_id' => 'A.`merchctg_id`', 'merchsea_id' => 'A.`merchsea_id`', 'unit_id' => 'A.`unit_id`',
+					'brand_id' => 'A.`brand_id`', 'dept_id' => 'A.`dept_id`', '_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`',
 					'_createby' => 'A.`_createby`', '_createdate' => 'A.`_createdate`', '_modifyby' => 'A.`_modifyby`', '_modifydate' => 'A.`_modifydate`'
 				];
-				$sqlFromTable = "fsn_merchitem A";
+				$sqlFromTable = "fsn_mercharticle A";
 				$sqlWhere = $where->sql;
 					
 				if (method_exists(get_class($hnd), 'SqlQueryOpenBuilder')) {

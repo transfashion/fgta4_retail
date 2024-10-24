@@ -1,0 +1,106 @@
+<div id="pnl_edititemform">
+	<div class="fgta-page-title" style="display: flex; align-items: center ">
+		<div id="pnl_edititemform-caption">{{STATE_BEG}}Items{{STATE_END}}</div>
+		<a id="pnl_edititemform-btn_edit" href="javascript:void(0)" class="easyui-linkbutton fgta-button-edit" style="margin-left:10px;" data-options="plain:true,iconCls:'fgta-icon-edit'">edit</a>
+	</div>
+	<div id="pnl_edititemform-title" class="fgta-page-subtitle">XXXXXXX</div>
+
+
+	<form id="pnl_edititemform-form">
+
+		<div class="form_row pnl_edititemform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">ID</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edititemform-txt_merchitem_id" class="easyui-textbox" mapping="merchitem_id"  maxlength="14"  style="width: 400px" data-options="multiline:false , required: true, invalidMessage: 'ID harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edititemform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">SIZE</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edititemform-txt_merchitem_size" class="easyui-textbox" mapping="merchitem_size"  maxlength="20"  style="width: 400px" data-options="multiline:false  ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edititemform_row" >
+			<div class="form_label_col"></div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edititemform-chk_merchitem_isdisabled" class="easyui-checkbox c1" mapping="merchitem_isdisabled" data-options="label: 'Disabled', labelPosition: 'after', checked: false ">
+			</div>
+		</div>
+
+		<div class="form_row pnl_edititemform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Unit</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edititemform-txt_unit_id" class="easyui-textbox" mapping="unit_id"  maxlength="10"  style="width: 400px" data-options="multiline:false , required: true, invalidMessage: 'Unit harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edititemform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Brand</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edititemform-txt_brand_id" class="easyui-textbox" mapping="brand_id"  maxlength="14"  style="width: 400px" data-options="multiline:false , required: true, invalidMessage: 'Brand harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edititemform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Dept</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edititemform-txt_dept_id" class="easyui-textbox" mapping="dept_id"  maxlength="30"  style="width: 400px" data-options="multiline:false , required: true, invalidMessage: 'Dept harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edititemform_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">ID</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edititemform-txt_mercharticle_id" class="easyui-textbox" mapping="mercharticle_id"  maxlength="14"  style="width: 400px" data-options="multiline:false  , disabled: true">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+	</form>
+
+
+	<div class="form_row" style="margin-top: 30px">
+		<div class="form_label_col"></div>
+		<div class="form_input_col" style="border: 0px solid black">
+			<div style="margin-bottom: 10px">
+				<input id="pnl_edititemform-autoadd" type="checkbox"><label for="pnl_edititemform-autoadd">Otomatis tambah baru setelah berhasil disimpan</label>
+			</div>
+			<div>
+				<a id="pnl_edititemform-btn_save" class="easyui-linkbutton c1 fgta-button-save" style="width: 100px">Simpan</a>
+			</div>
+		</div>
+	</div>	
+
+
+	<?php
+	$custombuttonbar = __DIR__.'/mercharticle-itemform-custombuttonbar.phtml';
+	if (is_file($custombuttonbar)) {
+		include $custombuttonbar;
+	} else { ?>
+	<div id="pnl_edititemform-buttonbar" style="margin-top: 30px; margin-left:-5px; margin-right: -5px; background-color: #cccccc; height: 40px; display: flex; justify-content: space-between; padding: 5px 2px 2px 2px ">
+		<div id="pnl_edititemform-buttonbar-left">
+			<a id="pnl_edititemform-btn_prev" class="easyui-linkbutton c8 fgta-button-detilprev" style="width: 50px">Prev</a>
+			<a id="pnl_edititemform-btn_next" class="easyui-linkbutton c8 fgta-button-detilnext" style="width: 50px">Next</a>
+		</div>
+
+		<div id="pnl_edititemform-buttonbar-middle">
+			<a id="pnl_edititemform-btn_addnew" class="easyui-linkbutton c8 fgta-button-detiladd" style="width: 100px">Tambah Baru</a>
+		</div>
+
+		<div id="pnl_edititemform-buttonbar-right">
+			<a id="pnl_edititemform-btn_delete" class="easyui-linkbutton c5" style="width: 100px">Hapus</a>
+		</div>
+	</div>
+	<?php } ?>
+
+
+
+
+</div>	

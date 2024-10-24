@@ -1,9 +1,9 @@
 <div id="pnl_list">
-	<div class="fgta-page-title">Daftar Merchandise Items</div>
+	<div class="fgta-page-title">Daftar Merchandise Articles</div>
 
 	<div id="pnl_list-pnl_head" style="display: flex; align-items: flex-end">
 		<?php
-		$customheadbutton = __DIR__.'/merchitem-list-customheadbutton.phtml'; 
+		$customheadbutton = __DIR__.'/mercharticle-list-customheadbutton.phtml'; 
 		if (is_file($customheadbutton)) {
 			include $customheadbutton;
 		} else { ?>
@@ -13,7 +13,7 @@
 		<?php } ?>
 
 		<?php
-		$customsearch = __DIR__.'/merchitem-list-customsearch.phtml'; 
+		$customsearch = __DIR__.'/mercharticle-list-customsearch.phtml'; 
 		if (is_file($customsearch)) {
 			include $customsearch;
 		} else { ?>
@@ -34,22 +34,20 @@
 	<div style="margin-top: 10px">
 		<table id="pnl_list-tbl_list" paging="true" cellspacing="0" width="100%" class="deftable">
 			<?php
-			$customview = __DIR__.'/merchitem-list-customview.phtml'; 
+			$customview = __DIR__.'/mercharticle-list-customview.phtml'; 
 			if (is_file($customview)) {
 				include $customview;
 			} else { ?>
 
 			<thead>
 				<tr>
-					<th mapping="merchitem_id">merchitem_id</th>
-					<th mapping="merchitem_combo">merchitem_combo</th>
-					<th mapping="merchitem_name">merchitem_name</th>
-					<th mapping="merchitem_isdisabled" type="checkbox">merchitem_isdisabled</th>
+					<th mapping="mercharticle_id">mercharticle_id</th>
+					<th mapping="mercharticle_name">mercharticle_name</th>
+					<th mapping="mercharticle_isdisabled" type="checkbox">mercharticle_isdisabled</th>
 
 				</tr>
 				<tr style="background-color: #cccccc; height: 30px">
 					<td class="fgtable-head" style="width: 100px; border-bottom: 1px solid #000000">ID</td>
-					<td class="fgtable-head" style="width: 100px; border-bottom: 1px solid #000000">Combo</td>
 					<td class="fgtable-head" style="width: 100px; border-bottom: 1px solid #000000">Name</td>
 					<td class="fgtable-head" style="width: 100px; border-bottom: 1px solid #000000; text-align: center">Disabled</td>
 
@@ -63,14 +61,14 @@
 
 
 	<?php
-	$customfootbutton = __DIR__.'/merchitem-list-customfootbutton.phtml'; 
+	$customfootbutton = __DIR__.'/mercharticle-list-customfootbutton.phtml'; 
 	if (is_file($customfootbutton)) {
 		include $customfootbutton;
 	} 
 	?>	
 
 	<?php
-	$custompagefooter = __DIR__.'/merchitem-list-custompagefooter.phtml'; 
+	$custompagefooter = __DIR__.'/mercharticle-list-custompagefooter.phtml'; 
 	if (is_file($custompagefooter)) {
 		include $custompagefooter;
 	} 

@@ -1,6 +1,6 @@
 <div id="pnl_edit">
 	<div class="fgta-page-title" style="display: flex; align-items: center ">
-		<div id="pnl_edit-caption">{{STATE_BEG}}Merchandise Items{{STATE_END}}</div>
+		<div id="pnl_edit-caption">{{STATE_BEG}}Merchandise Articles{{STATE_END}}</div>
 		<a id="pnl_edit-btn_edit" href="javascript:void(0)" class="easyui-linkbutton fgta-button-edit" style="margin-left:10px;" data-options="plain:true,iconCls:'fgta-icon-edit'">edit</a>
 	</div>
 
@@ -10,7 +10,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">ID</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_id" class="easyui-textbox" mapping="merchitem_id"  maxlength="14" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'ID harus diisi' ">
+				<input id="pnl_edit-txt_mercharticle_id" class="easyui-textbox" mapping="mercharticle_id"  maxlength="14" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'ID harus diisi' ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -18,7 +18,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">ART</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_art" class="easyui-textbox" mapping="merchitem_art"  maxlength="30" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Artikel harus diisi' ">
+				<input id="pnl_edit-txt_mercharticle_art" class="easyui-textbox" mapping="mercharticle_art"  maxlength="30" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Artikel harus diisi' ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">MAT</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_mat" class="easyui-textbox" mapping="merchitem_mat"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_mat" class="easyui-textbox" mapping="mercharticle_mat"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -34,23 +34,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">COL</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_col" class="easyui-textbox" mapping="merchitem_col"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
-				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
-			</div>
-		</div>
-
-		<div class="form_row pnl_edit_row" >
-			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">SIZE</div>
-			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_size" class="easyui-textbox" mapping="merchitem_size"  maxlength="20" style="width: 400px" data-options="multiline: false  ">
-				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
-			</div>
-		</div>
-
-		<div class="form_row pnl_edit_row" >
-			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Combo</div>
-			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_combo" class="easyui-textbox" mapping="merchitem_combo"  maxlength="103" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_col" class="easyui-textbox" mapping="mercharticle_col"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -58,7 +42,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Name</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_name" class="easyui-textbox" mapping="merchitem_name"  maxlength="255" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_name" class="easyui-textbox" mapping="mercharticle_name"  maxlength="255" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -66,15 +50,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Descr</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_descr" class="easyui-textbox" mapping="merchitem_descr"  maxlength="2500" style="width: 400px" data-options="multiline: false  ">
-				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
-			</div>
-		</div>
-
-		<div class="form_row pnl_edit_row" >
-			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Colnum</div>
-			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_colnum" class="easyui-textbox" mapping="merchitem_colnum"  maxlength="3" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_descr" class="easyui-textbox" mapping="mercharticle_descr"  maxlength="2500" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -82,14 +58,14 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"></div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-chk_merchitem_isdisabled" class="easyui-checkbox c1" mapping="merchitem_isdisabled" data-options="label: 'Disabled', labelPosition: 'after', checked: false ">
+				<input id="pnl_edit-chk_mercharticle_isdisabled" class="easyui-checkbox c1" mapping="mercharticle_isdisabled" data-options="label: 'Disabled', labelPosition: 'after', checked: false ">
 			</div>
 		</div>
 
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">pcp Line</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_pcpline" class="easyui-textbox" mapping="merchitem_pcpline"  maxlength="90" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_pcpline" class="easyui-textbox" mapping="mercharticle_pcpline"  maxlength="90" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -97,7 +73,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">pcp group</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_pcpgroup" class="easyui-textbox" mapping="merchitem_pcpgroup"  maxlength="90" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_pcpgroup" class="easyui-textbox" mapping="mercharticle_pcpgroup"  maxlength="90" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -105,23 +81,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">pcp category</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_pcpcategory" class="easyui-textbox" mapping="merchitem_pcpcategory"  maxlength="90" style="width: 400px" data-options="multiline: false  ">
-				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
-			</div>
-		</div>
-
-		<div class="form_row pnl_edit_row" >
-			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">color code</div>
-			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_colorcode" class="easyui-textbox" mapping="merchitem_colorcode"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
-				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
-			</div>
-		</div>
-
-		<div class="form_row pnl_edit_row" >
-			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">color descr</div>
-			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_colordescr" class="easyui-textbox" mapping="merchitem_colordescr"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_pcpcategory" class="easyui-textbox" mapping="mercharticle_pcpcategory"  maxlength="90" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -129,7 +89,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Gender</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_gender" class="easyui-textbox" mapping="merchitem_gender"  maxlength="1" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_gender" class="easyui-textbox" mapping="mercharticle_gender"  maxlength="1" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -137,7 +97,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Fit</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_fit" class="easyui-textbox" mapping="merchitem_fit"  maxlength="10" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_fit" class="easyui-textbox" mapping="mercharticle_fit"  maxlength="10" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -145,7 +105,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">HSCode (ship)</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_hscodeship" class="easyui-textbox" mapping="merchitem_hscodeship"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_hscodeship" class="easyui-textbox" mapping="mercharticle_hscodeship"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -153,7 +113,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">HSCode (ina)</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_hscodeina" class="easyui-textbox" mapping="merchitem_hscodeina"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_hscodeina" class="easyui-textbox" mapping="mercharticle_hscodeina"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -161,7 +121,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">GType</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_gtype" class="easyui-textbox" mapping="merchitem_gtype"  maxlength="5" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_gtype" class="easyui-textbox" mapping="mercharticle_gtype"  maxlength="5" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -169,7 +129,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">label name</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_labelname" class="easyui-textbox" mapping="merchitem_labelname"  maxlength="90" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_labelname" class="easyui-textbox" mapping="mercharticle_labelname"  maxlength="90" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -177,7 +137,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">label product</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_labelproduct" class="easyui-textbox" mapping="merchitem_labelproduct"  maxlength="90" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_labelproduct" class="easyui-textbox" mapping="mercharticle_labelproduct"  maxlength="90" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -185,7 +145,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">label bahan</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_bahan" class="easyui-textbox" mapping="merchitem_bahan"  maxlength="150" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_bahan" class="easyui-textbox" mapping="mercharticle_bahan"  maxlength="150" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -193,7 +153,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">label pemeliharaan</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_pemeliharaan" class="easyui-textbox" mapping="merchitem_pemeliharaan"  maxlength="150" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_pemeliharaan" class="easyui-textbox" mapping="mercharticle_pemeliharaan"  maxlength="150" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -201,7 +161,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">label logo</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_logo" class="easyui-textbox" mapping="merchitem_logo"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_logo" class="easyui-textbox" mapping="mercharticle_logo"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -209,7 +169,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">label dibuatdi</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitem_dibuatdi" class="easyui-textbox" mapping="merchitem_dibuatdi"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
+				<input id="pnl_edit-txt_mercharticle_dibuatdi" class="easyui-textbox" mapping="mercharticle_dibuatdi"  maxlength="30" style="width: 400px" data-options="multiline: false  ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -217,7 +177,7 @@
 		<div class="form_row pnl_edit_row" >
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Category</div>
 			<div class="form_input_col" style="border: 0px solid black">
-				<input id="pnl_edit-txt_merchitemctg_id" class="easyui-textbox" mapping="merchitemctg_id"  maxlength="30" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Category harus diisi' ">
+				<input id="pnl_edit-txt_merchctg_id" class="easyui-textbox" mapping="merchctg_id"  maxlength="30" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Category harus diisi' ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -234,6 +194,14 @@
 			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Unit</div>
 			<div class="form_input_col" style="border: 0px solid black">
 				<input id="pnl_edit-txt_unit_id" class="easyui-textbox" mapping="unit_id"  maxlength="10" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Unit harus diisi' ">
+				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
+			</div>
+		</div>
+
+		<div class="form_row pnl_edit_row" >
+			<div class="form_label_col"  style="border: 0px solid black; vertical-align: top; margin-top: 7px;">Brand</div>
+			<div class="form_input_col" style="border: 0px solid black">
+				<input id="pnl_edit-txt_brand_id" class="easyui-textbox" mapping="brand_id"  maxlength="14" style="width: 400px" data-options="multiline: false , required: true, invalidMessage: 'Brand harus diisi' ">
 				<div style="margin-top: 3px; margin-bottom: 5px; font-size: 0.75em; font-style: italic; color:#54381d;"></div>
 			</div>
 		</div>
@@ -258,13 +226,26 @@
 
 
 
+		<div id="pnl_edit-detil" class="form_row" style="margin-top: 30px">
+			<div class="form_label_col"></div>
+			<div class="form_input_col detilbox" style="border: 0px solid black">
+				<div class="fgtable-head" style="height: 25px; padding: 5px 0px 0px 5px">Detil Informations</div>
+				<div class="fgtable-head-drow" style="height: 25px; padding: 5px 5px 0px 5px; " onclick="$ui.getPages().ITEMS['pnl_edit'].handler.detil_open('pnl_edititemgrid')">
+					<div id="pnl_edit-txt_item_title" class="detilgrid-text">Items</div>
+					<div id="pnl_edit-txt_item_value" class="detilgrid-value item_totalvalue">&nbsp;</div>
+				</div>
+
+			</div>		
+		</div>		
+		
+		
 
 
 	<div style="margin-top: 30px; margin-left:-5px; margin-right: -5px; background-color: #cccccc; display: flex; justify-content: space-between; padding: 10px 2px 2px 2px ">
 		<div>
 			<!-- letakkan tombol-tombol xtion disini -->
 			<?php
-			$customheaderxtion = __DIR__.'/merchitem-edit-customxtion.phtml'; 
+			$customheaderxtion = __DIR__.'/mercharticle-edit-customxtion.phtml'; 
 			if (is_file($customheaderxtion)) {
 				include $customheaderxtion;
 			} else { ?>
