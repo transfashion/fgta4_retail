@@ -98,14 +98,12 @@ ALTER TABLE `fsn_mercharticle` MODIFY COLUMN IF EXISTS  `dept_id` varchar(30) NO
 
 ALTER TABLE `fsn_mercharticle` ADD CONSTRAINT `mercharticle_uniq` UNIQUE IF NOT EXISTS  (`dept_id`, `mercharticle_art`, `mercharticle_mat`, `mercharticle_col`);
 
-ALTER TABLE `fsn_mercharticle` ADD KEY IF NOT EXISTS  `mercharticle_id` (`mercharticle_id`);
 ALTER TABLE `fsn_mercharticle` ADD KEY IF NOT EXISTS  `merchctg_id` (`merchctg_id`);
 ALTER TABLE `fsn_mercharticle` ADD KEY IF NOT EXISTS  `merchsea_id` (`merchsea_id`);
 ALTER TABLE `fsn_mercharticle` ADD KEY IF NOT EXISTS  `unit_id` (`unit_id`);
 ALTER TABLE `fsn_mercharticle` ADD KEY IF NOT EXISTS  `brand_id` (`brand_id`);
 ALTER TABLE `fsn_mercharticle` ADD KEY IF NOT EXISTS  `dept_id` (`dept_id`);
 
-ALTER TABLE `fsn_mercharticle` ADD CONSTRAINT `fk_fsn_mercharticle_mst_itemstock` FOREIGN KEY IF NOT EXISTS (`mercharticle_id`) REFERENCES `mst_itemstock` (`itemstock_id`);
 ALTER TABLE `fsn_mercharticle` ADD CONSTRAINT `fk_fsn_mercharticle_fsn_merchctg` FOREIGN KEY IF NOT EXISTS (`merchctg_id`) REFERENCES `fsn_merchctg` (`merchctg_id`);
 ALTER TABLE `fsn_mercharticle` ADD CONSTRAINT `fk_fsn_mercharticle_fsn_merchsea` FOREIGN KEY IF NOT EXISTS (`merchsea_id`) REFERENCES `fsn_merchsea` (`merchsea_id`);
 ALTER TABLE `fsn_mercharticle` ADD CONSTRAINT `fk_fsn_mercharticle_mst_unit` FOREIGN KEY IF NOT EXISTS (`unit_id`) REFERENCES `mst_unit` (`unit_id`);

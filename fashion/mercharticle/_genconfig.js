@@ -14,9 +14,7 @@ module.exports = {
 			comment: 'Daftar article merchandise',
 			data: {
 				mercharticle_id: { 
-					text: 'ID', type: dbtype.varchar(14),  null: false, 
-					reference: {table: 'mst_itemstock', field_value: 'itemstock_id', field_display:'itemstock_name',  field_display_name:'itemstock_name'}, 
-					options: { required: true, invalidMessage: 'ID harus diisi' } 
+					text: 'ID', type: dbtype.varchar(14),  null: false,  options: { required: true, invalidMessage: 'ID harus diisi' } 
 				},
 				
 				mercharticle_art: {text:'ART', type: dbtype.varchar(30), null:true, suppresslist: true, options:{required:true,invalidMessage:'Artikel harus diisi'}},
