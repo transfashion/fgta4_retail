@@ -16,23 +16,23 @@ use \FGTA4\exceptions\WebException;
 
 
 /**
- * retail/fashion/merchitem/apis/xapi.base.php
+ * retail/fashion/mercharticle/apis/xapi.base.php
  *
- * merchitemBase
+ * mercharticleBase
  * Kelas dasar untuk keperluan-keperluan api
- * kelas ini harus di-inherit untuk semua api pada modul merchitem
+ * kelas ini harus di-inherit untuk semua api pada modul mercharticle
  *
  * Agung Nugroho <agung@fgta.net> http://www.fgta.net
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 03/09/2024
+ * tanggal 24/10/2024
  */
-class merchitemBase extends WebAPI {
+class mercharticleBase extends WebAPI {
 
-	protected $main_tablename = "fsn_merchitem";
-	protected $main_primarykey = "merchitem_id";
-	protected $main_field_version = "merchitem_version";	
+	protected $main_tablename = "fsn_mercharticle";
+	protected $main_primarykey = "mercharticle_id";
+	protected $main_field_version = "mercharticle_version";	
 	
 	
 
@@ -40,7 +40,7 @@ class merchitemBase extends WebAPI {
 
 	function __construct() {
 
-		// $logfilepath = __LOCALDB_DIR . "/output//*merchitem*/.txt";
+		// $logfilepath = __LOCALDB_DIR . "/output//*mercharticle*/.txt";
 		// debug::disable();
 		// debug::start($logfilepath, "w");
 

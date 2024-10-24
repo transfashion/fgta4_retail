@@ -1,31 +1,31 @@
 <?php namespace FGTA4\module; if (!defined('FGTA4')) { die('Forbiden'); } 
 
-if (is_file(__DIR__ .'/merchitem.php-handler.php')) {
-	require_once __DIR__ .'/merchitem.php-handler.php';
+if (is_file(__DIR__ .'/mercharticle.php-handler.php')) {
+	require_once __DIR__ .'/mercharticle.php-handler.php';
 }
 
 /**
- * retail/fashion/merchitem/merchitem.php
+ * retail/fashion/mercharticle/mercharticle.php
  *
  * ===================================================================
- * Entry point Program Module merchitem
+ * Entry point Program Module mercharticle
  * ===================================================================
  * Program yang akan pertama kali diakses 
  * oleh semua request untuk menampilkan modul 
  * 
  * digenerate dengan FGTA4 generator versi 2 
  * Agung Nugroho <agung@fgta.net> http://www.fgta.net (Tangerang, 26 Maret 2021)
- * awal dibuat tanggal 03/09/2024
- * terakhir di generate tanggal 03/09/2024
+ * awal dibuat tanggal 24/10/2024
+ * terakhir di generate tanggal 24/10/2024
  */
 $MODULE = new class extends WebModule {
 
 	public function LoadPage() {
 		$userdata = $this->auth->session_get_user();
 
-		$handlerclassname = "\\FGTA4\\module\\merchitem_pageHandler";
+		$handlerclassname = "\\FGTA4\\module\\mercharticle_pageHandler";
 		if (class_exists($handlerclassname)) {
-			$hnd = new merchitem_pageHandler();
+			$hnd = new mercharticle_pageHandler();
 			$hnd->caller = &$this;
 			$hnd->auth = $this->auth;
 			$hnd->userdata = $userdata;

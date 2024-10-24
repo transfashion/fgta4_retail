@@ -16,31 +16,31 @@ use \FGTA4\exceptions\WebException;
 
 
 /**
- * retail/fashion/merchitem/apis/delete.php
+ * retail/fashion/mercharticle/apis/delete.php
  *
  * ======
  * Delete
  * ======
  * Menghapus satu baris data/record berdasarkan PrimaryKey
- * pada tabel header merchitem (fsn_merchitem)
+ * pada tabel header mercharticle (fsn_mercharticle)
  *
  * Agung Nugroho <agung@fgta.net> http://www.fgta.net
  * Tangerang, 26 Maret 2021
  *
  * digenerate dengan FGTA4 generator
- * tanggal 03/09/2024
+ * tanggal 24/10/2024
  */
-$API = new class extends merchitemBase {
+$API = new class extends mercharticleBase {
 	
 	public function execute($data, $options) {
-		$tablename = 'fsn_merchitem';
-		$primarykey = 'merchitem_id';
+		$tablename = 'fsn_mercharticle';
+		$primarykey = 'mercharticle_id';
 
 		$userdata = $this->auth->session_get_user();
-		$handlerclassname = "\\FGTA4\\apis\\merchitem_headerHandler";
+		$handlerclassname = "\\FGTA4\\apis\\mercharticle_headerHandler";
 		$hnd = null;
 		if (class_exists($handlerclassname)) {
-			$hnd = new merchitem_headerHandler($options);
+			$hnd = new mercharticle_headerHandler($options);
 			$hnd->caller = &$this;
 			$hnd->db = &$this->db;
 			$hnd->auth = $this->auth;
@@ -78,7 +78,7 @@ $API = new class extends merchitemBase {
 			try {
 				
 				// Deleting child data referenced to this table
-				$tabletodelete = [];
+				$tabletodelete = ['fsn_merchitem'];
 				if (method_exists(get_class($hnd), 'DocumentDeleting')) {
 					// ** DocumentDeleting(string $id, array &$tabletodelete)
 					$hnd->DocumentDeleting($data->{$primarykey}, $tabletodelete);

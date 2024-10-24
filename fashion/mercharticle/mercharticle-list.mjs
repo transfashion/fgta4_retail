@@ -1,7 +1,7 @@
 var this_page_id;
 var this_page_options;
 
-import * as hnd from  './merchitem-list-hnd.mjs'
+import * as hnd from  './mercharticle-list-hnd.mjs'
 
 const tbl_list = $('#pnl_list-tbl_list')
 

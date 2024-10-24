@@ -2,15 +2,19 @@ import {fgta4grid} from  '../../../../../index.php/asset/fgta/framework/fgta4lib
 import {fgta4form} from  '../../../../../index.php/asset/fgta/framework/fgta4libs/fgta4form.mjs'
 import * as fgta4pages from '../../../../../index.php/asset/fgta/framework/fgta4libs/fgta4pages.mjs'
 import * as fgta4pageslider from '../../../../../index.php/asset/fgta/framework/fgta4libs/fgta4pageslider.mjs'
-import * as settings from './merchitem.settings.mjs'
-import * as apis from './merchitem.apis.mjs'
-import * as pList from './merchitem-list.mjs'
-import * as pEdit from './merchitem-edit.mjs'
+import * as settings from './mercharticle.settings.mjs'
+import * as apis from './mercharticle.apis.mjs'
+import * as pList from './mercharticle-list.mjs'
+import * as pEdit from './mercharticle-edit.mjs'
+import * as pEditItemgrid from './mercharticle-itemgrid.mjs'
+import * as pEditItemform from './mercharticle-itemform.mjs'
 
 
 
 const pnl_list = $('#pnl_list')
 const pnl_edit = $('#pnl_edit')
+const pnl_edititemgrid = $('#pnl_edititemgrid')
+const pnl_edititemform = $('#pnl_edititemform')
 
 
 
@@ -41,7 +45,8 @@ export async function init(opt) {
 		.initPages([
 			{panel: pnl_list, handler: pList},
 			{panel: pnl_edit, handler: pEdit},
-			
+			{panel: pnl_edititemgrid, handler: pEditItemgrid},
+			{panel: pnl_edititemform, handler: pEditItemform}			
 		], opt)
 
 	$ui.setPages(pages)

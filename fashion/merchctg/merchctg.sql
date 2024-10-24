@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `fsn_merchctg` (
 	`merchctg_id` varchar(30) NOT NULL , 
 	`merchctg_name` varchar(90) NOT NULL , 
 	`merchctg_nameshort` varchar(90)  , 
-	`merchctg_descr` varchar(255) NOT NULL , 
+	`merchctg_descr` varchar(255), 
 	`gender_id` varchar(7)  , 
 	`dept_id` varchar(10) NOT NULL , 
 	`itemgroup_id` varchar(17)  , 
@@ -27,7 +27,7 @@ COMMENT='Daftar Category Item Fashion Merchandise';
 
 ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `merchctg_name` varchar(90) NOT NULL  AFTER `merchctg_id`;
 ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `merchctg_nameshort` varchar(90)   AFTER `merchctg_name`;
-ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `merchctg_descr` varchar(255) NOT NULL  AFTER `merchctg_nameshort`;
+ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `merchctg_descr` varchar(255) AFTER `merchctg_nameshort`;
 ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `gender_id` varchar(7)   AFTER `merchctg_descr`;
 ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `dept_id` varchar(10) NOT NULL  AFTER `gender_id`;
 ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `itemgroup_id` varchar(17)   AFTER `dept_id`;
@@ -37,7 +37,7 @@ ALTER TABLE `fsn_merchctg` ADD COLUMN IF NOT EXISTS  `unit_id` varchar(10) NOT N
 
 ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `merchctg_name` varchar(90) NOT NULL   AFTER `merchctg_id`;
 ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `merchctg_nameshort` varchar(90)    AFTER `merchctg_name`;
-ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `merchctg_descr` varchar(255) NOT NULL   AFTER `merchctg_nameshort`;
+ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `merchctg_descr` varchar(255) AFTER `merchctg_nameshort`;
 ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `gender_id` varchar(7)    AFTER `merchctg_descr`;
 ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `dept_id` varchar(10) NOT NULL   AFTER `gender_id`;
 ALTER TABLE `fsn_merchctg` MODIFY COLUMN IF EXISTS  `itemgroup_id` varchar(17)    AFTER `dept_id`;

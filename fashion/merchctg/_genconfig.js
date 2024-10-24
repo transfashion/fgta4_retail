@@ -15,7 +15,7 @@ module.exports = {
 				merchctg_id: {text:'ID', type: dbtype.varchar(30), null:false, uppercase: true, options:{required:true,invalidMessage:'ID harus diisi'}},
 				merchctg_name: {text:'Category Name', type: dbtype.varchar(90), null:false, uppercase: true, options:{required:true,invalidMessage:'Nama Kategori harus diisi'}},
 				merchctg_nameshort: {text:'Name Short', type: dbtype.varchar(90)},
-				merchctg_descr: {text:'Description', type: dbtype.varchar(255), null:false},
+				merchctg_descr: {text:'Description', type: dbtype.varchar(255)},
 
 				gender_id: { 
 					text: 'Gender', type: dbtype.varchar(7), null: true, suppresslist: true,
