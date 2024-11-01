@@ -30,7 +30,7 @@ module.exports = {
 				mercharticle_pcpgroup: {text:'pcp group', type: dbtype.varchar(90), null:true, suppresslist: true},
 				mercharticle_pcpcategory: {text:'pcp category', type: dbtype.varchar(90), null:true, suppresslist: true},
 				mercharticle_gender: {text:'Gender', type: dbtype.varchar(1), null:true, suppresslist: true},
-				mercharticle_fit: {text:'Fit', type: dbtype.varchar(10), null:true, suppresslist: true},
+				mercharticle_fit: {text:'Fit', type: dbtype.varchar(30), null:true, suppresslist: true},
 				mercharticle_hscodeship: {text:'HSCode (ship)', type: dbtype.varchar(30), null:true, suppresslist: true},
 				mercharticle_hscodeina: {text:'HSCode (ina)', type: dbtype.varchar(30), null:true, suppresslist: true},
 				mercharticle_gtype: {text:'GType', type: dbtype.varchar(5), null:true, suppresslist: true},

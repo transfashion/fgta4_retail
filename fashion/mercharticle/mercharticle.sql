@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `fsn_mercharticle` (
 	`mercharticle_pcpgroup` varchar(90)  , 
 	`mercharticle_pcpcategory` varchar(90)  , 
 	`mercharticle_gender` varchar(1)  , 
-	`mercharticle_fit` varchar(10)  , 
+	`mercharticle_fit` varchar(30)  , 
 	`mercharticle_hscodeship` varchar(30)  , 
 	`mercharticle_hscodeina` varchar(30)  , 
 	`mercharticle_gtype` varchar(5)  , 
@@ -52,7 +52,7 @@ ALTER TABLE `fsn_mercharticle` ADD COLUMN IF NOT EXISTS  `mercharticle_pcpline` 
 ALTER TABLE `fsn_mercharticle` ADD COLUMN IF NOT EXISTS  `mercharticle_pcpgroup` varchar(90)   AFTER `mercharticle_pcpline`;
 ALTER TABLE `fsn_mercharticle` ADD COLUMN IF NOT EXISTS  `mercharticle_pcpcategory` varchar(90)   AFTER `mercharticle_pcpgroup`;
 ALTER TABLE `fsn_mercharticle` ADD COLUMN IF NOT EXISTS  `mercharticle_gender` varchar(1)   AFTER `mercharticle_pcpcategory`;
-ALTER TABLE `fsn_mercharticle` ADD COLUMN IF NOT EXISTS  `mercharticle_fit` varchar(10)   AFTER `mercharticle_gender`;
+ALTER TABLE `fsn_mercharticle` ADD COLUMN IF NOT EXISTS  `mercharticle_fit` varchar(30)   AFTER `mercharticle_gender`;
 ALTER TABLE `fsn_mercharticle` ADD COLUMN IF NOT EXISTS  `mercharticle_hscodeship` varchar(30)   AFTER `mercharticle_fit`;
 ALTER TABLE `fsn_mercharticle` ADD COLUMN IF NOT EXISTS  `mercharticle_hscodeina` varchar(30)   AFTER `mercharticle_hscodeship`;
 ALTER TABLE `fsn_mercharticle` ADD COLUMN IF NOT EXISTS  `mercharticle_gtype` varchar(5)   AFTER `mercharticle_hscodeina`;
@@ -79,7 +79,7 @@ ALTER TABLE `fsn_mercharticle` MODIFY COLUMN IF EXISTS  `mercharticle_pcpline` v
 ALTER TABLE `fsn_mercharticle` MODIFY COLUMN IF EXISTS  `mercharticle_pcpgroup` varchar(90)    AFTER `mercharticle_pcpline`;
 ALTER TABLE `fsn_mercharticle` MODIFY COLUMN IF EXISTS  `mercharticle_pcpcategory` varchar(90)    AFTER `mercharticle_pcpgroup`;
 ALTER TABLE `fsn_mercharticle` MODIFY COLUMN IF EXISTS  `mercharticle_gender` varchar(1)    AFTER `mercharticle_pcpcategory`;
-ALTER TABLE `fsn_mercharticle` MODIFY COLUMN IF EXISTS  `mercharticle_fit` varchar(10)    AFTER `mercharticle_gender`;
+ALTER TABLE `fsn_mercharticle` MODIFY COLUMN IF EXISTS  `mercharticle_fit` varchar(30)    AFTER `mercharticle_gender`;
 ALTER TABLE `fsn_mercharticle` MODIFY COLUMN IF EXISTS  `mercharticle_hscodeship` varchar(30)    AFTER `mercharticle_fit`;
 ALTER TABLE `fsn_mercharticle` MODIFY COLUMN IF EXISTS  `mercharticle_hscodeina` varchar(30)    AFTER `mercharticle_hscodeship`;
 ALTER TABLE `fsn_mercharticle` MODIFY COLUMN IF EXISTS  `mercharticle_gtype` varchar(5)    AFTER `mercharticle_hscodeina`;
