@@ -222,7 +222,6 @@ console::class(new class($args) extends syncWorkerBase {
 
 				}
 
-				print_r($regitem);
 
 				$this->db->commit();
 			} catch (\Exception $ex) {
@@ -393,6 +392,8 @@ console::class(new class($args) extends syncWorkerBase {
 		$obj->merchregtype_id = 'R01';
 		$obj->interface_id = 'TB';
 		$obj->merchregtype_iscangenerate = 1;
+
+
 
 		try {
 
