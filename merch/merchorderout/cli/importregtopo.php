@@ -91,7 +91,7 @@ console::class(new class($args) extends syncWorkerBase {
 
 
 			// Jalankan persiapan disini
-			$url = 'http://ws.transfashionindonesia.com/crossroads/apis';
+			$url = 'http://ws.transbrowser.com/crossroads/apis';
 			$endpoint = "$url/getregister.php?id=$heinvregister_id&region=$region_id";
 
 			$progress = 2;
