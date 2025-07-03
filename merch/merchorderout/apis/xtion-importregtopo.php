@@ -33,7 +33,8 @@ $API = new class extends merchorderoutBase {
 		$logfile = "/mnt/ramdisk/log-$dt-$pid.txt";
 		$clipath = __LOCALCLIENT_DIR . '/cli';
 
-		$cmdscript = "/var/www/fgtacloud4u/server_apps/retail/merch/merchorderout/cli/importregtopo.sh";
+		// $cmdscript = "/home/ubuntu/fgtamodules/fgta4_retail/merch/merchorderout/cli/importregtopo.sh";
+		$cmdscript = "$clipath/importregtopo.sh";
 		$command = "$cmdscript -c \"$clipath\" -n $name -p $pid -u $username -d \"$data\" -l \"$logfile\" 2>&1 | tee -a $logfile 2>/dev/null >/dev/null &";
 		shell_exec($command);
 
